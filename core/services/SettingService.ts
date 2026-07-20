@@ -2,9 +2,31 @@ import {
 	DEFAULT_SETTINGS,
 	type IPluginSettings,
 } from "core/interfaces/PluginSettingsInterface";
+import {
+	DEFAULT_TEXT_COLORS,
+	type ITextColorOption,
+} from "core/constants/defaultTextColorSettings";
 import { LoggingService } from "./LogginService";
 import type StickyNotesPlugin from "main";
 import { type StickyNoteLeaf } from "core/views/StickyNoteLeaf";
+
+/** Append any default text colors missing from a saved palette (by hex). */
+export function mergeDefaultTextColors(
+	saved: ITextColorOption[],
+): ITextColorOption[] {
+	const existing = new Set(
+		saved.map((option) => option.color.trim().toLowerCase()),
+	);
+	const merged = [...saved];
+	for (const option of DEFAULT_TEXT_COLORS) {
+		const key = option.color.trim().toLowerCase();
+		if (!existing.has(key)) {
+			merged.push({ ...option });
+			existing.add(key);
+		}
+	}
+	return merged;
+}
 
 export class SettingService {
 	plugin: StickyNotesPlugin;
@@ -70,10 +92,11 @@ export class SettingService {
 				partial.bgColors?.length
 					? partial.bgColors
 					: structuredClone(DEFAULT_SETTINGS.bgColors),
-			textColors:
+			textColors: mergeDefaultTextColors(
 				partial.textColors?.length
 					? partial.textColors
 					: structuredClone(DEFAULT_SETTINGS.textColors),
+			),
 			defaultTextColor:
 				partial.defaultTextColor ?? DEFAULT_SETTINGS.defaultTextColor,
 			defaultOpacity: this.clampOpacity(
@@ -83,6 +106,11 @@ export class SettingService {
 
 		this._settings = merged;
 		this.plugin.globalSettings = this._settings;
+
+		const rawTextCount = partial.textColors?.length ?? 0;
+		if (merged.textColors.length > rawTextCount) {
+			await this.saveSettings();
+		}
 	}
 
 	private clampOpacity(value: number): number {

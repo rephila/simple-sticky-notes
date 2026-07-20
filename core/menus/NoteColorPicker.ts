@@ -21,13 +21,13 @@ export interface PaletteBudget {
 
 export function getPaletteBudget(viewportWidth: number): PaletteBudget {
 	if (viewportWidth < 320) {
-		return { backgroundCount: 5, textCount: 6, sizeClass: "is-tiny" };
+		return { backgroundCount: 5, textCount: 8, sizeClass: "is-tiny" };
 	}
 	if (viewportWidth < 420) {
-		return { backgroundCount: 6, textCount: 8, sizeClass: "is-compact" };
+		return { backgroundCount: 6, textCount: 10, sizeClass: "is-compact" };
 	}
 	if (viewportWidth < 560) {
-		return { backgroundCount: 8, textCount: 10, sizeClass: "is-compact" };
+		return { backgroundCount: 8, textCount: 12, sizeClass: "is-compact" };
 	}
 	return {
 		backgroundCount: Number.POSITIVE_INFINITY,

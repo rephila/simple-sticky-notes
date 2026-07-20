@@ -33,12 +33,15 @@ html.sticky-note-window [data-sticky-hidden="true"] {
     --folding-offset: 18px;
     --sticky-content-pad-top: 4px;
     --sticky-content-pad-right: 16px;
-    --sticky-content-pad-bottom: 12px;
+    --sticky-content-pad-bottom: 16px;
     --sticky-content-pad-left: 20px;
     /* Keep edit/read content edge-aligned; disable Obsidian readable-line centering */
     --file-line-width: 100%;
     --file-margins: 0px;
     --sticky-scrollbar-size: 6px;
+    /* Keep thumb clear of Windows rounded window corners */
+    --sticky-scrollbar-inset-top: 6px;
+    --sticky-scrollbar-inset-bottom: 14px;
     background: var(--note-light-color, #ffffff) !important;
     color: var(--note-text-color, #1a1a1a) !important;
     height: 100%;
@@ -137,7 +140,7 @@ html.sticky-note-window .cm-gutters {
 
 html.sticky-note-window .view-content::-webkit-scrollbar,
 html.sticky-note-window .cm-scroller::-webkit-scrollbar {
-    width: 8px !important;
+    width: var(--sticky-scrollbar-size, 6px) !important;
     height: 0 !important;
 }
 
@@ -145,18 +148,31 @@ html.sticky-note-window .view-content::-webkit-scrollbar-thumb,
 html.sticky-note-window .cm-scroller::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.32) !important;
     border-radius: 999px !important;
+    min-height: 24px !important;
+    border: 2px solid transparent !important;
+    background-clip: padding-box !important;
 }
 
 html.sticky-note-window .view-content::-webkit-scrollbar-track,
 html.sticky-note-window .cm-scroller::-webkit-scrollbar-track {
     background: transparent !important;
+    margin-top: var(--sticky-scrollbar-inset-top, 6px) !important;
+    margin-bottom: var(--sticky-scrollbar-inset-bottom, 14px) !important;
 }
 
 html.sticky-note-window .view-content::-webkit-scrollbar-button,
-html.sticky-note-window .cm-scroller::-webkit-scrollbar-button {
+html.sticky-note-window .view-content::-webkit-scrollbar-button:single-button,
+html.sticky-note-window .view-content::-webkit-scrollbar-button:start,
+html.sticky-note-window .view-content::-webkit-scrollbar-button:end,
+html.sticky-note-window .cm-scroller::-webkit-scrollbar-button,
+html.sticky-note-window .cm-scroller::-webkit-scrollbar-button:single-button,
+html.sticky-note-window .cm-scroller::-webkit-scrollbar-button:start,
+html.sticky-note-window .cm-scroller::-webkit-scrollbar-button:end {
     display: none !important;
     width: 0 !important;
     height: 0 !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
 }
 
 html.sticky-note-window .view-header {
@@ -318,22 +334,31 @@ html.sticky-note-window .markdown-source-view.mod-cm6 .cm-scroller {
 .app-container.sticky-note .view-content::-webkit-scrollbar,
 .app-container.sticky-note .cm-scroller::-webkit-scrollbar,
 .app-container.sticky-note .markdown-preview-view::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: var(--sticky-scrollbar-size, 6px);
+    height: 0;
 }
 
 .app-container.sticky-note .view-content::-webkit-scrollbar:horizontal,
-.app-container.sticky-note .cm-scroller::-webkit-scrollbar:horizontal {
+.app-container.sticky-note .cm-scroller::-webkit-scrollbar:horizontal,
+.app-container.sticky-note .markdown-preview-view::-webkit-scrollbar:horizontal {
     display: none;
     height: 0 !important;
 }
 
 .app-container.sticky-note .view-content::-webkit-scrollbar-button,
+.app-container.sticky-note .view-content::-webkit-scrollbar-button:single-button,
+.app-container.sticky-note .view-content::-webkit-scrollbar-button:start,
+.app-container.sticky-note .view-content::-webkit-scrollbar-button:end,
 .app-container.sticky-note .cm-scroller::-webkit-scrollbar-button,
+.app-container.sticky-note .cm-scroller::-webkit-scrollbar-button:single-button,
+.app-container.sticky-note .cm-scroller::-webkit-scrollbar-button:start,
+.app-container.sticky-note .cm-scroller::-webkit-scrollbar-button:end,
 .app-container.sticky-note .markdown-preview-view::-webkit-scrollbar-button {
     display: none !important;
     width: 0 !important;
     height: 0 !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
 }
 
 .app-container.sticky-note .view-content::-webkit-scrollbar-corner,
@@ -346,7 +371,8 @@ html.sticky-note-window .markdown-source-view.mod-cm6 .cm-scroller {
 .app-container.sticky-note .cm-scroller::-webkit-scrollbar-track,
 .app-container.sticky-note .markdown-preview-view::-webkit-scrollbar-track {
     background: transparent;
-    margin: 4px 0;
+    margin-top: var(--sticky-scrollbar-inset-top, 6px);
+    margin-bottom: var(--sticky-scrollbar-inset-bottom, 14px);
 }
 
 .app-container.sticky-note .view-content::-webkit-scrollbar-thumb,
@@ -356,6 +382,8 @@ html.sticky-note-window .markdown-source-view.mod-cm6 .cm-scroller {
     background-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 32%, transparent);
     border-radius: 999px;
     min-height: 24px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
 }
 
 .app-container.sticky-note .view-content:hover::-webkit-scrollbar-thumb,

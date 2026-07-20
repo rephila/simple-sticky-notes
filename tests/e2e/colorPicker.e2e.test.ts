@@ -120,7 +120,7 @@ describe("e2e: color picker", () => {
 
 		expect(getPaletteBudget(300)).toEqual({
 			backgroundCount: 5,
-			textCount: 6,
+			textCount: 8,
 			sizeClass: "is-tiny",
 		});
 		expect(getPaletteBudget(400).sizeClass).toBe("is-compact");

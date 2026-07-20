@@ -36,7 +36,7 @@ export const STICKY_INTRUSION_SELECTORS = [
 ] as const;
 
 /** Shared content inset — applied on preview/cm layers (not view-content). */
-export const STICKY_CONTENT_PADDING = "4px 16px 12px 20px";
+export const STICKY_CONTENT_PADDING = "4px 16px 16px 20px";
 
 export function isStickyNoteDocument(document: Document): boolean {
 	return (

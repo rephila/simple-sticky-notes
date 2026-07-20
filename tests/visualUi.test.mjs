@@ -95,6 +95,8 @@ test("scroll and responsive content layout are configured", () => {
 	assert.match(css, /\.view-content[\s\S]*overflow-y:\s*auto/);
 	assert.match(css, /\.view-content[\s\S]*overflow-x:\s*hidden/);
 	assert.match(css, /::-webkit-scrollbar/);
+	assert.match(css, /--sticky-scrollbar-inset-bottom/);
+	assert.match(css, /margin-bottom:\s*var\(--sticky-scrollbar-inset-bottom/);
 	assert.match(css, /\.markdown-preview-view img[\s\S]*max-width:\s*100%/);
 	assert.match(css, /overflow-wrap:\s*anywhere/);
 	assert.match(css, /--folding-offset/);
