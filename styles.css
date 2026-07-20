@@ -1,0 +1,996 @@
+html.sticky-note-window .is-sticky-hidden,
+html.sticky-note-window [data-sticky-hidden="true"] {
+    display: none;
+}
+
+.app-container.sticky-note,
+.sticky-note {
+    --background-primary: var(--note-light-color, #ffffff);
+    --background-primary-alt: var(--note-light-color, #ffffff);
+    --titlebar-background: var(--note-light-color, #ffffff);
+    --titlebar-background-focused: var(--note-light-color, #ffffff);
+    --text-normal: var(--note-text-color, #1a1a1a);
+    --text-muted: var(--note-text-color, #1a1a1a);
+    --text-faint: var(--note-text-color, #1a1a1a);
+    --link-color: #1a5fb4;
+    --link-color-hover: #134e96;
+    --interactive-accent: var(--link-color, #1a5fb4);
+    --interactive-accent-hover: var(--link-color-hover, #134e96);
+    --text-accent: var(--link-color, #1a5fb4);
+    --text-accent-hover: var(--link-color-hover, #134e96);
+    --table-text-color: var(--note-text-color, #1a1a1a);
+    --table-header-color: var(--note-text-color, #1a1a1a);
+    --table-header-background: var(--note-code-bg, #ececec);
+    --table-background: var(--note-light-color, #ffffff);
+    --table-cell-background: var(--note-light-color, #ffffff);
+    --table-column-header-background: var(--note-code-bg, #ececec);
+    --code-normal: var(--note-text-color, #1a1a1a);
+    --code-background: var(--note-code-bg, #ececec);
+    --metadata-display-editing: none;
+    --metadata-display-reading: none;
+    --background-modifier-border: transparent;
+    --divider-color: transparent;
+    --folding-offset: 18px;
+    --sticky-content-pad-top: 10px;
+    --sticky-content-pad-right: 16px;
+    --sticky-content-pad-bottom: 12px;
+    --sticky-content-pad-left: 20px;
+    /* Keep edit/read content edge-aligned; disable Obsidian readable-line centering */
+    --file-line-width: 100%;
+    --file-margins: 0px;
+    --sticky-scrollbar-size: 6px;
+    background: var(--note-light-color, #ffffff) !important;
+    color: var(--note-text-color, #1a1a1a) !important;
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+html.sticky-note-window,
+body.sticky-note-window {
+    background-color: var(--note-light-color, #ffffff) !important;
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+html.sticky-note-window .workspace-tab-header-container,
+html.sticky-note-window .workspace-tab-header,
+html.sticky-note-window .mod-workspace-tab-header,
+html.sticky-note-window .view-header-nav-buttons,
+html.sticky-note-window .view-header-breadcrumb,
+html.sticky-note-window .view-header-left,
+html.sticky-note-window .view-header-status-container,
+html.sticky-note-window .sidebar-toggle-button,
+html.sticky-note-window .side-dock-actions,
+html.sticky-note-window .status-bar,
+html.sticky-note-window .titlebar,
+html.sticky-note-window .metadata-container,
+html.sticky-note-window .daily-note-navbar {
+    display: none !important;
+}
+
+html.sticky-note-window .notice-container,
+html.sticky-note-window .notice,
+html.sticky-note-window .progress-bar {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+html.sticky-note-window .workspace-leaf {
+    display: block !important;
+    visibility: visible !important;
+    height: 100% !important;
+}
+
+html.sticky-note-window .workspace-leaf-content {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    visibility: visible !important;
+}
+
+html.sticky-note-window .view-content {
+    display: block !important;
+    visibility: visible !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+html.sticky-note-window .markdown-preview-view {
+    padding: var(--sticky-content-pad-top, 10px)
+        var(--sticky-content-pad-right, 16px)
+        var(--sticky-content-pad-bottom, 12px)
+        var(--sticky-content-pad-left, 20px) !important;
+    max-width: none !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+}
+
+html.sticky-note-window .markdown-preview-section,
+html.sticky-note-window .cm-content {
+    padding-left: 0 !important;
+    padding-inline-start: 0 !important;
+    max-width: none !important;
+    margin-inline: 0 !important;
+    box-sizing: border-box !important;
+}
+
+html.sticky-note-window .cm-scroller {
+    padding: var(--sticky-content-pad-top, 10px)
+        var(--sticky-content-pad-right, 16px)
+        var(--sticky-content-pad-bottom, 12px)
+        var(--sticky-content-pad-left, 20px) !important;
+    box-sizing: border-box !important;
+}
+
+html.sticky-note-window .cm-gutters {
+    display: none !important;
+}
+
+html.sticky-note-window .view-content::-webkit-scrollbar,
+html.sticky-note-window .cm-scroller::-webkit-scrollbar {
+    width: 8px !important;
+    height: 0 !important;
+}
+
+html.sticky-note-window .view-content::-webkit-scrollbar-thumb,
+html.sticky-note-window .cm-scroller::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.32) !important;
+    border-radius: 999px !important;
+}
+
+html.sticky-note-window .view-content::-webkit-scrollbar-track,
+html.sticky-note-window .cm-scroller::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+html.sticky-note-window .view-content::-webkit-scrollbar-button,
+html.sticky-note-window .cm-scroller::-webkit-scrollbar-button {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+html.sticky-note-window .view-header {
+    display: flex !important;
+    visibility: visible !important;
+}
+
+.app-container.sticky-note .view-header-title,
+.app-container.sticky-note .markdown-preview-view,
+.app-container.sticky-note .markdown-preview-view p,
+.app-container.sticky-note .markdown-preview-view li,
+.app-container.sticky-note .markdown-preview-view td,
+.app-container.sticky-note .markdown-preview-view th,
+.app-container.sticky-note .markdown-preview-view tr,
+.app-container.sticky-note .markdown-preview-view table,
+.app-container.sticky-note .markdown-preview-view thead,
+.app-container.sticky-note .markdown-preview-view tbody,
+.app-container.sticky-note .markdown-preview-view strong,
+.app-container.sticky-note .markdown-preview-view em,
+.app-container.sticky-note .markdown-preview-view blockquote,
+.app-container.sticky-note .markdown-preview-view span,
+.app-container.sticky-note .markdown-preview-view div,
+.app-container.sticky-note .markdown-preview-view h1,
+.app-container.sticky-note .markdown-preview-view h2,
+.app-container.sticky-note .markdown-preview-view h3,
+.app-container.sticky-note .markdown-preview-view h4,
+.app-container.sticky-note .cm-content,
+.app-container.sticky-note .cm-line {
+    color: var(--note-text-color, #1a1a1a);
+}
+
+.app-container.sticky-note,
+.app-container.sticky-note .workspace,
+.app-container.sticky-note .workspace-split,
+.app-container.sticky-note .workspace-leaf,
+.app-container.sticky-note .workspace-leaf-content,
+.app-container.sticky-note .view-content,
+.app-container.sticky-note .markdown-source-view,
+.app-container.sticky-note .markdown-preview-view,
+.app-container.sticky-note .markdown-preview-sizer,
+.app-container.sticky-note .markdown-preview-section,
+.app-container.sticky-note .markdown-preview-pusher,
+.app-container.sticky-note .empty-state,
+.app-container.sticky-note .empty-state-container,
+.app-container.sticky-note .cm-editor,
+.app-container.sticky-note .cm-scroller,
+.app-container.sticky-note .cm-gutters {
+    background-color: var(--note-light-color, #ffffff) !important;
+}
+
+.app-container.sticky-note,
+.app-container.sticky-note .workspace,
+.app-container.sticky-note .workspace-split,
+.app-container.sticky-note .workspace-tabs,
+.app-container.sticky-note .workspace-tab-container,
+.app-container.sticky-note .workspace-leaf {
+    height: 100%;
+    min-height: 0;
+}
+
+.app-container.sticky-note .workspace-leaf-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.app-container.sticky-note .view-header {
+    flex: 0 0 auto;
+}
+
+.app-container.sticky-note .view-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 0;
+    -webkit-app-region: no-drag;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+.app-container.sticky-note .view-content.mod-sticky-source {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-container.sticky-note .markdown-source-view,
+.app-container.sticky-note .markdown-preview-view,
+.app-container.sticky-note .cm-editor,
+.app-container.sticky-note .cm-scroller {
+    min-height: 0 !important;
+}
+
+.app-container.sticky-note .markdown-source-view {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.app-container.sticky-note .cm-editor {
+    flex: 1 1 auto;
+    overflow: hidden;
+}
+
+.app-container.sticky-note .cm-scroller {
+    height: 100%;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    padding: var(--sticky-content-pad-top, 10px)
+        var(--sticky-content-pad-right, 16px)
+        var(--sticky-content-pad-bottom, 12px)
+        var(--sticky-content-pad-left, 20px) !important;
+    box-sizing: border-box;
+}
+
+/* Line-number gutter shifts edit mode left edge; fold space comes from content padding */
+.app-container.sticky-note .cm-gutters {
+    display: none !important;
+}
+
+.app-container.sticky-note .cm-content {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+}
+
+.app-container.sticky-note .view-content::-webkit-scrollbar,
+.app-container.sticky-note .cm-scroller::-webkit-scrollbar,
+.app-container.sticky-note .markdown-preview-view::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.app-container.sticky-note .view-content::-webkit-scrollbar:horizontal,
+.app-container.sticky-note .cm-scroller::-webkit-scrollbar:horizontal {
+    display: none;
+    height: 0 !important;
+}
+
+.app-container.sticky-note .view-content::-webkit-scrollbar-button,
+.app-container.sticky-note .cm-scroller::-webkit-scrollbar-button,
+.app-container.sticky-note .markdown-preview-view::-webkit-scrollbar-button {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+.app-container.sticky-note .view-content::-webkit-scrollbar-corner,
+.app-container.sticky-note .cm-scroller::-webkit-scrollbar-corner {
+    background: transparent;
+    display: none;
+}
+
+.app-container.sticky-note .view-content::-webkit-scrollbar-track,
+.app-container.sticky-note .cm-scroller::-webkit-scrollbar-track,
+.app-container.sticky-note .markdown-preview-view::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 4px 0;
+}
+
+.app-container.sticky-note .view-content::-webkit-scrollbar-thumb,
+.app-container.sticky-note .cm-scroller::-webkit-scrollbar-thumb,
+.app-container.sticky-note .markdown-preview-view::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.28);
+    background-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 32%, transparent);
+    border-radius: 999px;
+    min-height: 24px;
+}
+
+.app-container.sticky-note .view-content:hover::-webkit-scrollbar-thumb,
+.app-container.sticky-note .view-content:focus-within::-webkit-scrollbar-thumb,
+.app-container.sticky-note .cm-scroller:hover::-webkit-scrollbar-thumb,
+.app-container.sticky-note .cm-scroller:focus-within::-webkit-scrollbar-thumb,
+.app-container.sticky-note .markdown-preview-view:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.42);
+    background-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 48%, transparent);
+}
+
+.app-container.sticky-note .markdown-preview-view {
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: visible;
+    max-width: 100%;
+}
+
+.app-container.sticky-note .markdown-preview-sizer,
+.app-container.sticky-note .markdown-preview-section {
+    min-height: 0 !important;
+    height: auto;
+    overflow: visible;
+}
+
+.app-container.sticky-note .markdown-preview-view .markdown-preview-section {
+    padding-inline-start: 0;
+    max-width: none !important;
+    margin-inline: 0 !important;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.app-container.sticky-note .markdown-preview-view h1,
+.app-container.sticky-note .markdown-preview-view h2,
+.app-container.sticky-note .markdown-preview-view h3,
+.app-container.sticky-note .markdown-preview-view h4,
+.app-container.sticky-note .markdown-preview-view h5,
+.app-container.sticky-note .markdown-preview-view h6 {
+    position: relative;
+    overflow: visible !important;
+    padding-inline-start: 0 !important;
+}
+
+.app-container.sticky-note .markdown-preview-view .heading-collapse-indicator,
+.app-container.sticky-note .markdown-preview-view .collapse-indicator.collapse-icon,
+.app-container.sticky-note .markdown-preview-view h1 .collapse-indicator,
+.app-container.sticky-note .markdown-preview-view h2 .collapse-indicator,
+.app-container.sticky-note .markdown-preview-view h3 .collapse-indicator,
+.app-container.sticky-note .markdown-preview-view h4 .collapse-indicator,
+.app-container.sticky-note .markdown-preview-view h5 .collapse-indicator,
+.app-container.sticky-note .markdown-preview-view h6 .collapse-indicator {
+    position: absolute !important;
+    left: -16px !important;
+    top: 0.2em;
+    width: 16px;
+    margin: 0 !important;
+    margin-inline-start: 0 !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    overflow: visible !important;
+    pointer-events: auto;
+    z-index: 2;
+}
+
+.app-container.sticky-note .markdown-preview-view .heading-collapse-indicator svg,
+.app-container.sticky-note .markdown-preview-view .collapse-indicator svg {
+    width: 12px;
+    height: 12px;
+}
+
+.app-container.sticky-note .markdown-preview-view,
+.app-container.sticky-note .cm-content {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.app-container.sticky-note .markdown-preview-view table {
+    display: block;
+    max-width: 100%;
+    overflow-x: hidden;
+    background-color: var(--note-light-color, #ffffff) !important;
+}
+
+.app-container.sticky-note .markdown-preview-view pre {
+    max-width: 100%;
+    overflow-x: hidden;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.app-container.sticky-note .markdown-preview-view .internal-embed,
+.app-container.sticky-note .markdown-preview-view .markdown-embed {
+    max-width: 100%;
+}
+
+/* Obsidian uses pusher for scroll sync; min-height on it creates a huge top gap */
+.app-container.sticky-note .markdown-preview-pusher,
+html.sticky-note-window .markdown-preview-pusher {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.app-container.sticky-note .markdown-preview-sizer,
+html.sticky-note-window .markdown-preview-sizer {
+    min-height: auto !important;
+}
+
+.app-container.sticky-note .workspace-ribbon,
+.app-container.sticky-note .sidebar-toggle-button,
+.app-container.sticky-note .side-dock-actions,
+.app-container.sticky-note .status-bar,
+.app-container.sticky-note .view-header-breadcrumb,
+.app-container.sticky-note .view-header-left,
+.app-container.sticky-note .view-header-nav-buttons,
+.app-container.sticky-note .view-header-status-container,
+.app-container.sticky-note .titlebar,
+.app-container.sticky-note .workspace-tab-header-container,
+.app-container.sticky-note .workspace-tab-header,
+.app-container.sticky-note .mod-workspace-tab-header,
+.app-container.sticky-note .daily-note-navbar,
+.app-container.sticky-note [class*="editingToolbar"],
+.app-container.sticky-note [class*="editing-toolbar"],
+.app-container.sticky-note .floating-toc-div,
+.app-container.sticky-note .metadata-container,
+.app-container.sticky-note .metadata-properties,
+.app-container.sticky-note .metadata-add-button,
+.app-container.sticky-note .frontmatter-section,
+.app-container.sticky-note .embedded-backlinks,
+.app-container.sticky-note .embedded-table-of-contents,
+.app-container.sticky-note .mod-footer-bar {
+    display: none !important;
+}
+
+.app-container.sticky-note .view-header {
+    background: var(--note-light-color, #ffffff) !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-bottom-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 12%, transparent) !important;
+    box-shadow: none !important;
+    min-height: 34px;
+    padding: 0 12px 0 6px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.app-container.sticky-note .view-header-title-container {
+    position: absolute;
+    inset: 0;
+    app-region: drag;
+    -webkit-app-region: drag;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    min-width: 0;
+    padding: 0 104px;
+}
+
+.app-container.sticky-note .view-header-title-container .view-header-breadcrumb,
+.app-container.sticky-note .view-header-title-container .view-header-title-parent,
+.app-container.sticky-note .view-header-title .view-header-breadcrumb {
+    display: none !important;
+}
+
+.app-container.sticky-note .view-header-title {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--note-text-color, #4a4a4a) !important;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.app-container.sticky-note .view-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+    margin-left: auto;
+    margin-right: 2px;
+    padding-right: 4px;
+    position: relative;
+    z-index: 2;
+}
+
+.sticky-note-button {
+    --icon-color: #666;
+    --icon-color-hover: #222;
+    --icon-size: 14px;
+    padding: 2px;
+}
+
+.app-container.sticky-note .view-actions .view-action {
+    app-region: no-drag;
+    -webkit-app-region: no-drag;
+    opacity: 0.85;
+}
+
+.app-container.sticky-note .view-actions .view-action:hover {
+    opacity: 1;
+}
+
+.app-container.sticky-note .view-actions .close-button {
+    order: 10;
+    margin-left: auto;
+}
+
+.app-container.sticky-note .view-actions .color-button {
+    order: 1;
+}
+
+.app-container.sticky-note .view-actions .pin-button {
+    order: 2;
+}
+
+.app-container.sticky-note .markdown-preview-view,
+.app-container.sticky-note .markdown-source-view,
+.app-container.sticky-note .cm-editor,
+.app-container.sticky-note .cm-scroller {
+    -webkit-app-region: no-drag;
+}
+
+/* Hide Obsidian inline title only; header shows file name */
+.app-container.sticky-note .view-content .inline-title,
+.app-container.sticky-note .markdown-source-view .inline-title {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+}
+
+.app-container.sticky-note .markdown-source-view.mod-cm6 .cm-editor .cm-scroller {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.app-container.sticky-note .markdown-preview-view {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: var(--sticky-content-pad-top, 10px)
+        var(--sticky-content-pad-right, 16px)
+        var(--sticky-content-pad-bottom, 12px)
+        var(--sticky-content-pad-left, 20px) !important;
+    margin: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    color: var(--note-text-color, #1a1a1a) !important;
+}
+
+.app-container.sticky-note .markdown-preview-sizer {
+    max-width: none !important;
+    margin-inline: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+.app-container.sticky-note .markdown-preview-view th,
+.app-container.sticky-note .markdown-preview-view td {
+    color: var(--note-text-color, #1a1a1a) !important;
+    background-color: var(--note-light-color, #ffffff) !important;
+    border-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 20%, transparent) !important;
+}
+
+.app-container.sticky-note .markdown-preview-view thead th {
+    background-color: var(--note-code-bg, #ececec) !important;
+    color: var(--note-text-color, #1a1a1a) !important;
+}
+
+.app-container.sticky-note .markdown-preview-view pre,
+.app-container.sticky-note .markdown-preview-view code {
+    color: var(--note-text-color, #1a1a1a) !important;
+    background-color: var(--note-code-bg, #ececec) !important;
+}
+
+.app-container.sticky-note .markdown-preview-view pre code {
+    color: var(--note-text-color, #1a1a1a) !important;
+    background-color: transparent !important;
+}
+
+.app-container.sticky-note .markdown-preview-view h1,
+.app-container.sticky-note .markdown-preview-view h2,
+.app-container.sticky-note .markdown-preview-view h3,
+.app-container.sticky-note .markdown-preview-view h4 {
+    font-weight: 600;
+    margin-top: 0.6em;
+    margin-bottom: 0.3em;
+    color: var(--note-text-color, #1a1a1a) !important;
+}
+
+.app-container.sticky-note .markdown-preview-view .markdown-preview-section > :first-child,
+.app-container.sticky-note .markdown-preview-view h1:first-child,
+.app-container.sticky-note .markdown-preview-view h2:first-child,
+.app-container.sticky-note .markdown-preview-view h3:first-child,
+.app-container.sticky-note .markdown-preview-view h4:first-child,
+.app-container.sticky-note .cm-content > .cm-line:first-child {
+    margin-top: 0 !important;
+}
+
+.app-container.sticky-note .markdown-preview-view p,
+.app-container.sticky-note .markdown-preview-view li,
+.app-container.sticky-note .markdown-preview-view .el-p,
+.app-container.sticky-note .markdown-preview-view .el-h1,
+.app-container.sticky-note .markdown-preview-view .el-h2,
+.app-container.sticky-note .markdown-preview-view .el-h3,
+.app-container.sticky-note .markdown-preview-view .el-h4 {
+    color: var(--note-text-color, #1a1a1a) !important;
+}
+
+.app-container.sticky-note .markdown-preview-view a,
+.app-container.sticky-note .markdown-preview-view a *,
+.app-container.sticky-note .empty-state-action,
+.app-container.sticky-note .empty-state-action-list-item,
+.app-container.sticky-note .empty-state-action-list-item.mod-clickable,
+.app-container.sticky-note .mod-cta,
+.app-container.sticky-note .mod-clickable {
+    color: var(--link-color, #1a5fb4) !important;
+    text-decoration: underline;
+}
+
+.app-container.sticky-note .markdown-preview-view a:hover,
+.app-container.sticky-note .markdown-preview-view a:hover *,
+.app-container.sticky-note .empty-state-action:hover,
+.app-container.sticky-note .empty-state-action-list-item:hover {
+    color: var(--link-color-hover, #134e96) !important;
+}
+
+.app-container.sticky-note .empty-state,
+.app-container.sticky-note .empty-state-title,
+.app-container.sticky-note .empty-state-description {
+    color: var(--note-text-color, #1a1a1a) !important;
+    background-color: var(--note-light-color, #ffffff) !important;
+}
+
+.app-container.sticky-note .markdown-preview-view img,
+.app-container.sticky-note .markdown-source-view img {
+    cursor: pointer;
+    max-width: 100%;
+    height: auto;
+}
+
+.app-container.sticky-note .cm-content .cm-header,
+.app-container.sticky-note .cm-content .cm-strong,
+.app-container.sticky-note .cm-content .cm-formatting,
+.app-container.sticky-note .cm-content .cm-comment,
+.app-container.sticky-note .cm-content .cm-hmd-codeblock,
+.app-container.sticky-note .cm-content .cm-hmd-frontmatter {
+    color: var(--note-text-color, #1a1a1a) !important;
+    caret-color: var(--note-text-color, #1a1a1a);
+}
+
+.app-container.sticky-note .cm-content .cm-link,
+.app-container.sticky-note .cm-content .cm-url,
+.app-container.sticky-note .cm-content .cm-underline,
+.app-container.sticky-note .cm-content .hmd-urlstring,
+.app-container.sticky-note .cm-content .cm-string.cm-url,
+.app-container.sticky-note .cm-content a {
+    color: var(--link-color, #1a5fb4) !important;
+    text-decoration: underline;
+    caret-color: var(--note-text-color, #1a1a1a);
+}
+
+.app-container.sticky-note .cm-content .cm-link:hover,
+.app-container.sticky-note .cm-content .cm-url:hover,
+.app-container.sticky-note .cm-content a:hover {
+    color: var(--link-color-hover, #134e96) !important;
+}
+
+.color-menu {
+    row-gap: 4px;
+}
+
+.color-menu-item:hover {
+    font-weight: 500;
+}
+
+.disabled-setting {
+    opacity: 50%;
+}
+
+.bg-color-settings {
+    flex-direction: column;
+    align-items: start;
+    gap: 6px;
+    padding: 0;
+    border-top: none;
+}
+
+.bg-color-settings > * {
+    width: 100%;
+}
+
+.single-color-setting .setting-item-control {
+    justify-content: stretch;
+    gap: 16px;
+}
+
+.single-color-setting .setting-item-info {
+    display: none;
+}
+
+.sticky-note-selection-toolbar {
+    position: fixed;
+    z-index: 10000;
+    left: var(--sticky-toolbar-left, 0);
+    top: var(--sticky-toolbar-top, 0);
+    display: none;
+    align-items: center;
+    gap: 2px;
+    padding: 4px 6px;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(0, 0, 0, 0.06);
+    user-select: none;
+}
+
+.sticky-note-selection-toolbar.is-open {
+    display: flex;
+}
+
+.sticky-note-selection-toolbar.is-measuring {
+    display: flex;
+    visibility: hidden;
+}
+
+.sticky-note-selection-toolbar-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+    padding: 0 4px;
+    border-radius: 6px;
+    color: #333;
+    cursor: pointer;
+}
+
+.sticky-note-selection-toolbar-button:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.sticky-note-selection-toolbar-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+.sticky-note-selection-toolbar-button.heading-button {
+    gap: 2px;
+    padding: 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.sticky-note-selection-toolbar-heading-label {
+    line-height: 1;
+}
+
+.sticky-note-selection-toolbar-heading-chevron svg {
+    width: 12px;
+    height: 12px;
+    opacity: 0.7;
+}
+
+.sticky-note-selection-toolbar-button.highlight-button {
+    background: #d9f99d;
+    border-radius: 4px;
+    min-width: 24px;
+    height: 24px;
+    margin: 0 2px;
+}
+
+.sticky-note-selection-toolbar-button.highlight-button:hover {
+    background: #bef264;
+}
+
+.sticky-note-selection-toolbar-separator {
+    width: 1px;
+    height: 18px;
+    margin: 0 2px;
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.sticky-note-color-picker {
+    position: fixed;
+    z-index: 10001;
+    left: var(--sticky-picker-left, 0);
+    top: var(--sticky-picker-top, 0);
+    display: none;
+    min-width: 180px;
+    max-width: calc(100vw - 16px);
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.14),
+        0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.sticky-note-color-picker.is-open {
+    display: block;
+}
+
+.sticky-note-color-picker.is-measuring {
+    display: block;
+    visibility: hidden;
+}
+
+.sticky-note-color-picker.is-compact {
+    min-width: 150px;
+    padding: 8px 10px;
+}
+
+.sticky-note-color-picker.is-tiny {
+    min-width: 132px;
+    padding: 6px 8px;
+}
+
+.sticky-note-color-picker-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 8px 0 6px;
+}
+
+.sticky-note-color-picker.is-compact .sticky-note-color-picker-title,
+.sticky-note-color-picker.is-tiny .sticky-note-color-picker-title {
+    margin: 6px 0 4px;
+    font-size: 10px;
+}
+
+.sticky-note-color-picker-title:first-child {
+    margin-top: 0;
+}
+
+.sticky-note-color-picker-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.sticky-note-color-picker.is-compact .sticky-note-color-picker-swatches {
+    gap: 5px;
+}
+
+.sticky-note-color-picker.is-tiny .sticky-note-color-picker-swatches {
+    gap: 4px;
+}
+
+.sticky-note-color-picker-swatch {
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    background: var(--swatch-color, #ffffff);
+    border: 2px solid rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+.sticky-note-color-picker.is-compact .sticky-note-color-picker-swatch {
+    width: 18px;
+    height: 18px;
+}
+
+.sticky-note-color-picker.is-tiny .sticky-note-color-picker-swatch {
+    width: 15px;
+    height: 15px;
+    border-width: 1px;
+}
+
+.sticky-note-color-picker-swatch.is-selected {
+    border-color: #333;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.35),
+        0 0 0 2px rgba(0, 0, 0, 0.08);
+}
+
+.sticky-note-color-picker-opacity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 28px;
+}
+
+.sticky-note-color-picker-opacity input[type="range"],
+.sticky-note-color-picker-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 120px;
+    height: 18px;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.sticky-note-color-picker-opacity input[type="range"]::-webkit-slider-runnable-track,
+.sticky-note-color-picker-slider::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 999px;
+    background: #d8d8d8;
+    border: none;
+}
+
+.sticky-note-color-picker-opacity input[type="range"]::-webkit-slider-thumb,
+.sticky-note-color-picker-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    margin-top: -5px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #444;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+}
+
+.sticky-note-color-picker-opacity input[type="range"]::-moz-range-track,
+.sticky-note-color-picker-slider::-moz-range-track {
+    height: 6px;
+    border-radius: 999px;
+    background: #d8d8d8;
+    border: none;
+}
+
+.sticky-note-color-picker-opacity input[type="range"]::-moz-range-thumb,
+.sticky-note-color-picker-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #444;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+}
+
+.sticky-note-color-picker-opacity-value {
+    flex: 0 0 auto;
+    min-width: 40px;
+    font-size: 12px;
+    color: #444;
+    text-align: right;
+}

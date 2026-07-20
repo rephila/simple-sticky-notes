@@ -1,0 +1,15 @@
+{
+	"id": "simple-sticky-notes",
+	"name": "Simple Sticky Notes",
+	"version": "1.0.0",
+	"minAppVersion": "1.5.0",
+	"description": "Open floating sticky-note popups with pin, colors, and workspace restore.",
+	"author": "rephila",
+	"authorUrl": "https://github.com/rephila",
+	"fundingUrl": {
+		"GitHub Sponsors": "https://github.com/sponsors/rephila",
+		"Buy Me a Coffee": "https://buymeacoffee.com/rephila",
+		"PayPal": "https://www.paypal.com/donate/?hosted_button_id=VAC4CJ8QQ8VQL"
+	},
+	"isDesktopOnly": true
+}

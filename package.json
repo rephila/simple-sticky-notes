@@ -1,0 +1,52 @@
+{
+	"name": "simple-sticky-notes",
+	"version": "1.0.0",
+	"description": "Open floating sticky-note popups with pin, colors, and workspace restore.",
+	"main": "main.js",
+	"scripts": {
+		"dev": "node esbuild.config.mjs",
+		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+		"test": "npm run test:unit && npm run test:e2e && npm run test:visual",
+		"test:unit": "node tests/noteAppearance.test.mjs && node tests/visualUi.test.mjs",
+		"test:e2e": "vitest run",
+		"test:visual": "playwright test",
+		"test:all": "npm run build && npm run test",
+		"version": "node version-bump.mjs && git add manifest.json versions.json"
+	},
+	"keywords": ["obsidian", "sticky-notes", "popout"],
+	"author": "rephila",
+	"license": "AGPL-3.0-only",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/rephila/simple-sticky-notes.git"
+	},
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/rephila"
+		},
+		{
+			"type": "individual",
+			"url": "https://buymeacoffee.com/rephila"
+		},
+		{
+			"type": "individual",
+			"url": "https://www.paypal.com/donate/?hosted_button_id=VAC4CJ8QQ8VQL"
+		}
+	],
+	"devDependencies": {
+		"@electron/remote": "^2.1.2",
+		"@playwright/test": "^1.61.1",
+		"@types/node": "^20.17.0",
+		"@types/sortablejs": "^1.13.0",
+		"@typescript-eslint/parser": "5.29.0",
+		"electron": "^34.2.0",
+		"esbuild": "0.17.3",
+		"happy-dom": "^15.11.7",
+		"obsidian": "latest",
+		"serve": "^14.2.6",
+		"tslib": "2.4.0",
+		"typescript": "4.7.4",
+		"vitest": "^2.1.9"
+	}
+}

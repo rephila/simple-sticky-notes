@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" class="sticky-note-window">
+<head>
+  <meta charset="utf-8" />
+  <title>sticky-note-fixture</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body class="sticky-note-window">
+  <div class="app-container sticky-note" style="--note-light-color:#faf0d0;--note-text-color:#b42318;--link-color:#1a5fb4;--note-code-bg:#ece4cc;">
+    <div class="view-header">
+      <div class="view-header-title-container">
+        <div class="view-header-title">Azure</div>
+      </div>
+      <div class="view-actions">
+        <div class="view-action color-button sticky-note-button">palette</div>
+        <div class="view-action pin-button sticky-note-button">pin</div>
+        <div class="view-action close-button sticky-note-button">x</div>
+      </div>
+    </div>
+    <div class="view-content">
+      <div class="markdown-preview-view">
+        <h2>Resource Status</h2>
+        <table>
+          <thead><tr><th>Kaynak</th><th>Durum</th></tr></thead>
+          <tbody>
+            <tr><td>Resource Group</td><td><code>pit-avengers-rg</code></td></tr>
+            <tr><td>Web App</td><td><a href="https://example.com">https://example.com</a></td></tr>
+          </tbody>
+        </table>
+        <pre><code>az webapp config appsettings list</code></pre>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
