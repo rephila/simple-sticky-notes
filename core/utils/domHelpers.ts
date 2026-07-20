@@ -70,12 +70,10 @@ function resolveCreateEl(host: HTMLElement): CreateElFn {
 		| (Window & { createEl?: CreateElFn })
 		| null;
 	if (view && typeof view.createEl === "function") {
-		return view.createEl.bind(view) as CreateElFn;
+		return view.createEl.bind(view);
 	}
 
-	const fromGlobal = (
-		globalThis as typeof globalThis & { createEl?: CreateElFn }
-	).createEl;
+	const fromGlobal = (window as Window & { createEl?: CreateElFn }).createEl;
 	if (typeof fromGlobal === "function") {
 		return fromGlobal;
 	}

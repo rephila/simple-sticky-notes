@@ -169,7 +169,6 @@ export class StickyNoteLeaf {
 		this.syncDocument();
 		this.activeFile = file ?? this.getCurrentFile();
 		this.markStickyWindow();
-		this.ensurePluginStylesLoaded();
 		this.initColorMenus();
 
 		await this.waitForStickyDom(isStartupRestore ? 160 : 60);
@@ -196,7 +195,6 @@ export class StickyNoteLeaf {
 		} else {
 			this.scheduleStickyChromeRefresh();
 		}
-		this.ensurePluginStylesLoaded();
 		this.applyNoteAppearance();
 		void this.settingService.updateWorkspaceNotes(StickyNoteLeaf.leafsList);
 	}
@@ -253,27 +251,10 @@ export class StickyNoteLeaf {
 		for (const delay of [0, 100, 250, 500, 1000, 2000, 5000, 10000, 15000]) {
 			window.setTimeout(() => {
 				this.syncDocument();
-				this.ensurePluginStylesLoaded();
 				this.refreshStickyChrome();
 				this.applyNoteAppearance();
 			}, delay);
 		}
-	}
-
-	private ensurePluginStylesLoaded() {
-		const plugin = this.markdownService.plugin;
-		const styleMarker = "simple-sticky-notes-stylesheet";
-		if (this.document.getElementById(styleMarker)) return;
-
-		const cssPath = `${plugin.app.vault.configDir}/plugins/${plugin.manifest.id}/styles.css`;
-		const href = plugin.app.vault.adapter.getResourcePath(cssPath);
-		this.document.head.createEl("link", {
-			attr: {
-				id: styleMarker,
-				rel: "stylesheet",
-				href,
-			},
-		});
 	}
 
 	private applyStickyContentLayout() {
@@ -544,10 +525,10 @@ export class StickyNoteLeaf {
 			for (const window of BrowserWindow.getAllWindows()) {
 				if (window.isDestroyed()) continue;
 				try {
-					const matches = await window.webContents.executeJavaScript(
+					const matches: unknown = await window.webContents.executeJavaScript(
 						`document.documentElement.getAttribute("note-id") === ${JSON.stringify(this.title)}`,
 					);
-					if (matches) return window;
+					if (matches === true) return window;
 				} catch {
 					continue;
 				}
@@ -562,7 +543,7 @@ export class StickyNoteLeaf {
 	private saveDimensions() {
 		if (!this.mainWindow || this.mainWindow.isDestroyed()) return;
 		const [width, height] = this.mainWindow.getSize();
-		this.settingService.updateWindowDimensions(width, height);
+		void this.settingService.updateWindowDimensions(width, height);
 	}
 
 	private applyCascadePosition() {
@@ -608,7 +589,7 @@ export class StickyNoteLeaf {
 		return markdownView?.file ?? null;
 	}
 
-	private async refreshNoteTitle() {
+	private refreshNoteTitle() {
 		const titleContainer =
 			this.view.containerEl.querySelector(".view-header-title-container");
 		const titleEl =
@@ -816,7 +797,6 @@ export class StickyNoteLeaf {
 
 	private applyNoteAppearance() {
 		this.syncDocument();
-		this.ensurePluginStylesLoaded();
 		this.refreshStickyChrome();
 
 		const bgColor = this.color.lightColor;
@@ -972,7 +952,7 @@ export class StickyNoteLeaf {
 
 		const newMode =
 			mode ?? (this.view.getMode() === "source" ? "preview" : "source");
-		this.view.setState({ mode: newMode }, { history: false });
+		void this.view.setState({ mode: newMode }, { history: false });
 		window.setTimeout(() => {
 			this.applyNoteAppearance();
 			this.refreshStickyChrome();

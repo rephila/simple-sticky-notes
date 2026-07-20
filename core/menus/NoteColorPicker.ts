@@ -234,7 +234,7 @@ export class NoteColorPicker {
 				step: "0.05",
 				"aria-label": "Transparency",
 			},
-		}) as HTMLInputElement;
+		});
 
 		// Ensure type sticks even if createEl attr timing differs across windows.
 		slider.type = "range";

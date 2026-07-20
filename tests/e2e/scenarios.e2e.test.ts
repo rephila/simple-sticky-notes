@@ -32,7 +32,7 @@ describe("e2e: full scenario matrix", () => {
 		expect(files.main).toMatch(/restoreStickyNotes/);
 		expect(files.main).toMatch(/findPopoutLeafForFileWithRetry/);
 		expect(files.main).toMatch(/saveWorkspace/);
-		expect(files.leaf).toMatch(/ensurePluginStylesLoaded/);
+		expect(files.leaf).not.toMatch(/createEl\("link"/);
 		expect(files.leaf).toMatch(/scheduleStartupAppearanceRefresh/);
 	});
 

@@ -378,7 +378,6 @@ html.sticky-note-window .markdown-source-view.mod-cm6 .cm-scroller {
 .app-container.sticky-note .view-content::-webkit-scrollbar-thumb,
 .app-container.sticky-note .cm-scroller::-webkit-scrollbar-thumb,
 .app-container.sticky-note .markdown-preview-view::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.28);
     background-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 32%, transparent);
     border-radius: 999px;
     min-height: 24px;
@@ -391,7 +390,6 @@ html.sticky-note-window .markdown-source-view.mod-cm6 .cm-scroller {
 .app-container.sticky-note .cm-scroller:hover::-webkit-scrollbar-thumb,
 .app-container.sticky-note .cm-scroller:focus-within::-webkit-scrollbar-thumb,
 .app-container.sticky-note .markdown-preview-view:hover::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.42);
     background-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 48%, transparent);
 }
 

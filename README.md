@@ -48,6 +48,7 @@ If you find this useful:
 
 ## Limitations
 
+- Requires Obsidian **1.13.0+** (declarative settings API)
 - Desktop only — uses Electron APIs for pin, opacity, and window sizing
 - Relies on Obsidian popout / header DOM structure, which may change in future Obsidian versions
 
