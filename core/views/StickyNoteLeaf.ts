@@ -58,6 +58,7 @@ export class StickyNoteLeaf {
 	private markdownService: MarkdownService;
 	private imageOpenService: ImageOpenService;
 	private imageClickHandler: ((event: MouseEvent) => void) | undefined;
+	private doubleClickEditHandler: ((event: MouseEvent) => void) | undefined;
 	private windowFocusHandler: ((event: Event) => void) | undefined;
 	private selectionToolbar: SelectionToolbar | undefined;
 	private appearanceObserver: MutationObserver | undefined;
@@ -304,6 +305,7 @@ export class StickyNoteLeaf {
 			this.removeDefaultActionsMenu();
 			this.addActions();
 			this.setupImageClickHandler();
+			this.setupDoubleClickToEdit();
 			try {
 				this.setupSelectionToolbar();
 				this.setupAppearanceObserver();
@@ -375,6 +377,35 @@ export class StickyNoteLeaf {
 			"click",
 			this.imageClickHandler,
 			true,
+		);
+	}
+
+	/** Double-click reading view to enter editing (source) mode — same UX as classic sticky notes. */
+	private setupDoubleClickToEdit() {
+		if (this.doubleClickEditHandler) return;
+
+		this.doubleClickEditHandler = (event: MouseEvent) => {
+			if (!(this.view instanceof MarkdownView)) return;
+			if (this.view.getMode() !== "preview") return;
+
+			const target = event.target;
+			if (!isHtmlElement(target)) return;
+			if (
+				target.closest(
+					"a, img, button, input, textarea, .internal-embed, .cm-editor, .sticky-note-color-picker, .sticky-note-selection-toolbar",
+				)
+			) {
+				return;
+			}
+			if (!target.closest(".markdown-preview-view, .view-content")) return;
+
+			event.preventDefault();
+			void this.setViewMode("source").then(() => this.updateEditButton());
+		};
+
+		this.document.body.addEventListener(
+			"dblclick",
+			this.doubleClickEditHandler,
 		);
 	}
 
@@ -621,7 +652,7 @@ export class StickyNoteLeaf {
 		const hide = () => {
 			this.document
 				.querySelectorAll(
-					".view-content .inline-title, .markdown-source-view .inline-title",
+					".view-content .inline-title, .markdown-source-view .inline-title, .view-content .mod-header, .markdown-preview-view .mod-header, .markdown-source-view .mod-header",
 				)
 				.forEach((element) => {
 					element.classList.add("is-sticky-hidden");
@@ -653,6 +684,13 @@ export class StickyNoteLeaf {
 			.addClasses(["color-button", "sticky-note-button"]);
 
 		this.view
+			.addAction("pen-line", "Edit", () => {
+				this.viewModeAction();
+				this.updateEditButton();
+			})
+			.addClasses(["edit-button", "sticky-note-button"]);
+
+		this.view
 			.addAction("pin", "Pin", () => this.pinAction())
 			.addClasses(["pin-button", "sticky-note-button"]);
 
@@ -663,6 +701,17 @@ export class StickyNoteLeaf {
 		}
 
 		this.updatePinButton();
+		this.updateEditButton();
+	}
+
+	private updateEditButton() {
+		const editButton =
+			this.view.containerEl.querySelector<HTMLElement>(".edit-button");
+		if (!editButton || !(this.view instanceof MarkdownView)) return;
+
+		const isPreview = this.view.getMode() === "preview";
+		setIcon(editButton, isPreview ? "pen-line" : "book-open");
+		setTooltip(editButton, isPreview ? "Edit" : "Reading view");
 	}
 
 	private closeStickyNote() {
@@ -928,6 +977,7 @@ export class StickyNoteLeaf {
 			this.applyNoteAppearance();
 			this.refreshStickyChrome();
 			this.refreshNoteTitle();
+			this.updateEditButton();
 		}, 50);
 	}
 }

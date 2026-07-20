@@ -20,16 +20,24 @@ export function findPopoutLeafForFile(
 	getNoteId: (leaf: WorkspaceLeaf) => string | null,
 	registeredNoteIds: ReadonlySet<string> = new Set(),
 ): WorkspaceLeaf | null {
+	let registeredMatch: WorkspaceLeaf | null = null;
+
 	for (const leaf of leaves) {
 		if (!isPopoutLeaf(leaf, rootSplit, leftSplit, rightSplit)) continue;
 		if (getFilePath(leaf) !== filePath) continue;
 
 		const noteId = getNoteId(leaf);
-		if (noteId && registeredNoteIds.has(noteId)) continue;
+		if (noteId && registeredNoteIds.has(noteId)) {
+			registeredMatch = registeredMatch ?? leaf;
+			continue;
+		}
 
+		// Prefer an unregistered / not-yet-sticky popout to adopt.
 		return leaf;
 	}
-	return null;
+
+	// Fall back to an already-registered sticky popout so callers do not open a duplicate.
+	return registeredMatch;
 }
 
 export function isStickyNoteAlreadyOpen(

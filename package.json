@@ -1,6 +1,6 @@
 {
 	"name": "simple-sticky-notes",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Open floating sticky-note popups with pin, colors, and workspace restore.",
 	"main": "main.js",
 	"scripts": {
@@ -13,7 +13,11 @@
 		"test:all": "npm run build && npm run test",
 		"version": "node version-bump.mjs && git add manifest.json versions.json"
 	},
-	"keywords": ["obsidian", "sticky-notes", "popout"],
+	"keywords": [
+		"obsidian",
+		"sticky-notes",
+		"popout"
+	],
 	"author": "rephila",
 	"license": "AGPL-3.0-only",
 	"repository": {

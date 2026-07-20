@@ -23,6 +23,9 @@ export const STICKY_CHROME_SELECTORS = [
 	".mod-footer-bar",
 	".floating-toc-div",
 	".daily-note-navbar",
+	/* Inline title chrome — hiding only .inline-title leaves .mod-header gap */
+	".mod-header",
+	".inline-title",
 ] as const;
 
 /** Obsidian / community-plugin UI that should not appear in sticky popouts. */
@@ -33,7 +36,7 @@ export const STICKY_INTRUSION_SELECTORS = [
 ] as const;
 
 /** Shared content inset — applied on preview/cm layers (not view-content). */
-export const STICKY_CONTENT_PADDING = "10px 16px 12px 20px";
+export const STICKY_CONTENT_PADDING = "4px 16px 12px 20px";
 
 export function isStickyNoteDocument(document: Document): boolean {
 	return (

@@ -14,12 +14,14 @@ describe("e2e: header actions and layout", () => {
 		expect(leaf).not.toMatch(/addAction\([^)]*minimize/i);
 	});
 
-	it("registers palette, pin, and close actions", () => {
+	it("registers palette, edit, pin, and close actions", () => {
 		expect(leaf).toMatch(/addAction\("palette"/);
+		expect(leaf).toMatch(/addAction\("pen-line"/);
 		expect(leaf).toMatch(/addAction\("pin"/);
 		expect(leaf).not.toMatch(/view-mode-button/);
 		expect(leaf).toMatch(/addAction\("x"/);
 		expect(leaf).toMatch(/closeStickyNote/);
+		expect(leaf).toMatch(/setupDoubleClickToEdit/);
 		expect(leaf).toMatch(/formatHeaderTitle/);
 		expect(leaf).toMatch(/replace\(\/_\/g,\s*" "\)/);
 		expect(leaf).toMatch(/toUpperCase\(\)/);

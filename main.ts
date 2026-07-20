@@ -173,16 +173,21 @@ export default class StickyNotesPlugin extends Plugin {
 				);
 			}
 
-			for (const savedNote of savedWorkspaceNotes) {
-				if (this.isStickyNoteLive(savedNote.filePath)) continue;
+			const seenPaths = new Set<string>();
 
-				const file = savedNote.filePath
-					? this.app.vault.getAbstractFileByPath(savedNote.filePath)
-					: null;
-				let noteFile = file instanceof TFile ? file : null;
+			for (const savedNote of savedWorkspaceNotes) {
+				const path = savedNote.filePath;
+				if (!path) continue;
+				if (seenPaths.has(path)) continue;
+				seenPaths.add(path);
+
+				if (this.isStickyNoteLive(path)) continue;
+
+				const file = this.app.vault.getAbstractFileByPath(path);
+				const noteFile = file instanceof TFile ? file : null;
 				if (!noteFile) {
 					LoggingService.warn(
-						`Skipping restore for missing file ${savedNote.filePath ?? "unknown"}`,
+						`Skipping restore for missing file ${path}`,
 					);
 					continue;
 				}
@@ -193,6 +198,14 @@ export default class StickyNotesPlugin extends Plugin {
 				);
 
 				if (existingPopout) {
+					const noteId =
+						existingPopout
+							.getContainer()
+							?.doc.documentElement.getAttribute("note-id");
+					if (noteId && StickyNoteLeaf.leafsList.has(noteId)) {
+						continue;
+					}
+
 					await this.attachStickyNoteToLeaf(
 						existingPopout,
 						noteFile,
@@ -281,11 +294,8 @@ export default class StickyNotesPlugin extends Plugin {
 
 	private isStickyNoteLive(filePath?: string): boolean {
 		if (!filePath) return false;
-
-		const note = StickyNoteLeaf.findByFilePath(filePath);
-		if (!note) return false;
-
-		return !!note.mainWindow && !note.mainWindow.isDestroyed();
+		// Registered in this session = already ours (don't require Electron window yet).
+		return !!StickyNoteLeaf.findByFilePath(filePath);
 	}
 
 	private isStickyNoteAlreadyOpen(filePath?: string): boolean {
@@ -373,9 +383,18 @@ export default class StickyNotesPlugin extends Plugin {
 			}
 		}
 		file = await this.ensureNoteFile(file);
-		if (isStartupRestore && file) {
+
+		// Never open a second popout for a file that already has one — adopt it.
+		if (file) {
 			const existingPopout = this.findPopoutLeafForFile(file.path);
 			if (existingPopout) {
+				const noteId = existingPopout
+					.getContainer()
+					?.doc.documentElement.getAttribute("note-id");
+				if (noteId && StickyNoteLeaf.leafsList.has(noteId)) {
+					StickyNoteLeaf.leafsList.get(noteId)?.focusStickyWindow();
+					return;
+				}
 				await this.attachStickyNoteToLeaf(
 					existingPopout,
 					file,
@@ -384,11 +403,12 @@ export default class StickyNotesPlugin extends Plugin {
 					explicitTextColor,
 					explicitOpacity,
 					savedBounds,
-					true,
+					isStartupRestore,
 				);
 				return;
 			}
 		}
+
 		const [width, height] = this.settingsService.getWindowDimensions();
 		const popoutLeaf = this.app.workspace.openPopoutLeaf({
 			size: {

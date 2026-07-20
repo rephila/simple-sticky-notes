@@ -108,7 +108,7 @@ describe("e2e: startup restore scenarios", () => {
 		expect((adopted as unknown as { id: string }).id).toBe("orphaned-sticky");
 	});
 
-	it("skips popouts already registered in the current session", () => {
+	it("returns registered sticky popout as fallback to avoid duplicates", () => {
 		const leaves = [
 			createLeaf({
 				id: "registered-sticky",
@@ -132,7 +132,7 @@ describe("e2e: startup restore scenarios", () => {
 			new Set(["sticky-note-0"]),
 		);
 
-		expect(adopted).toBeNull();
+		expect((adopted as unknown as { id: string }).id).toBe("registered-sticky");
 	});
 
 	it("skips restore when sticky note for file is already open", () => {

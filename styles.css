@@ -31,7 +31,7 @@ html.sticky-note-window [data-sticky-hidden="true"] {
     --background-modifier-border: transparent;
     --divider-color: transparent;
     --folding-offset: 18px;
-    --sticky-content-pad-top: 10px;
+    --sticky-content-pad-top: 4px;
     --sticky-content-pad-right: 16px;
     --sticky-content-pad-bottom: 12px;
     --sticky-content-pad-left: 20px;
@@ -105,7 +105,7 @@ html.sticky-note-window .view-content {
 }
 
 html.sticky-note-window .markdown-preview-view {
-    padding: var(--sticky-content-pad-top, 10px)
+    padding: 4px
         var(--sticky-content-pad-right, 16px)
         var(--sticky-content-pad-bottom, 12px)
         var(--sticky-content-pad-left, 20px) !important;
@@ -124,7 +124,7 @@ html.sticky-note-window .cm-content {
 }
 
 html.sticky-note-window .cm-scroller {
-    padding: var(--sticky-content-pad-top, 10px)
+    padding: 4px
         var(--sticky-content-pad-right, 16px)
         var(--sticky-content-pad-bottom, 12px)
         var(--sticky-content-pad-left, 20px) !important;
@@ -267,11 +267,39 @@ html.sticky-note-window .view-header {
     height: 100%;
     overflow-x: hidden !important;
     overflow-y: auto !important;
-    padding: var(--sticky-content-pad-top, 10px)
+    /* Explicit padding — do not rely on --file-margins (themes inject large top gaps). */
+    padding: 4px
         var(--sticky-content-pad-right, 16px)
         var(--sticky-content-pad-bottom, 12px)
         var(--sticky-content-pad-left, 20px) !important;
     box-sizing: border-box;
+}
+
+.app-container.sticky-note .markdown-source-view.mod-cm6 .cm-scroller,
+.app-container.sticky-note .view-content.mod-sticky-source .cm-scroller,
+html.sticky-note-window .markdown-source-view.mod-cm6 .cm-scroller {
+    padding-top: 4px !important;
+    padding-bottom: var(--sticky-content-pad-bottom, 12px) !important;
+    padding-left: var(--sticky-content-pad-left, 20px) !important;
+    padding-right: var(--sticky-content-pad-right, 16px) !important;
+}
+
+.app-container.sticky-note .markdown-source-view,
+.app-container.sticky-note .markdown-source-view.mod-cm6,
+.app-container.sticky-note .markdown-source-view .cm-editor,
+.app-container.sticky-note .markdown-source-view .cm-contentContainer,
+.app-container.sticky-note .markdown-source-view .cm-sizer,
+.app-container.sticky-note .markdown-source-view .cm-content {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+.app-container.sticky-note .markdown-source-view .cm-content > .cm-line:first-child,
+.app-container.sticky-note .markdown-source-view .cm-line:first-child,
+.app-container.sticky-note .cm-content .HyperMD-header:first-child,
+.app-container.sticky-note .cm-line.HyperMD-header-1:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
 }
 
 /* Line-number gutter shifts edit mode left edge; fold space comes from content padding */
@@ -563,15 +591,37 @@ html.sticky-note-window .markdown-preview-sizer {
     -webkit-app-region: no-drag;
 }
 
-/* Hide Obsidian inline title only; header shows file name */
+/* Hide Obsidian inline title + its .mod-header wrapper (wrapper alone leaves a top gap). */
 .app-container.sticky-note .view-content .inline-title,
-.app-container.sticky-note .markdown-source-view .inline-title {
+.app-container.sticky-note .markdown-source-view .inline-title,
+.app-container.sticky-note .markdown-source-view .cm-contentContainer > .inline-title,
+.app-container.sticky-note .workspace-leaf-content[data-type="markdown"] .inline-title,
+.app-container.sticky-note .markdown-preview-view .mod-header,
+.app-container.sticky-note .markdown-source-view .mod-header,
+.app-container.sticky-note .view-content .mod-header,
+html.sticky-note-window .inline-title,
+html.sticky-note-window .mod-header {
     display: none !important;
+    visibility: hidden !important;
     height: 0 !important;
+    max-height: 0 !important;
     min-height: 0 !important;
     padding: 0 !important;
     margin: 0 !important;
+    border: none !important;
     overflow: hidden !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+}
+
+/* Some themes keep a spacer above the editor for the inline title */
+.app-container.sticky-note .markdown-source-view .cm-scroller {
+    --file-margins: 0px;
+}
+
+.app-container.sticky-note .view-content.mod-sticky-source {
+    --file-margins: 0px;
+    --file-line-width: 100%;
 }
 
 .app-container.sticky-note .markdown-source-view.mod-cm6 .cm-editor .cm-scroller {
@@ -584,7 +634,7 @@ html.sticky-note-window .markdown-preview-sizer {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-size: 14px;
     line-height: 1.6;
-    padding: var(--sticky-content-pad-top, 10px)
+    padding: 4px
         var(--sticky-content-pad-right, 16px)
         var(--sticky-content-pad-bottom, 12px)
         var(--sticky-content-pad-left, 20px) !important;
@@ -636,12 +686,20 @@ html.sticky-note-window .markdown-preview-sizer {
 }
 
 .app-container.sticky-note .markdown-preview-view .markdown-preview-section > :first-child,
+.app-container.sticky-note .markdown-preview-view .markdown-preview-section > :first-child :first-child,
+.app-container.sticky-note .markdown-preview-view .markdown-preview-section > .el-h1:first-child,
+.app-container.sticky-note .markdown-preview-view .markdown-preview-section > .el-h2:first-child,
 .app-container.sticky-note .markdown-preview-view h1:first-child,
 .app-container.sticky-note .markdown-preview-view h2:first-child,
 .app-container.sticky-note .markdown-preview-view h3:first-child,
 .app-container.sticky-note .markdown-preview-view h4:first-child,
+.app-container.sticky-note .markdown-preview-view .el-h1:first-child,
+.app-container.sticky-note .markdown-preview-view h1:first-of-type,
 .app-container.sticky-note .cm-content > .cm-line:first-child {
     margin-top: 0 !important;
+    margin-block-start: 0 !important;
+    padding-top: 0 !important;
+    padding-block-start: 0 !important;
 }
 
 .app-container.sticky-note .markdown-preview-view p,
@@ -829,6 +887,55 @@ html.sticky-note-window .markdown-preview-sizer {
     background: rgba(0, 0, 0, 0.12);
 }
 
+/* Heading submenu (Obsidian Menu) — match light sticky chrome, not app dark theme */
+html.sticky-note-window .menu,
+.app-container.sticky-note .menu {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.sticky-note-window .menu .menu-item,
+.app-container.sticky-note .menu .menu-item {
+    color: #1a1a1a !important;
+}
+
+html.sticky-note-window .menu .menu-item .menu-item-icon,
+html.sticky-note-window .menu .menu-item .menu-item-title,
+html.sticky-note-window .menu .menu-item svg,
+.app-container.sticky-note .menu .menu-item .menu-item-icon,
+.app-container.sticky-note .menu .menu-item .menu-item-title,
+.app-container.sticky-note .menu .menu-item svg {
+    color: #333333 !important;
+    stroke: #333333 !important;
+}
+
+html.sticky-note-window .menu .menu-item:hover,
+html.sticky-note-window .menu .menu-item.is-selected,
+html.sticky-note-window .menu .menu-item.selected,
+.app-container.sticky-note .menu .menu-item:hover,
+.app-container.sticky-note .menu .menu-item.is-selected,
+.app-container.sticky-note .menu .menu-item.selected {
+    background-color: #f0f0f0 !important;
+    color: #1a1a1a !important;
+}
+
+html.sticky-note-window .menu .menu-item:hover .menu-item-title,
+html.sticky-note-window .menu .menu-item.is-selected .menu-item-title,
+.app-container.sticky-note .menu .menu-item:hover .menu-item-title,
+.app-container.sticky-note .menu .menu-item.is-selected .menu-item-title {
+    color: #1a1a1a !important;
+}
+
+html.sticky-note-window .menu .menu-separator,
+.app-container.sticky-note .menu .menu-separator {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
 .sticky-note-color-picker {
     position: fixed;
     z-index: 10001;
@@ -930,7 +1037,7 @@ html.sticky-note-window .markdown-preview-sizer {
     align-items: center;
     gap: 10px;
     width: 100%;
-    min-height: 28px;
+    min-height: 22px;
 }
 
 .sticky-note-color-picker-opacity input[type="range"],
@@ -940,17 +1047,22 @@ html.sticky-note-window .markdown-preview-sizer {
     flex: 1 1 auto;
     width: 100%;
     min-width: 120px;
-    height: 18px;
+    /* Match thumb height so Chromium centers thumb on the track */
+    height: 12px;
     margin: 0;
+    padding: 0;
     background: transparent;
     cursor: pointer;
+    vertical-align: middle;
 }
 
 .sticky-note-color-picker-opacity input[type="range"]::-webkit-slider-runnable-track,
 .sticky-note-color-picker-slider::-webkit-slider-runnable-track {
-    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 3px;
     border-radius: 999px;
-    background: #d8d8d8;
+    background: #d0d0d0;
     border: none;
 }
 
@@ -958,32 +1070,39 @@ html.sticky-note-window .markdown-preview-sizer {
 .sticky-note-color-picker-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 16px;
-    height: 16px;
-    margin-top: -5px;
+    box-sizing: border-box;
+    width: 12px;
+    height: 12px;
+    /*
+     * Chromium already centers the thumb on the track when the input
+     * height equals the thumb height. A negative margin-top pulls the
+     * circle above the bar (what we saw). Keep margin at 0.
+     */
+    margin-top: 0;
     border-radius: 50%;
     background: #ffffff;
-    border: 2px solid #444;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+    border: 1.5px solid #444;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
     cursor: pointer;
 }
 
 .sticky-note-color-picker-opacity input[type="range"]::-moz-range-track,
 .sticky-note-color-picker-slider::-moz-range-track {
-    height: 6px;
+    height: 3px;
     border-radius: 999px;
-    background: #d8d8d8;
+    background: #d0d0d0;
     border: none;
 }
 
 .sticky-note-color-picker-opacity input[type="range"]::-moz-range-thumb,
 .sticky-note-color-picker-slider::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
+    box-sizing: border-box;
+    width: 12px;
+    height: 12px;
+    border: 1.5px solid #444;
     border-radius: 50%;
     background: #ffffff;
-    border: 2px solid #444;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
     cursor: pointer;
 }
 
