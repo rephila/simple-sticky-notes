@@ -69,6 +69,21 @@ export class StickyNotesSettingsTab extends PluginSettingTab {
 
 	async setControlValue(key: string, value: unknown): Promise<void> {
 		switch (key) {
+			case "saveWorkspace":
+				await this.settingService.updateSettings({
+					saveWorkspace: value === true,
+				});
+				break;
+			case "taskbarVisibility":
+				await this.settingService.updateSettings({
+					taskbarVisibility: value === true,
+				});
+				break;
+			case "pinOption":
+				await this.settingService.updateSettings({
+					pinOption: value as PinOptions,
+				});
+				break;
 			case "defaultOpacityPercent":
 				await this.settingService.updateSettings({
 					defaultOpacity: (value as number) / 100,
@@ -92,17 +107,25 @@ export class StickyNotesSettingsTab extends PluginSettingTab {
 					newStickyNotePath: String(value).trim(),
 				});
 				break;
+			case "resizable":
+				await this.settingService.updateSettings({
+					resizable: value === true,
+				});
+				break;
 			case "rememberBgColors":
 				await this.settingService.updateSettings({
-					rememberBgColors: value as boolean,
+					rememberBgColors: value === true,
 				});
 				// Background rows gain/lose the frontmatter-key input.
 				this.update();
 				return;
-			default:
+			case "useRecentBgColor":
 				await this.settingService.updateSettings({
-					[key]: value,
-				} as Partial<IPluginSettings>);
+					useRecentBgColor: value === true,
+				});
+				break;
+			default:
+				return;
 		}
 		this.refreshDomState();
 	}
