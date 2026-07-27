@@ -607,6 +607,10 @@ export class StickyNoteLeaf {
 
 		const title = this.resolveHeaderTitle();
 		titleEl.setText(title);
+		this.document.title = `Simple Sticky Note - ${title}`;
+		if (this.mainWindow && !this.mainWindow.isDestroyed()) {
+			this.mainWindow.setTitle(`Simple Sticky Note - ${title}`);
+		}
 		this.hideInlineTitleOnly();
 	}
 
