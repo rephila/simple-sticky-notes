@@ -1155,14 +1155,31 @@ html.sticky-note-window.sticky-note-window hr,
     margin: 1.5em 0;
 }
 
-/* Hide Editing Toolbar / cMenu in Sticky Notes */
+/* Theme Editing Toolbar / cMenu in Sticky Notes */
 html.sticky-note-window.sticky-note-window .cMenuToolbarDefaultAesthetic,
 html.sticky-note-window.sticky-note-window #cMenuToolbarModalBar,
 html.sticky-note-window.sticky-note-window #cMenuToolbarPopoverBar,
-html.sticky-note-window.sticky-note-window .editing-toolbar {
-    display: none;
-    opacity: 0;
-    pointer-events: none;
-    visibility: hidden;
-    z-index: -9999;
+html.sticky-note-window.sticky-note-window .editing-toolbar,
+html.sticky-note-window.sticky-note-window .obsidian-editing-toolbar {
+    background-color: var(--note-light-color, #ffffff) !important;
+    border: 1px solid color-mix(in srgb, var(--note-text-color, #1a1a1a) 20%, transparent) !important;
+    color: var(--note-text-color, #1a1a1a) !important;
+    display: flex; /* usually they are flex */
+}
+
+html.sticky-note-window.sticky-note-window .cMenuToolbarDefaultAesthetic *,
+html.sticky-note-window.sticky-note-window #cMenuToolbarModalBar *,
+html.sticky-note-window.sticky-note-window #cMenuToolbarPopoverBar *,
+html.sticky-note-window.sticky-note-window .editing-toolbar *,
+html.sticky-note-window.sticky-note-window .obsidian-editing-toolbar * {
+    color: var(--note-text-color, #1a1a1a) !important;
+}
+
+html.sticky-note-window.sticky-note-window .cMenuToolbarDefaultAesthetic svg,
+html.sticky-note-window.sticky-note-window #cMenuToolbarModalBar svg,
+html.sticky-note-window.sticky-note-window #cMenuToolbarPopoverBar svg,
+html.sticky-note-window.sticky-note-window .editing-toolbar svg,
+html.sticky-note-window.sticky-note-window .obsidian-editing-toolbar svg {
+    color: var(--note-text-color, #1a1a1a) !important;
+    stroke: var(--note-text-color, #1a1a1a) !important;
 }
