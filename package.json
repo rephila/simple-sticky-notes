@@ -1,6 +1,6 @@
 {
 	"name": "simple-sticky-notes",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "Open floating sticky-note popups with pin, colors, and workspace restore.",
 	"main": "main.js",
 	"scripts": {
@@ -47,7 +47,7 @@
 		"electron": "^34.2.0",
 		"esbuild": "0.17.3",
 		"happy-dom": "^15.11.7",
-		"obsidian": "^1.13.1",
+		"obsidian": "latest",
 		"serve": "^14.2.6",
 		"tslib": "2.4.0",
 		"typescript": "4.7.4",

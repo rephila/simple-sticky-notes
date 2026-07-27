@@ -171,6 +171,16 @@ export class StickyNoteLeaf {
 		this.markStickyWindow();
 		this.initColorMenus();
 
+		this.applySyncDefaultColors(explicitColor, explicitTextColor, explicitOpacity);
+		this.applyNoteAppearance();
+
+		await this.setDefaultColors(
+			this.activeFile,
+			explicitColor,
+			explicitTextColor,
+			explicitOpacity,
+		);
+
 		await this.waitForStickyDom(isStartupRestore ? 160 : 60);
 
 		if (this.activeFile) {
@@ -183,12 +193,7 @@ export class StickyNoteLeaf {
 
 		this.initView();
 		await this.initMainWindow(resize, savedBounds);
-		await this.setDefaultColors(
-			this.activeFile,
-			explicitColor,
-			explicitTextColor,
-			explicitOpacity,
-		);
+		
 		this.refreshNoteTitle();
 		if (isStartupRestore) {
 			this.scheduleStartupAppearanceRefresh();
@@ -239,12 +244,30 @@ export class StickyNoteLeaf {
 	}
 
 	private scheduleStickyChromeRefresh() {
-		for (const delay of [0, 100, 250, 500, 1000, 2000]) {
+		for (const delay of [0, 100, 250, 500, 1000, 2000, 5000, 10000, 15000]) {
 			window.setTimeout(() => {
+				this.syncDocument();
+				this.ensurePluginStylesLoaded();
 				this.refreshStickyChrome();
-				this.refreshNoteTitle();
+				this.applyNoteAppearance();
 			}, delay);
 		}
+	}
+
+	private ensurePluginStylesLoaded() {
+		const plugin = this.markdownService.plugin;
+		const styleMarker = "simple-sticky-notes-stylesheet";
+		if (this.document.getElementById(styleMarker)) return;
+
+		const cssPath = `${plugin.app.vault.configDir}/plugins/${plugin.manifest.id}/styles.css`;
+		const href = plugin.app.vault.adapter.getResourcePath(cssPath);
+		this.document.head.createEl("link", {
+			attr: {
+				id: styleMarker,
+				rel: "stylesheet",
+				href,
+			},
+		});
 	}
 
 	private scheduleStartupAppearanceRefresh() {
@@ -823,6 +846,7 @@ export class StickyNoteLeaf {
 
 	private applyNoteAppearance() {
 		this.syncDocument();
+		this.ensurePluginStylesLoaded();
 		this.refreshStickyChrome();
 
 		const bgColor = this.color.lightColor;
@@ -843,7 +867,7 @@ export class StickyNoteLeaf {
 			this.document.body,
 			this.document.body.querySelector(".app-container"),
 			this.getStickyRoot(),
-			this.view.containerEl,
+			this.view?.containerEl,
 		].filter(isHtmlElement);
 
 		for (const target of targets) {
@@ -851,10 +875,12 @@ export class StickyNoteLeaf {
 		}
 
 		const previewRoot =
-			this.view.containerEl.querySelector(".markdown-preview-view") ??
-			this.view.containerEl.querySelector(".cm-editor") ??
-			this.view.containerEl;
-		clearStaleInlineTextColors(previewRoot);
+			this.view?.containerEl?.querySelector(".markdown-preview-view") ??
+			this.view?.containerEl?.querySelector(".cm-editor") ??
+			this.view?.containerEl;
+		if (previewRoot) {
+			clearStaleInlineTextColors(previewRoot);
+		}
 
 		this.applyWindowOpacity();
 	}
@@ -866,6 +892,35 @@ export class StickyNoteLeaf {
 			[TEXT_COLOR_PROPERTY]: this.textColor,
 			[OPACITY_PROPERTY]: String(this.opacity),
 		});
+	}
+
+	private applySyncDefaultColors(
+		explicitColor: IBackgroundColor | null = null,
+		explicitTextColor: string | null = null,
+		explicitOpacity: number | null = null,
+	) {
+		const settings = this.settingService.settings;
+		if (explicitColor) {
+			this.color = explicitColor;
+		} else {
+			const defaultColor = settings.bgColors.find((c) => c.isDefault);
+			const cycledColor = getDefaultColorForNewNote(settings.bgColors, this.id);
+			const lastUsed = StickyNoteLeaf.lastNoteColor ?? defaultColor;
+			const colorToUse = settings.useRecentBgColor ? lastUsed : (cycledColor ?? defaultColor);
+			if (colorToUse) this.color = colorToUse;
+		}
+
+		if (explicitTextColor) {
+			this.textColor = explicitTextColor;
+		} else {
+			this.textColor = StickyNoteLeaf.lastTextColor ?? settings.defaultTextColor;
+		}
+
+		if (explicitOpacity !== null) {
+			this.opacity = Math.min(1, Math.max(0.3, explicitOpacity));
+		} else {
+			this.opacity = settings.defaultOpacity;
+		}
 	}
 
 	private async setDefaultColors(

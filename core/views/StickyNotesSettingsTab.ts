@@ -2,7 +2,9 @@ import {
 	App,
 	PluginSettingTab,
 	Setting,
-	type SettingDefinitionItem,
+	TextComponent,
+	ToggleComponent,
+	ValueComponent,
 } from "obsidian";
 import { SettingService } from "core/services/SettingService";
 import { SizeOptions } from "core/enums/sizeOptionEnum";
@@ -24,6 +26,7 @@ import {
 } from "core/constants/defaultTextColorSettings";
 import { getRandomHexColor } from "core/utils/colorUtils";
 import { PinOptions } from "core/enums/pinOptionEnum";
+import { FolderSuggest } from "./FolderSuggestInput";
 
 const SIZE_LABELS: Record<SizeOptions, string> = {
 	[SizeOptions.DEFAULT]: `Fixed preset (${DEFAULT_WIDTH}×${DEFAULT_HEIGHT})`,
@@ -39,6 +42,8 @@ const PIN_LABELS: Record<PinOptions, string> = {
 
 export class StickyNotesSettingsTab extends PluginSettingTab {
 	settingService: SettingService;
+	dimensionsSettingComponent: TextComponent | undefined;
+	resizableSettingComponent: ToggleComponent | undefined;
 
 	constructor(
 		app: App,
@@ -49,235 +54,262 @@ export class StickyNotesSettingsTab extends PluginSettingTab {
 		this.settingService = settingService;
 	}
 
+	display(): void {
+		this.containerEl.empty();
+
+		if (!this.settingService.settings) {
+			this.containerEl.createEl("p", {
+				text: "Failed to load settings.",
+			});
+			return;
+		}
+
+		this.addNotesWorkspaceSection();
+		this.addWindowSection();
+		this.addAppearanceSection();
+	}
+
+	rerenderSettings() {
+		this.display();
+	}
+
+	updateAndRerenderSettings(updatedSettings: Partial<IPluginSettings>) {
+		void this.settingService.updateSettings(updatedSettings);
+		this.rerenderSettings();
+	}
+
 	private get settings() {
 		return this.settingService.settings as IPluginSettings;
 	}
 
-	getControlValue(key: string): unknown {
-		switch (key) {
-			case "defaultOpacityPercent":
-				return Math.round(this.settings.defaultOpacity * 100);
-			case "resizable":
-				return (
-					this.settings.resizable ||
-					this.settings.sizeOption === SizeOptions.REMEMBER_LAST
-				);
-			default:
-				return this.settings[key as keyof IPluginSettings];
-		}
+	/* ── Notes & workspace ─────────────────────────────────────── */
+
+	addNotesWorkspaceSection() {
+		new Setting(this.containerEl).setName("Notes & workspace").setHeading();
+
+		new Setting(this.containerEl)
+			.setName("New sticky note folder")
+			.setDesc(
+				"Vault folder used when you create a sticky note from the ribbon or command palette. Leave empty for the vault root.",
+			)
+			.addText((text) => {
+				text
+					.setPlaceholder("Example: Sticky Notes")
+					.setValue(this.settings.newStickyNotePath)
+					.onChange(async (value) => {
+						await this.settingService.updateSettings({
+							newStickyNotePath: value.trim(),
+						});
+					});
+
+				new FolderSuggest(this.app, text.inputEl, (folder) => {
+					void this.settingService.updateSettings({
+						newStickyNotePath: folder.path,
+					});
+					text.setValue(folder.path);
+				});
+			});
+
+		new Setting(this.containerEl)
+			.setName("Restore open sticky notes")
+			.setDesc(
+				"When Obsidian starts, reopen sticky notes with their file, position, size, colors, and transparency.",
+			)
+			.addToggle((toggle) =>
+				toggle
+					.setValue(this.settings.saveWorkspace)
+					.onChange((value) => {
+						void this.settingService.updateSettings({
+							saveWorkspace: value,
+						});
+					}),
+			);
+
+		new Setting(this.containerEl)
+			.setName("Show in taskbar")
+			.setDesc("Show sticky note windows in the Windows taskbar.")
+			.addToggle((toggle) =>
+				toggle
+					.setValue(this.settings.taskbarVisibility)
+					.onChange((value) => {
+						void this.settingService.updateSettings({
+							taskbarVisibility: value,
+						});
+					}),
+			);
 	}
 
-	async setControlValue(key: string, value: unknown): Promise<void> {
-		switch (key) {
-			case "saveWorkspace":
-				await this.settingService.updateSettings({
-					saveWorkspace: value === true,
-				});
-				break;
-			case "taskbarVisibility":
-				await this.settingService.updateSettings({
-					taskbarVisibility: value === true,
-				});
-				break;
-			case "pinOption":
-				await this.settingService.updateSettings({
-					pinOption: value as PinOptions,
-				});
-				break;
-			case "defaultOpacityPercent":
-				await this.settingService.updateSettings({
-					defaultOpacity: (value as number) / 100,
-				});
-				break;
-			case "sizeOption": {
-				const sizeOption = value as SizeOptions;
-				if (sizeOption === SizeOptions.DEFAULT) {
-					await this.settingService.updateWindowDimensions(
-						DEFAULT_WIDTH,
-						DEFAULT_HEIGHT,
-					);
-				} else if (sizeOption === SizeOptions.REMEMBER_LAST) {
-					await this.settingService.updateSettings({ resizable: true });
-				}
-				await this.settingService.updateSettings({ sizeOption });
-				break;
-			}
-			case "newStickyNotePath":
-				await this.settingService.updateSettings({
-					newStickyNotePath: String(value).trim(),
-				});
-				break;
-			case "resizable":
-				await this.settingService.updateSettings({
-					resizable: value === true,
-				});
-				break;
-			case "rememberBgColors":
-				await this.settingService.updateSettings({
-					rememberBgColors: value === true,
-				});
-				// Background rows gain/lose the frontmatter-key input.
-				this.update();
-				return;
-			case "useRecentBgColor":
-				await this.settingService.updateSettings({
-					useRecentBgColor: value === true,
-				});
-				break;
-			default:
-				return;
-		}
-		this.refreshDomState();
-	}
+	/* ── Window ────────────────────────────────────────────────── */
 
-	private applySettingsAndRerender(updatedSettings: Partial<IPluginSettings>) {
-		void this.settingService.updateSettings(updatedSettings);
-		this.update();
-	}
+	addWindowSection() {
+		new Setting(this.containerEl).setName("Window").setHeading();
 
-	getSettingDefinitions(): SettingDefinitionItem[] {
-		if (!this.settingService.settings) {
-			return [{ name: "Failed to load settings." }];
-		}
-
-		return [
-			{
-				type: "group",
-				heading: "Notes & workspace",
-				items: [
-					{
-						name: "New sticky note folder",
-						desc: "Vault folder used when you create a sticky note from the ribbon or command palette. Leave empty for the vault root.",
-						control: {
-							type: "folder",
-							key: "newStickyNotePath",
-							placeholder: "Example: Sticky Notes",
-							includeRoot: true,
-						},
-					},
-					{
-						name: "Restore open sticky notes",
-						desc: "When Obsidian starts, reopen sticky notes with their file, position, size, colors, and transparency.",
-						control: { type: "toggle", key: "saveWorkspace" },
-					},
-					{
-						name: "Show in taskbar",
-						desc: "Show sticky note windows in the Windows taskbar.",
-						control: { type: "toggle", key: "taskbarVisibility" },
-					},
-				],
-			},
-			{
-				type: "group",
-				heading: "Window",
-				items: [
-					{
-						name: "Default pin mode",
-						desc: "Whether new sticky notes start pinned above other windows. You can still toggle pin on each note.",
-						control: {
-							type: "dropdown",
-							key: "pinOption",
-							options: PIN_LABELS,
-						},
-					},
-					{
-						name: "Default window size",
-						desc: "How large new sticky notes should open. Custom size uses the width×height field.",
-						control: {
-							type: "dropdown",
-							key: "sizeOption",
-							options: SIZE_LABELS,
-						},
-					},
-					{
-						name: "Custom size",
-						desc: "Window size as width×height in pixels.",
-						visible: () =>
-							this.settings.sizeOption === SizeOptions.CUSTOM,
-						control: {
-							type: "text",
-							key: "dimensions",
-							placeholder: `${DEFAULT_WIDTH}x${DEFAULT_HEIGHT}`,
-							validate: (value) =>
-								/^\d+x\d+$/.test(value)
-									? undefined
-									: `Use the widthxheight format, e.g. ${DEFAULT_WIDTH}x${DEFAULT_HEIGHT}.`,
-						},
-					},
-					{
-						name: "Resizable window",
-						desc: "Allow resizing sticky note windows. Always on when size mode is “Remember last size”.",
-						control: {
-							type: "toggle",
-							key: "resizable",
-							disabled: () =>
-								this.settings.sizeOption === SizeOptions.REMEMBER_LAST,
-						},
-					},
-				],
-			},
-			{
-				type: "group",
-				heading: "Appearance",
-				items: [
-					{
-						name: "Save appearance to note",
-						desc: "Store background, text color, and transparency in each note’s frontmatter so they reopen with the same look.",
-						control: { type: "toggle", key: "rememberBgColors" },
-					},
-					{
-						name: "Reuse last background",
-						desc: "New sticky notes open with the background color you used most recently. When off, backgrounds cycle through the palette.",
-						control: { type: "toggle", key: "useRecentBgColor" },
-					},
-					{
-						name: "Default transparency",
-						desc: "Starting opacity for new sticky notes (30%–100%). Same control as the Transparency slider on the note.",
-						control: {
-							type: "slider",
-							key: "defaultOpacityPercent",
-							min: 30,
-							max: 100,
-							step: 5,
-							displayFormat: (value) => `${value}%`,
-						},
-					},
-				],
-			},
-			{
-				name: "",
-				desc: "Palette shown in the note’s color picker (Background row). The toggle marks the default when “Reuse last background” is off.",
-				searchable: false,
-			},
-			this.buildBackgroundPaletteList(),
-			{
-				name: "",
-				desc: "Palette shown in the note’s color picker (Text row). The toggle marks the default text color for new notes.",
-				searchable: false,
-			},
-			this.buildTextPaletteList(),
-		];
-	}
-
-	private buildBackgroundPaletteList(): SettingDefinitionItem {
-		return {
-			type: "list",
-			heading: "Background colors",
-			cls: "bg-color-settings",
-			extraButtons: [
-				(button) =>
-					button
-						.setIcon("rotate-ccw")
-						.setTooltip("Reset to defaults")
-						.onClick(() =>
-							this.applySettingsAndRerender({
-								bgColors: structuredClone(DEFAULT_COLORS),
-							}),
+		new Setting(this.containerEl)
+			.setName("Default pin mode")
+			.setDesc(
+				"Whether new sticky notes start pinned above other windows. You can still toggle pin on each note.",
+			)
+			.addDropdown((dropdown) =>
+				dropdown
+					.addOptions(
+						Object.fromEntries(
+							Object.values(PinOptions).map((value) => [
+								value,
+								PIN_LABELS[value],
+							]),
 						),
-			],
-			addItem: {
-				name: "Add color",
-				action: () => {
+					)
+					.setValue(this.settings.pinOption)
+					.onChange((value) => {
+						void this.settingService.updateSettings({
+							pinOption: value as PinOptions,
+						});
+					}),
+			);
+
+		new Setting(this.containerEl)
+			.setName("Default window size")
+			.setDesc(
+				"How large new sticky notes should open. Custom size uses the width×height field.",
+			)
+			.addDropdown((dropdown) =>
+				dropdown
+					.addOptions(
+						Object.fromEntries(
+							Object.values(SizeOptions).map((value) => [
+								value,
+								SIZE_LABELS[value],
+							]),
+						),
+					)
+					.setValue(this.settings.sizeOption)
+					.onChange((value) => {
+						const sizeOption = value as SizeOptions;
+						if (sizeOption === SizeOptions.DEFAULT) {
+							void this.settingService.updateWindowDimensions(
+								DEFAULT_WIDTH,
+								DEFAULT_HEIGHT,
+							);
+						} else if (sizeOption === SizeOptions.REMEMBER_LAST) {
+							void this.settingService.updateSettings({
+								resizable: true,
+							});
+						}
+						this.updateAndRerenderSettings({ sizeOption });
+					}),
+			)
+			.addText((text) => {
+				this.dimensionsSettingComponent = text
+					.setPlaceholder(`${DEFAULT_WIDTH}x${DEFAULT_HEIGHT}`)
+					.setValue(this.settings.dimensions)
+					.onChange(async (value) => {
+						if (!value.match(/^\d+x\d+$/)) return;
+						await this.settingService.updateSettings({
+							dimensions: value,
+						});
+					});
+
+				this.disabledDimensionSetting(
+					this.settings.sizeOption !== SizeOptions.CUSTOM,
+				);
+				return this.dimensionsSettingComponent;
+			});
+
+		new Setting(this.containerEl)
+			.setName("Resizable window")
+			.setDesc(
+				"Allow resizing sticky note windows. Always on when size mode is “Remember last size”.",
+			)
+			.addToggle((toggle) => {
+				this.resizableSettingComponent = toggle
+					.setValue(
+						this.settings.resizable ||
+							this.settings.sizeOption === SizeOptions.REMEMBER_LAST,
+					)
+					.onChange(async (value) => {
+						await this.settingService.updateSettings({
+							resizable: value,
+						});
+					});
+
+				this.disabledResizableSetting(
+					this.settings.sizeOption === SizeOptions.REMEMBER_LAST,
+				);
+				return this.resizableSettingComponent;
+			});
+	}
+
+	/* ── Appearance (matches on-note color picker) ─────────────── */
+
+	addAppearanceSection() {
+		new Setting(this.containerEl).setName("Appearance").setHeading();
+
+		new Setting(this.containerEl)
+			.setName("Save appearance to note")
+			.setDesc(
+				"Store background, text color, and transparency in each note’s frontmatter so they reopen with the same look.",
+			)
+			.addToggle((toggle) =>
+				toggle
+					.setValue(this.settings.rememberBgColors)
+					.onChange((value) => {
+						this.updateAndRerenderSettings({
+							rememberBgColors: value,
+						});
+					}),
+			);
+
+		new Setting(this.containerEl)
+			.setName("Reuse last background")
+			.setDesc(
+				"New sticky notes open with the background color you used most recently. When off, backgrounds cycle through the palette.",
+			)
+			.addToggle((toggle) =>
+				toggle
+					.setValue(this.settings.useRecentBgColor)
+					.onChange((value) => {
+						void this.settingService.updateSettings({
+							useRecentBgColor: value,
+						});
+					}),
+			);
+
+		new Setting(this.containerEl)
+			.setName("Default transparency")
+			.setDesc(
+				"Starting opacity for new sticky notes (30%–100%). Same control as the Transparency slider on the note.",
+			)
+			.addSlider((slider) =>
+				slider
+					.setLimits(30, 100, 5)
+					.setValue(Math.round(this.settings.defaultOpacity * 100))
+					.setDynamicTooltip()
+					.onChange((value) => {
+						void this.settingService.updateSettings({
+							defaultOpacity: value / 100,
+						});
+					}),
+			);
+
+		this.addBackgroundPalette();
+		this.addTextPalette();
+	}
+
+	addBackgroundPalette() {
+		new Setting(this.containerEl)
+			.setName("Background colors")
+			.setDesc(
+				"Palette shown in the note’s color picker (Background row). The toggle marks the default when “Reuse last background” is off.",
+			)
+			.addExtraButton((b) =>
+				b.setIcon("rotate-ccw").setTooltip("Reset to defaults").onClick(() =>
+					this.updateAndRerenderSettings({
+						bgColors: structuredClone(DEFAULT_COLORS),
+					}),
+				),
+			)
+			.addExtraButton((b) =>
+				b.setIcon("plus").setTooltip("Add color").onClick(() => {
 					const randomColor = getRandomHexColor();
 					this.settings.bgColors.push({
 						lightColor: randomColor,
@@ -286,34 +318,32 @@ export class StickyNotesSettingsTab extends PluginSettingTab {
 						property: DEFAULT_COLOR_PROPERTY,
 						value: `Color ${this.settings.bgColors.length + 1}`,
 					});
-					this.applySettingsAndRerender({});
-				},
-			},
-			onDelete: (index) => {
-				const bg = this.settings.bgColors[index];
-				if (!bg || bg.isDefault) return;
-				this.settings.bgColors.remove(bg);
-				this.applySettingsAndRerender({});
-			},
-			items: this.settings.bgColors.map((bg) => ({
-				name: "",
-				searchable: false,
-				render: (setting: Setting) => this.renderBackgroundColorRow(setting, bg),
-			})),
-		};
+					this.updateAndRerenderSettings({});
+				}),
+			);
+
+		const colorContainer = new Setting(this.containerEl).setClass(
+			"bg-color-settings",
+		);
+		const settingsContainer = colorContainer.settingEl.createDiv();
+		this.settings.bgColors.forEach((bg) =>
+			this.addBackgroundColorRow(settingsContainer, bg),
+		);
 	}
 
-	private renderBackgroundColorRow(setting: Setting, bg: IBackgroundColor) {
-		setting.setClass("single-color-setting").addColorPicker((c) =>
-			c.setValue(bg.lightColor).onChange((v) => {
-				bg.lightColor = v;
-				bg.darkColor = v;
-				void this.settingService.updateSettings({});
-			}),
-		);
+	addBackgroundColorRow(ele: HTMLElement, bg: IBackgroundColor) {
+		const colorSetting = new Setting(ele)
+			.setClass("single-color-setting")
+			.addColorPicker((c) =>
+				c.setValue(bg.lightColor).onChange((v) => {
+					bg.lightColor = v;
+					bg.darkColor = v;
+					void this.settingService.updateSettings({});
+				}),
+			);
 
 		if (this.settings.rememberBgColors) {
-			setting.addText((propertyKey) =>
+			colorSetting.addText((propertyKey) =>
 				propertyKey
 					.setPlaceholder("frontmatter key")
 					.setValue(bg.property)
@@ -324,7 +354,7 @@ export class StickyNotesSettingsTab extends PluginSettingTab {
 			);
 		}
 
-		setting
+		colorSetting
 			.addText((valueText) =>
 				valueText
 					.setPlaceholder(
@@ -345,63 +375,63 @@ export class StickyNotesSettingsTab extends PluginSettingTab {
 					.onChange(() => {
 						this.settings.bgColors.forEach((b) => (b.isDefault = false));
 						bg.isDefault = true;
-						this.applySettingsAndRerender({});
+						this.updateAndRerenderSettings({});
+					})
+					.setDisabled(bg.isDefault),
+			)
+			.addExtraButton((deleteButton) =>
+				deleteButton
+					.setIcon("trash")
+					.setTooltip("Remove")
+					.onClick(() => {
+						this.settings.bgColors.remove(bg);
+						this.updateAndRerenderSettings({});
 					})
 					.setDisabled(bg.isDefault),
 			);
 	}
 
-	private buildTextPaletteList(): SettingDefinitionItem {
-		return {
-			type: "list",
-			heading: "Text colors",
-			cls: "bg-color-settings",
-			extraButtons: [
-				(button) =>
-					button
-						.setIcon("rotate-ccw")
-						.setTooltip("Reset to defaults")
-						.onClick(() =>
-							this.applySettingsAndRerender({
-								textColors: structuredClone(DEFAULT_TEXT_COLORS),
-								defaultTextColor: DEFAULT_SETTINGS.defaultTextColor,
-							}),
-						),
-			],
-			addItem: {
-				name: "Add color",
-				action: () => {
+	addTextPalette() {
+		new Setting(this.containerEl)
+			.setName("Text colors")
+			.setDesc(
+				"Palette shown in the note’s color picker (Text row). The toggle marks the default text color for new notes.",
+			)
+			.addExtraButton((b) =>
+				b.setIcon("rotate-ccw").setTooltip("Reset to defaults").onClick(() =>
+					this.updateAndRerenderSettings({
+						textColors: structuredClone(DEFAULT_TEXT_COLORS),
+						defaultTextColor: DEFAULT_SETTINGS.defaultTextColor,
+					}),
+				),
+			)
+			.addExtraButton((b) =>
+				b.setIcon("plus").setTooltip("Add color").onClick(() => {
 					this.settings.textColors.push({
 						name: `Color ${this.settings.textColors.length + 1}`,
 						color: getRandomHexColor(),
 					});
-					this.applySettingsAndRerender({});
-				},
-			},
-			onDelete: (index) => {
-				const option = this.settings.textColors[index];
-				if (!option || this.settings.textColors.length <= 1) return;
-				if (option.color === this.settings.defaultTextColor) return;
-				this.settings.textColors.remove(option);
-				this.applySettingsAndRerender({});
-			},
-			items: this.settings.textColors.map((option) => ({
-				name: "",
-				searchable: false,
-				render: (setting) => this.renderTextColorRow(setting, option),
-			})),
-		};
+					this.updateAndRerenderSettings({});
+				}),
+			);
+
+		const colorContainer = new Setting(this.containerEl).setClass(
+			"bg-color-settings",
+		);
+		const settingsContainer = colorContainer.settingEl.createDiv();
+		this.settings.textColors.forEach((textColor) =>
+			this.addTextColorRow(settingsContainer, textColor),
+		);
 	}
 
-	private renderTextColorRow(setting: Setting, option: ITextColorOption) {
+	addTextColorRow(ele: HTMLElement, option: ITextColorOption) {
 		const isDefault = option.color === this.settings.defaultTextColor;
 
-		setting
+		new Setting(ele)
 			.setClass("single-color-setting")
 			.addColorPicker((c) =>
 				c.setValue(option.color).onChange((v) => {
-					const wasDefault =
-						option.color === this.settings.defaultTextColor;
+					const wasDefault = option.color === this.settings.defaultTextColor;
 					option.color = v;
 					void this.settingService.updateSettings(
 						wasDefault ? { defaultTextColor: v } : {},
@@ -422,11 +452,61 @@ export class StickyNotesSettingsTab extends PluginSettingTab {
 					.setTooltip("Default text color")
 					.setValue(isDefault)
 					.onChange(() => {
-						this.applySettingsAndRerender({
+						this.updateAndRerenderSettings({
 							defaultTextColor: option.color,
 						});
 					})
 					.setDisabled(isDefault),
+			)
+			.addExtraButton((deleteButton) =>
+				deleteButton
+					.setIcon("trash")
+					.setTooltip("Remove")
+					.onClick(() => {
+						if (this.settings.textColors.length <= 1) return;
+						this.settings.textColors.remove(option);
+						const nextDefault =
+							this.settings.defaultTextColor === option.color
+								? this.settings.textColors[0]?.color
+								: this.settings.defaultTextColor;
+						this.updateAndRerenderSettings({
+							defaultTextColor:
+								nextDefault ?? DEFAULT_SETTINGS.defaultTextColor,
+						});
+					})
+					.setDisabled(isDefault || this.settings.textColors.length <= 1),
 			);
+	}
+
+	disabledDimensionSetting(value: boolean) {
+		if (!this.dimensionsSettingComponent) return;
+		this.disableSettingComponent(
+			this.dimensionsSettingComponent,
+			this.dimensionsSettingComponent.inputEl,
+			value,
+		);
+	}
+
+	disabledResizableSetting(value: boolean) {
+		if (!this.resizableSettingComponent) return;
+		this.disableSettingComponent(
+			this.resizableSettingComponent,
+			this.resizableSettingComponent.toggleEl,
+			value,
+		);
+	}
+
+	disableSettingComponent<T>(
+		settingComponent: ValueComponent<T>,
+		inputEl: HTMLElement,
+		value: boolean,
+	): ValueComponent<T> {
+		settingComponent.setDisabled(value);
+		if (value) {
+			inputEl.addClass("disabled-setting");
+		} else {
+			inputEl.removeClass("disabled-setting");
+		}
+		return settingComponent;
 	}
 }
