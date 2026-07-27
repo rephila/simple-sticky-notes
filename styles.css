@@ -1163,7 +1163,9 @@ html.sticky-note-window.sticky-note-window #cMenuToolbarPopoverBar,
 html.sticky-note-window.sticky-note-window .editing-toolbar,
 html.sticky-note-window.sticky-note-window .obsidian-editing-toolbar,
 html.sticky-note-window.sticky-note-window #editingToolbarModalBar,
-html.sticky-note-window.sticky-note-window #editingToolbarPopoverBar {
+html.sticky-note-window.sticky-note-window #editingToolbarPopoverBar,
+html.sticky-note-window.sticky-note-window #editingToolbarModalBar .subitem,
+html.sticky-note-window.sticky-note-window #editingToolbarPopoverBar .subitem {
     background-color: var(--note-light-color, #ffffff);
     border: 1px solid color-mix(in srgb, var(--note-text-color, #1a1a1a) 20%, transparent);
     color: var(--note-text-color, #1a1a1a);
@@ -1189,4 +1191,9 @@ html.sticky-note-window.sticky-note-window #editingToolbarModalBar svg,
 html.sticky-note-window.sticky-note-window #editingToolbarPopoverBar svg {
     color: var(--note-text-color, #1a1a1a);
     stroke: var(--note-text-color, #1a1a1a);
+}
+
+html.sticky-note-window.sticky-note-window #editingToolbarModalBar button:hover,
+html.sticky-note-window.sticky-note-window #editingToolbarPopoverBar button:hover {
+    background-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 15%, transparent) !important;
 }
