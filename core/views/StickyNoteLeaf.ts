@@ -247,27 +247,9 @@ export class StickyNoteLeaf {
 		for (const delay of [0, 100, 250, 500, 1000, 2000, 5000, 10000, 15000]) {
 			window.setTimeout(() => {
 				this.syncDocument();
-				this.ensurePluginStylesLoaded();
 				this.refreshStickyChrome();
 				this.applyNoteAppearance();
 			}, delay);
-		}
-	}
-
-	private async ensurePluginStylesLoaded() {
-		const plugin = this.markdownService.plugin;
-		const styleMarker = "simple-sticky-notes-stylesheet";
-		if (this.document.getElementById(styleMarker)) return;
-
-		const cssPath = `${plugin.app.vault.configDir}/plugins/${plugin.manifest.id}/styles.css`;
-		try {
-			const cssContent = await plugin.app.vault.adapter.read(cssPath);
-			const style = this.document.head.createEl("style", {
-				attr: { id: styleMarker },
-			});
-			style.textContent = cssContent;
-		} catch {
-			// styles.css not found – plugin will still work with defaults
 		}
 	}
 
@@ -847,7 +829,6 @@ export class StickyNoteLeaf {
 
 	private applyNoteAppearance() {
 		this.syncDocument();
-		this.ensurePluginStylesLoaded();
 		this.refreshStickyChrome();
 
 		const bgColor = this.color.lightColor;

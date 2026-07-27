@@ -69,10 +69,6 @@ export class StickyNotesSettingsTab extends PluginSettingTab {
 		this.addAppearanceSection();
 	}
 
-	getSettingDefinitions() {
-		return [];
-	}
-
 	rerenderSettings() {
 		this.display();
 	}
