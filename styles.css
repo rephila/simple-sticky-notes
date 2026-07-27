@@ -1106,7 +1106,12 @@ html.sticky-note-window.sticky-note-window .menu .menu-separator,
     box-sizing: border-box;
     width: 12px;
     height: 12px;
-    margin-top: -4.5px; /* (Track height 3px - Thumb height 12px) / 2 */
+    /*
+     * Chromium already centers the thumb on the track when the input
+     * height equals the thumb height. A negative margin-top pulls the
+     * circle above the bar (what we saw). Keep margin at 0.
+     */
+    margin-top: 0;
     border-radius: 50%;
     background: #ffffff;
     border: 1.5px solid #444;
