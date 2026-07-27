@@ -1156,39 +1156,36 @@ html.sticky-note-window.sticky-note-window hr,
 }
 
 /* Theme Editing Toolbar / cMenu in Sticky Notes */
-html.sticky-note-window.sticky-note-window .cMenuToolbarDefaultAesthetic,
-html.sticky-note-window.sticky-note-window #cMenuToolbarModalBar,
-html.sticky-note-window.sticky-note-window #cMenuToolbarPopoverBar,
-html.sticky-note-window.sticky-note-window .editing-toolbar,
-html.sticky-note-window.sticky-note-window .obsidian-editing-toolbar {
-    background-color: var(--note-light-color, #ffffff) !important;
-    border: 1px solid color-mix(in srgb, var(--note-text-color, #1a1a1a) 20%, transparent) !important;
-    color: var(--note-text-color, #1a1a1a) !important;
+body html.sticky-note-window.sticky-note-window .cMenuToolbarDefaultAesthetic,
+body html.sticky-note-window.sticky-note-window #cMenuToolbarModalBar,
+body html.sticky-note-window.sticky-note-window #cMenuToolbarPopoverBar,
+body html.sticky-note-window.sticky-note-window .editing-toolbar,
+body html.sticky-note-window.sticky-note-window .obsidian-editing-toolbar,
+body html.sticky-note-window.sticky-note-window #editingToolbarModalBar,
+body html.sticky-note-window.sticky-note-window #editingToolbarPopoverBar {
+    background-color: var(--note-light-color, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--note-text-color, #1a1a1a) 20%, transparent);
+    color: var(--note-text-color, #1a1a1a);
     display: flex; /* usually they are flex */
 }
 
-html.sticky-note-window.sticky-note-window .cMenuToolbarDefaultAesthetic *,
-html.sticky-note-window.sticky-note-window #cMenuToolbarModalBar *,
-html.sticky-note-window.sticky-note-window #cMenuToolbarPopoverBar *,
-html.sticky-note-window.sticky-note-window .editing-toolbar *,
-html.sticky-note-window.sticky-note-window .obsidian-editing-toolbar * {
-    color: var(--note-text-color, #1a1a1a) !important;
+body html.sticky-note-window.sticky-note-window .cMenuToolbarDefaultAesthetic *,
+body html.sticky-note-window.sticky-note-window #cMenuToolbarModalBar *,
+body html.sticky-note-window.sticky-note-window #cMenuToolbarPopoverBar *,
+body html.sticky-note-window.sticky-note-window .editing-toolbar *,
+body html.sticky-note-window.sticky-note-window .obsidian-editing-toolbar *,
+body html.sticky-note-window.sticky-note-window #editingToolbarModalBar *,
+body html.sticky-note-window.sticky-note-window #editingToolbarPopoverBar * {
+    color: var(--note-text-color, #1a1a1a);
 }
 
-html.sticky-note-window.sticky-note-window .cMenuToolbarDefaultAesthetic svg,
-html.sticky-note-window.sticky-note-window #cMenuToolbarModalBar svg,
-html.sticky-note-window.sticky-note-window #cMenuToolbarPopoverBar svg,
-html.sticky-note-window.sticky-note-window .editing-toolbar svg,
-html.sticky-note-window.sticky-note-window .obsidian-editing-toolbar svg {
-    color: var(--note-text-color, #1a1a1a) !important;
-    stroke: var(--note-text-color, #1a1a1a) !important;
-}
-
-/* Hide native selection toolbar if Editing Toolbar / cMenu is present */
-html.sticky-note-window.sticky-note-window:has(.cMenuToolbarDefaultAesthetic) .sticky-note-selection-toolbar,
-html.sticky-note-window.sticky-note-window:has(#cMenuToolbarModalBar) .sticky-note-selection-toolbar,
-html.sticky-note-window.sticky-note-window:has(#cMenuToolbarPopoverBar) .sticky-note-selection-toolbar,
-html.sticky-note-window.sticky-note-window:has(.editing-toolbar) .sticky-note-selection-toolbar,
-html.sticky-note-window.sticky-note-window:has(.obsidian-editing-toolbar) .sticky-note-selection-toolbar {
-    display: none !important;
+body html.sticky-note-window.sticky-note-window .cMenuToolbarDefaultAesthetic svg,
+body html.sticky-note-window.sticky-note-window #cMenuToolbarModalBar svg,
+body html.sticky-note-window.sticky-note-window #cMenuToolbarPopoverBar svg,
+body html.sticky-note-window.sticky-note-window .editing-toolbar svg,
+body html.sticky-note-window.sticky-note-window .obsidian-editing-toolbar svg,
+body html.sticky-note-window.sticky-note-window #editingToolbarModalBar svg,
+body html.sticky-note-window.sticky-note-window #editingToolbarPopoverBar svg {
+    color: var(--note-text-color, #1a1a1a);
+    stroke: var(--note-text-color, #1a1a1a);
 }

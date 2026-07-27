@@ -7,6 +7,7 @@ import {
 import {
 	createStickyEl,
 	setStickyCssProps,
+	setStickyCssStyles,
 } from "core/utils/domHelpers";
 
 type SelectionCoords = {
@@ -123,8 +124,10 @@ export class SelectionToolbar {
 			const menuEl = this.document.querySelector('.menu') as HTMLElement;
 			if (menuEl) {
 				const remainingHeight = (this.document.defaultView?.innerHeight || window.innerHeight) - menuEl.getBoundingClientRect().top - 10;
-				menuEl.style.maxHeight = remainingHeight + 'px';
-				menuEl.style.overflowY = 'auto';
+				setStickyCssStyles(menuEl, {
+					maxHeight: remainingHeight + 'px',
+					overflowY: 'auto'
+				});
 			}
 		}, 5);
 	}
@@ -175,7 +178,18 @@ export class SelectionToolbar {
 		this.pendingPreviewSelection = null;
 	};
 
+	private hasThirdPartyToolbar(): boolean {
+		return !!this.document.querySelector(
+			".cMenuToolbarDefaultAesthetic, #cMenuToolbarModalBar, #cMenuToolbarPopoverBar, .editing-toolbar, .obsidian-editing-toolbar, #editingToolbarModalBar, #editingToolbarPopoverBar"
+		);
+	}
+
 	private show(coords: SelectionCoords) {
+		if (this.hasThirdPartyToolbar()) {
+			this.hide();
+			return;
+		}
+
 		this.el.classList.add("is-measuring");
 		this.el.classList.remove("is-open");
 		setStickyCssProps(this.el, {
