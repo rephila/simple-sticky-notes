@@ -923,6 +923,8 @@ html.sticky-note-window.sticky-note-window .menu,
     box-shadow:
         0 4px 16px rgba(0, 0, 0, 0.12),
         0 0 0 1px rgba(0, 0, 0, 0.04) ;
+    overflow-y: auto;
+    max-height: calc(100vh - 80px);
 }
 
 html.sticky-note-window.sticky-note-window .menu .menu-item,
