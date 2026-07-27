@@ -103,7 +103,7 @@ export class SelectionToolbar {
 
 	private showHeadingMenu(event: MouseEvent) {
 		const menu = new Menu();
-		for (const level of [1, 2, 3, 4] as const) {
+		for (const level of [1, 2, 3, 4, 5, 6] as const) {
 			menu.addItem((item) =>
 				item
 					.setTitle(`Heading ${level}`)
@@ -111,6 +111,13 @@ export class SelectionToolbar {
 					.onClick(() => this.applyFormat("heading", level)),
 			);
 		}
+		menu.addSeparator();
+		menu.addItem((item) =>
+			item
+				.setTitle("Normal text")
+				.setIcon("type")
+				.onClick(() => this.applyFormat("heading", 0)),
+		);
 		menu.showAtMouseEvent(event);
 	}
 
@@ -248,13 +255,13 @@ export class SelectionToolbar {
 		editor.replaceSelection(next);
 	}
 
-	private setLineHeading(editor: FormatEditor, level: 1 | 2 | 3 | 4) {
+	private setLineHeading(editor: FormatEditor, level: number) {
 		const line = editor.getCursor("from").line;
 		const text = editor.getLine(line);
 		editor.setLine(line, formatLineHeading(text, level));
 	}
 
-	private applyFormat(action: string, level: 1 | 2 | 3 | 4 = 1) {
+	private applyFormat(action: string, level: number = 1) {
 		const view = this.getMarkdownView();
 		if (!view) return;
 
