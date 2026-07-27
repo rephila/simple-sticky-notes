@@ -924,6 +924,9 @@ html.sticky-note-window.sticky-note-window .menu,
         0 4px 16px rgba(0, 0, 0, 0.12),
         0 0 0 1px rgba(0, 0, 0, 0.04) ;
     overflow-y: auto;
+    border-radius: 8px;
+    padding: 6px 4px;
+    margin-top: 6px;
     max-height: calc(100vh - 80px);
 }
 
@@ -962,6 +965,7 @@ html.sticky-note-window.sticky-note-window .menu .menu-item.is-selected .menu-it
 html.sticky-note-window.sticky-note-window .menu .menu-separator,
 .app-container.sticky-note.sticky-note .menu .menu-separator {
     background-color: rgba(0, 0, 0, 0.1) ;
+    margin: 4px 0;
 }
 
 .sticky-note-color-picker {
