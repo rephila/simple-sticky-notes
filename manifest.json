@@ -1,7 +1,7 @@
 {
 	"id": "simple-sticky-notes",
 	"name": "Simple Sticky Notes",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"minAppVersion": "1.13.0",
 	"description": "Open floating sticky-note popups with pin, colors, and workspace restore.",
 	"author": "rephila",
