@@ -1168,9 +1168,9 @@ html.sticky-note-window.sticky-note-window #editingToolbarPopoverBar .subitem {
 
 html.sticky-note-window.sticky-note-window #editingToolbarModalBar .x-color-picker-wrapper,
 html.sticky-note-window.sticky-note-window #editingToolbarPopoverBar .x-color-picker-wrapper {
-    background-color: var(--note-light-color, #ffffff) !important;
-    border: 1px solid color-mix(in srgb, var(--note-text-color, #1a1a1a) 20%, transparent) !important;
-    color: var(--note-text-color, #1a1a1a) !important;
+    background-color: var(--note-light-color, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--note-text-color, #1a1a1a) 20%, transparent);
+    color: var(--note-text-color, #1a1a1a);
 }
 
 html.sticky-note-window.sticky-note-window .cMenuToolbarDefaultAesthetic *,
@@ -1196,5 +1196,5 @@ html.sticky-note-window.sticky-note-window #editingToolbarPopoverBar svg {
 
 html.sticky-note-window.sticky-note-window #editingToolbarModalBar button:hover,
 html.sticky-note-window.sticky-note-window #editingToolbarPopoverBar button:hover {
-    background-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 15%, transparent) !important;
+    background-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 15%, transparent);
 }
