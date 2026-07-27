@@ -1139,3 +1139,12 @@ html.sticky-note-window.sticky-note-window .menu .menu-separator,
     color: #444;
     text-align: right;
 }
+
+html.sticky-note-window.sticky-note-window hr,
+.sticky-note.sticky-note hr {
+    border: none;
+    height: 1px;
+    background-color: var(--note-text-color, #1a1a1a);
+    opacity: 0.2;
+    margin: 1.5em 0;
+}
