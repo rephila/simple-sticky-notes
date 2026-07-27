@@ -928,6 +928,7 @@ html.sticky-note-window.sticky-note-window .menu,
     padding: 6px 4px;
     margin-top: 6px;
     max-height: calc(100vh - 80px);
+    z-index: 10002;
 }
 
 html.sticky-note-window.sticky-note-window .menu .menu-item,
