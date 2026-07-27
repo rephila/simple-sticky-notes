@@ -41,9 +41,9 @@ html.sticky-note-window.sticky-note-window [data-sticky-hidden="true"] {
     --sticky-scrollbar-size: 8px;
     /* Keep thumb clear of Windows rounded window corners */
     --sticky-scrollbar-inset-top: 6px;
-    --sticky-scrollbar-inset-bottom: 14px;
-    background: var(--note-light-color, #ffffff) ;
-    color: var(--note-text-color, #1a1a1a) ;
+    --sticky-scrollbar-inset-bottom: 6px;
+    background: var(--note-light-color, #ffffff);
+    color: var(--note-text-color, #1a1a1a);
     height: 100%;
     min-height: 100%;
     overflow: hidden;
@@ -51,7 +51,7 @@ html.sticky-note-window.sticky-note-window [data-sticky-hidden="true"] {
 
 html.sticky-note-window.sticky-note-window,
 body.sticky-note-window.sticky-note-window {
-    background-color: var(--note-light-color, #ffffff) ;
+    background-color: var(--note-light-color, #ffffff);
     height: 100%;
     min-height: 100%;
     overflow: hidden;
@@ -70,94 +70,88 @@ html.sticky-note-window.sticky-note-window .status-bar,
 html.sticky-note-window.sticky-note-window .titlebar,
 html.sticky-note-window.sticky-note-window .metadata-container,
 html.sticky-note-window.sticky-note-window .daily-note-navbar {
-    display: none ;
+    display: none;
 }
 
 html.sticky-note-window.sticky-note-window .notice-container,
 html.sticky-note-window.sticky-note-window .notice,
 html.sticky-note-window.sticky-note-window .progress-bar {
-    display: none ;
-    visibility: hidden ;
-    pointer-events: none ;
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 html.sticky-note-window.sticky-note-window .workspace-leaf {
-    display: block ;
-    visibility: visible ;
-    height: 100% ;
+    display: block;
+    visibility: visible;
+    height: 100%;
 }
 
 html.sticky-note-window.sticky-note-window .workspace-leaf-content {
-    display: flex ;
-    flex-direction: column ;
-    height: 100% ;
-    min-height: 0 ;
-    overflow: hidden ;
-    visibility: visible ;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    visibility: visible;
 }
 
 html.sticky-note-window.sticky-note-window .view-content {
-    display: block ;
-    visibility: visible ;
-    flex: 1 1 auto ;
-    min-height: 0 ;
-    padding: 0 ;
-    box-sizing: border-box ;
-    overflow-x: hidden ;
-    overflow-y: auto ;
+    display: block;
+    visibility: visible;
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 html.sticky-note-window.sticky-note-window .markdown-preview-view {
-    padding: 4px
-        var(--sticky-content-pad-right, 16px)
-        var(--sticky-content-pad-bottom, 12px)
-        var(--sticky-content-pad-left, 20px) ;
-    max-width: none ;
-    margin: 0 ;
-    box-sizing: border-box ;
+    padding: 4px var(--sticky-content-pad-right, 16px) var(--sticky-content-pad-bottom, 12px) var(--sticky-content-pad-left, 20px);
+    max-width: none;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 html.sticky-note-window.sticky-note-window .markdown-preview-section,
 html.sticky-note-window.sticky-note-window .cm-content {
-    padding-left: 0 ;
-    padding-inline-start: 0 ;
-    max-width: none ;
-    margin-inline: 0 ;
-    box-sizing: border-box ;
+    padding-left: 0;
+    padding-inline-start: 0;
+    max-width: none;
+    margin-inline: 0;
+    box-sizing: border-box;
 }
 
 html.sticky-note-window.sticky-note-window .cm-scroller {
-    padding: 4px
-        var(--sticky-content-pad-right, 16px)
-        var(--sticky-content-pad-bottom, 12px)
-        var(--sticky-content-pad-left, 20px) ;
-    box-sizing: border-box ;
+    padding: 4px var(--sticky-content-pad-right, 16px) var(--sticky-content-pad-bottom, 12px) var(--sticky-content-pad-left, 20px);
+    box-sizing: border-box;
 }
 
 html.sticky-note-window.sticky-note-window .cm-gutters {
-    display: none ;
+    display: none;
 }
 
 html.sticky-note-window.sticky-note-window .view-content::-webkit-scrollbar,
 html.sticky-note-window.sticky-note-window .cm-scroller::-webkit-scrollbar {
-    width: var(--sticky-scrollbar-size, 6px) ;
-    height: 0 ;
+    width: var(--sticky-scrollbar-size, 6px);
+    height: 0;
 }
 
 html.sticky-note-window.sticky-note-window .view-content::-webkit-scrollbar-thumb,
 html.sticky-note-window.sticky-note-window .cm-scroller::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.32) ;
-    border-radius: 999px ;
-    min-height: 24px ;
-    border: 2px solid transparent ;
-    background-clip: padding-box ;
+    background-color: rgba(0, 0, 0, 0.32);
+    border-radius: 999px;
+    min-height: 24px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
 }
 
 html.sticky-note-window.sticky-note-window .view-content::-webkit-scrollbar-track,
 html.sticky-note-window.sticky-note-window .cm-scroller::-webkit-scrollbar-track {
-    background: transparent ;
-    margin-top: var(--sticky-scrollbar-inset-top, 6px) ;
-    margin-bottom: var(--sticky-scrollbar-inset-bottom, 14px) ;
+    background: transparent;
+    margin-top: var(--sticky-scrollbar-inset-top, 6px);
+    margin-bottom: var(--sticky-scrollbar-inset-bottom, 14px);
 }
 
 html.sticky-note-window.sticky-note-window .view-content::-webkit-scrollbar-button,
@@ -168,16 +162,16 @@ html.sticky-note-window.sticky-note-window .cm-scroller::-webkit-scrollbar-butto
 html.sticky-note-window.sticky-note-window .cm-scroller::-webkit-scrollbar-button:single-button,
 html.sticky-note-window.sticky-note-window .cm-scroller::-webkit-scrollbar-button:start,
 html.sticky-note-window.sticky-note-window .cm-scroller::-webkit-scrollbar-button:end {
-    display: none ;
-    width: 0 ;
-    height: 0 ;
-    appearance: none ;
-    -webkit-appearance: none ;
+    display: none;
+    width: 0;
+    height: 0;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 html.sticky-note-window.sticky-note-window .view-header {
-    display: flex ;
-    visibility: visible ;
+    display: flex;
+    visibility: visible;
 }
 
 .app-container.sticky-note.sticky-note .view-header-title,
@@ -220,7 +214,7 @@ html.sticky-note-window.sticky-note-window .view-header {
 .app-container.sticky-note.sticky-note .cm-editor,
 .app-container.sticky-note.sticky-note .cm-scroller,
 .app-container.sticky-note.sticky-note .cm-gutters {
-    background-color: var(--note-light-color, #ffffff) ;
+    background-color: var(--note-light-color, #ffffff);
 }
 
 .app-container.sticky-note.sticky-note,
@@ -251,8 +245,8 @@ html.sticky-note-window.sticky-note-window .view-header {
     padding: 0;
     box-sizing: border-box;
     -webkit-app-region: no-drag;
-    overflow-x: hidden ;
-    overflow-y: auto ;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .app-container.sticky-note.sticky-note .view-content.mod-sticky-source {
@@ -265,7 +259,7 @@ html.sticky-note-window.sticky-note-window .view-header {
 .app-container.sticky-note.sticky-note .markdown-preview-view,
 .app-container.sticky-note.sticky-note .cm-editor,
 .app-container.sticky-note.sticky-note .cm-scroller {
-    min-height: 0 ;
+    min-height: 0;
 }
 
 .app-container.sticky-note.sticky-note .markdown-source-view {
@@ -283,23 +277,20 @@ html.sticky-note-window.sticky-note-window .view-header {
 .app-container.sticky-note.sticky-note .cm-scroller {
     height: 100%;
     box-sizing: border-box;
-    overflow-x: hidden ;
-    overflow-y: auto ;
+    overflow-x: hidden;
+    overflow-y: auto;
     /* Explicit padding — do not rely on --file-margins (themes inject large top gaps). */
-    padding: 4px
-        var(--sticky-content-pad-right, 16px)
-        var(--sticky-content-pad-bottom, 12px)
-        var(--sticky-content-pad-left, 20px) ;
+    padding: 4px var(--sticky-content-pad-right, 16px) var(--sticky-content-pad-bottom, 12px) var(--sticky-content-pad-left, 20px);
     box-sizing: border-box;
 }
 
 .app-container.sticky-note.sticky-note .markdown-source-view.mod-cm6 .cm-scroller,
 .app-container.sticky-note.sticky-note .view-content.mod-sticky-source .cm-scroller,
 html.sticky-note-window.sticky-note-window .markdown-source-view.mod-cm6 .cm-scroller {
-    padding-top: 4px ;
-    padding-bottom: var(--sticky-content-pad-bottom, 12px) ;
-    padding-left: var(--sticky-content-pad-left, 20px) ;
-    padding-right: var(--sticky-content-pad-right, 16px) ;
+    padding-top: 4px;
+    padding-bottom: var(--sticky-content-pad-bottom, 12px);
+    padding-left: var(--sticky-content-pad-left, 20px);
+    padding-right: var(--sticky-content-pad-right, 16px);
 }
 
 .app-container.sticky-note.sticky-note .markdown-source-view,
@@ -315,25 +306,25 @@ html.sticky-note-window.sticky-note-window .markdown-source-view.mod-cm6 .cm-scr
     min-height: 0 !important;
 }
 
-.app-container.sticky-note.sticky-note .markdown-source-view .cm-content > .cm-line:first-child,
+.app-container.sticky-note.sticky-note .markdown-source-view .cm-content>.cm-line:first-child,
 .app-container.sticky-note.sticky-note .markdown-source-view .cm-line:first-child,
 .app-container.sticky-note.sticky-note .cm-content .HyperMD-header:first-child,
 .app-container.sticky-note.sticky-note .cm-line.HyperMD-header-1:first-child {
-    margin-top: 0 ;
-    padding-top: 0 ;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 /* Line-number gutter shifts edit mode left edge; fold space comes from content padding */
 .app-container.sticky-note.sticky-note .cm-gutters {
-    display: none ;
+    display: none;
 }
 
 .app-container.sticky-note.sticky-note .cm-content {
-    padding-left: 0 ;
-    padding-right: 0 ;
-    margin: 0 ;
-    max-width: none ;
-    width: 100% ;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+    max-width: none;
+    width: 100%;
 }
 
 .app-container.sticky-note.sticky-note .view-content::-webkit-scrollbar,
@@ -347,7 +338,7 @@ html.sticky-note-window.sticky-note-window .markdown-source-view.mod-cm6 .cm-scr
 .app-container.sticky-note.sticky-note .cm-scroller::-webkit-scrollbar:horizontal,
 .app-container.sticky-note.sticky-note .markdown-preview-view::-webkit-scrollbar:horizontal {
     display: none;
-    height: 0 ;
+    height: 0;
 }
 
 .app-container.sticky-note.sticky-note .view-content::-webkit-scrollbar-button,
@@ -359,11 +350,11 @@ html.sticky-note-window.sticky-note-window .markdown-source-view.mod-cm6 .cm-scr
 .app-container.sticky-note.sticky-note .cm-scroller::-webkit-scrollbar-button:start,
 .app-container.sticky-note.sticky-note .cm-scroller::-webkit-scrollbar-button:end,
 .app-container.sticky-note.sticky-note .markdown-preview-view::-webkit-scrollbar-button {
-    display: none ;
-    width: 0 ;
-    height: 0 ;
-    appearance: none ;
-    -webkit-appearance: none ;
+    display: none;
+    width: 0;
+    height: 0;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .app-container.sticky-note.sticky-note .view-content::-webkit-scrollbar-corner,
@@ -408,15 +399,15 @@ html.sticky-note-window.sticky-note-window .markdown-source-view.mod-cm6 .cm-scr
 
 .app-container.sticky-note.sticky-note .markdown-preview-sizer,
 .app-container.sticky-note.sticky-note .markdown-preview-section {
-    min-height: 0 ;
+    min-height: 0;
     height: auto;
     overflow: visible;
 }
 
 .app-container.sticky-note.sticky-note .markdown-preview-view .markdown-preview-section {
     padding-inline-start: 0;
-    max-width: none ;
-    margin-inline: 0 ;
+    max-width: none;
+    margin-inline: 0;
     width: 100%;
     box-sizing: border-box;
 }
@@ -428,8 +419,8 @@ html.sticky-note-window.sticky-note-window .markdown-source-view.mod-cm6 .cm-scr
 .app-container.sticky-note.sticky-note .markdown-preview-view h5,
 .app-container.sticky-note.sticky-note .markdown-preview-view h6 {
     position: relative;
-    overflow: visible ;
-    padding-inline-start: 0 ;
+    overflow: visible;
+    padding-inline-start: 0;
 }
 
 .app-container.sticky-note.sticky-note .markdown-preview-view .heading-collapse-indicator,
@@ -440,17 +431,17 @@ html.sticky-note-window.sticky-note-window .markdown-source-view.mod-cm6 .cm-scr
 .app-container.sticky-note.sticky-note .markdown-preview-view h4 .collapse-indicator,
 .app-container.sticky-note.sticky-note .markdown-preview-view h5 .collapse-indicator,
 .app-container.sticky-note.sticky-note .markdown-preview-view h6 .collapse-indicator {
-    position: absolute ;
-    left: -16px ;
+    position: absolute;
+    left: -16px;
     top: 0.2em;
     width: 16px;
-    margin: 0 ;
-    margin-inline-start: 0 ;
-    padding: 0 ;
-    display: inline-flex ;
+    margin: 0;
+    margin-inline-start: 0;
+    padding: 0;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    overflow: visible ;
+    overflow: visible;
     pointer-events: auto;
     z-index: 2;
 }
@@ -471,7 +462,7 @@ html.sticky-note-window.sticky-note-window .markdown-source-view.mod-cm6 .cm-scr
     display: block;
     max-width: 100%;
     overflow-x: hidden;
-    background-color: var(--note-light-color, #ffffff) ;
+    background-color: var(--note-light-color, #ffffff);
 }
 
 .app-container.sticky-note.sticky-note .markdown-preview-view pre {
@@ -489,16 +480,16 @@ html.sticky-note-window.sticky-note-window .markdown-source-view.mod-cm6 .cm-scr
 /* Obsidian uses pusher for scroll sync; min-height on it creates a huge top gap */
 .app-container.sticky-note.sticky-note .markdown-preview-pusher,
 html.sticky-note-window.sticky-note-window .markdown-preview-pusher {
-    display: none ;
-    min-height: 0 ;
-    height: 0 ;
-    margin: 0 ;
-    padding: 0 ;
+    display: none;
+    min-height: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .app-container.sticky-note.sticky-note .markdown-preview-sizer,
 html.sticky-note-window.sticky-note-window .markdown-preview-sizer {
-    min-height: auto ;
+    min-height: auto;
 }
 
 .app-container.sticky-note.sticky-note .workspace-ribbon,
@@ -524,15 +515,15 @@ html.sticky-note-window.sticky-note-window .markdown-preview-sizer {
 .app-container.sticky-note.sticky-note .embedded-backlinks,
 .app-container.sticky-note.sticky-note .embedded-table-of-contents,
 .app-container.sticky-note.sticky-note .mod-footer-bar {
-    display: none ;
+    display: none;
 }
 
 .app-container.sticky-note.sticky-note .view-header {
-    background: var(--note-light-color, #ffffff) ;
-    border: none ;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08) ;
-    border-bottom-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 12%, transparent) ;
-    box-shadow: none ;
+    background: var(--note-light-color, #ffffff);
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 12%, transparent);
+    box-shadow: none;
     min-height: 34px;
     padding: 0 12px 0 6px;
     display: flex;
@@ -556,14 +547,14 @@ html.sticky-note-window.sticky-note-window .markdown-preview-sizer {
 .app-container.sticky-note.sticky-note .view-header-title-container .view-header-breadcrumb,
 .app-container.sticky-note.sticky-note .view-header-title-container .view-header-title-parent,
 .app-container.sticky-note.sticky-note .view-header-title .view-header-breadcrumb {
-    display: none ;
+    display: none;
 }
 
 .app-container.sticky-note.sticky-note .view-header-title {
     display: block;
     font-size: 12px;
     font-weight: 600;
-    color: var(--note-text-color, #4a4a4a) ;
+    color: var(--note-text-color, #4a4a4a);
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.03em;
@@ -626,24 +617,24 @@ html.sticky-note-window.sticky-note-window .markdown-preview-sizer {
 /* Hide Obsidian inline title + its .mod-header wrapper (wrapper alone leaves a top gap). */
 .app-container.sticky-note.sticky-note .view-content .inline-title,
 .app-container.sticky-note.sticky-note .markdown-source-view .inline-title,
-.app-container.sticky-note.sticky-note .markdown-source-view .cm-contentContainer > .inline-title,
+.app-container.sticky-note.sticky-note .markdown-source-view .cm-contentContainer>.inline-title,
 .app-container.sticky-note.sticky-note .workspace-leaf-content[data-type="markdown"] .inline-title,
 .app-container.sticky-note.sticky-note .markdown-preview-view .mod-header,
 .app-container.sticky-note.sticky-note .markdown-source-view .mod-header,
 .app-container.sticky-note.sticky-note .view-content .mod-header,
 html.sticky-note-window.sticky-note-window .inline-title,
 html.sticky-note-window.sticky-note-window .mod-header {
-    display: none ;
-    visibility: hidden ;
-    height: 0 ;
-    max-height: 0 ;
-    min-height: 0 ;
-    padding: 0 ;
-    margin: 0 ;
-    border: none ;
-    overflow: hidden ;
-    line-height: 0 ;
-    font-size: 0 ;
+    display: none;
+    visibility: hidden;
+    height: 0;
+    max-height: 0;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0;
 }
 
 /* Some themes keep a spacer above the editor for the inline title */
@@ -666,45 +657,42 @@ html.sticky-note-window.sticky-note-window .mod-header {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-size: 14px;
     line-height: 1.6;
-    padding: 4px
-        var(--sticky-content-pad-right, 16px)
-        var(--sticky-content-pad-bottom, 12px)
-        var(--sticky-content-pad-left, 20px) ;
-    margin: 0 ;
-    max-width: none ;
-    width: 100% ;
+    padding: 4px var(--sticky-content-pad-right, 16px) var(--sticky-content-pad-bottom, 12px) var(--sticky-content-pad-left, 20px);
+    margin: 0;
+    max-width: none;
+    width: 100%;
     box-sizing: border-box;
-    color: var(--note-text-color, #1a1a1a) ;
+    color: var(--note-text-color, #1a1a1a);
 }
 
 .app-container.sticky-note.sticky-note .markdown-preview-sizer {
-    max-width: none ;
-    margin-inline: 0 ;
-    padding: 0 ;
-    width: 100% ;
+    max-width: none;
+    margin-inline: 0;
+    padding: 0;
+    width: 100%;
 }
 
 .app-container.sticky-note.sticky-note .markdown-preview-view th,
 .app-container.sticky-note.sticky-note .markdown-preview-view td {
-    color: var(--note-text-color, #1a1a1a) ;
-    background-color: var(--note-light-color, #ffffff) ;
-    border-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 20%, transparent) ;
+    color: var(--note-text-color, #1a1a1a);
+    background-color: var(--note-light-color, #ffffff);
+    border-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 20%, transparent);
 }
 
 .app-container.sticky-note.sticky-note .markdown-preview-view thead th {
-    background-color: var(--note-code-bg, #ececec) ;
-    color: var(--note-text-color, #1a1a1a) ;
+    background-color: var(--note-code-bg, #ececec);
+    color: var(--note-text-color, #1a1a1a);
 }
 
 .app-container.sticky-note.sticky-note .markdown-preview-view pre,
 .app-container.sticky-note.sticky-note .markdown-preview-view code {
-    color: var(--note-text-color, #1a1a1a) ;
-    background-color: var(--note-code-bg, #ececec) ;
+    color: var(--note-text-color, #1a1a1a);
+    background-color: var(--note-code-bg, #ececec);
 }
 
 .app-container.sticky-note.sticky-note .markdown-preview-view pre code {
-    color: var(--note-text-color, #1a1a1a) ;
-    background-color: transparent ;
+    color: var(--note-text-color, #1a1a1a);
+    background-color: transparent;
 }
 
 .app-container.sticky-note.sticky-note .markdown-preview-view h1,
@@ -714,24 +702,24 @@ html.sticky-note-window.sticky-note-window .mod-header {
     font-weight: 600;
     margin-top: 0.6em;
     margin-bottom: 0.3em;
-    color: var(--note-text-color, #1a1a1a) ;
+    color: var(--note-text-color, #1a1a1a);
 }
 
-.app-container.sticky-note.sticky-note .markdown-preview-view .markdown-preview-section > :first-child,
-.app-container.sticky-note.sticky-note .markdown-preview-view .markdown-preview-section > :first-child :first-child,
-.app-container.sticky-note.sticky-note .markdown-preview-view .markdown-preview-section > .el-h1:first-child,
-.app-container.sticky-note.sticky-note .markdown-preview-view .markdown-preview-section > .el-h2:first-child,
+.app-container.sticky-note.sticky-note .markdown-preview-view .markdown-preview-section> :first-child,
+.app-container.sticky-note.sticky-note .markdown-preview-view .markdown-preview-section> :first-child :first-child,
+.app-container.sticky-note.sticky-note .markdown-preview-view .markdown-preview-section>.el-h1:first-child,
+.app-container.sticky-note.sticky-note .markdown-preview-view .markdown-preview-section>.el-h2:first-child,
 .app-container.sticky-note.sticky-note .markdown-preview-view h1:first-child,
 .app-container.sticky-note.sticky-note .markdown-preview-view h2:first-child,
 .app-container.sticky-note.sticky-note .markdown-preview-view h3:first-child,
 .app-container.sticky-note.sticky-note .markdown-preview-view h4:first-child,
 .app-container.sticky-note.sticky-note .markdown-preview-view .el-h1:first-child,
 .app-container.sticky-note.sticky-note .markdown-preview-view h1:first-of-type,
-.app-container.sticky-note.sticky-note .cm-content > .cm-line:first-child {
-    margin-top: 0 ;
-    margin-block-start: 0 ;
-    padding-top: 0 ;
-    padding-block-start: 0 ;
+.app-container.sticky-note.sticky-note .cm-content>.cm-line:first-child {
+    margin-top: 0;
+    margin-block-start: 0;
+    padding-top: 0;
+    padding-block-start: 0;
 }
 
 .app-container.sticky-note.sticky-note .markdown-preview-view p,
@@ -741,7 +729,7 @@ html.sticky-note-window.sticky-note-window .mod-header {
 .app-container.sticky-note.sticky-note .markdown-preview-view .el-h2,
 .app-container.sticky-note.sticky-note .markdown-preview-view .el-h3,
 .app-container.sticky-note.sticky-note .markdown-preview-view .el-h4 {
-    color: var(--note-text-color, #1a1a1a) ;
+    color: var(--note-text-color, #1a1a1a);
 }
 
 .app-container.sticky-note.sticky-note .markdown-preview-view a,
@@ -751,7 +739,7 @@ html.sticky-note-window.sticky-note-window .mod-header {
 .app-container.sticky-note.sticky-note .empty-state-action-list-item.mod-clickable,
 .app-container.sticky-note.sticky-note .mod-cta,
 .app-container.sticky-note.sticky-note .mod-clickable {
-    color: var(--link-color, #1a5fb4) ;
+    color: var(--link-color, #1a5fb4);
     text-decoration: underline;
 }
 
@@ -759,14 +747,14 @@ html.sticky-note-window.sticky-note-window .mod-header {
 .app-container.sticky-note.sticky-note .markdown-preview-view a:hover *,
 .app-container.sticky-note.sticky-note .empty-state-action:hover,
 .app-container.sticky-note.sticky-note .empty-state-action-list-item:hover {
-    color: var(--link-color-hover, #134e96) ;
+    color: var(--link-color-hover, #134e96);
 }
 
 .app-container.sticky-note.sticky-note .empty-state,
 .app-container.sticky-note.sticky-note .empty-state-title,
 .app-container.sticky-note.sticky-note .empty-state-description {
-    color: var(--note-text-color, #1a1a1a) ;
-    background-color: var(--note-light-color, #ffffff) ;
+    color: var(--note-text-color, #1a1a1a);
+    background-color: var(--note-light-color, #ffffff);
 }
 
 .app-container.sticky-note.sticky-note .markdown-preview-view img,
@@ -782,7 +770,7 @@ html.sticky-note-window.sticky-note-window .mod-header {
 .app-container.sticky-note.sticky-note .cm-content .cm-comment,
 .app-container.sticky-note.sticky-note .cm-content .cm-hmd-codeblock,
 .app-container.sticky-note.sticky-note .cm-content .cm-hmd-frontmatter {
-    color: var(--note-text-color, #1a1a1a) ;
+    color: var(--note-text-color, #1a1a1a);
     caret-color: var(--note-text-color, #1a1a1a);
 }
 
@@ -792,7 +780,7 @@ html.sticky-note-window.sticky-note-window .mod-header {
 .app-container.sticky-note.sticky-note .cm-content .hmd-urlstring,
 .app-container.sticky-note.sticky-note .cm-content .cm-string.cm-url,
 .app-container.sticky-note.sticky-note .cm-content a {
-    color: var(--link-color, #1a5fb4) ;
+    color: var(--link-color, #1a5fb4);
     text-decoration: underline;
     caret-color: var(--note-text-color, #1a1a1a);
 }
@@ -800,7 +788,7 @@ html.sticky-note-window.sticky-note-window .mod-header {
 .app-container.sticky-note.sticky-note .cm-content .cm-link:hover,
 .app-container.sticky-note.sticky-note .cm-content .cm-url:hover,
 .app-container.sticky-note.sticky-note .cm-content a:hover {
-    color: var(--link-color-hover, #134e96) ;
+    color: var(--link-color-hover, #134e96);
 }
 
 .color-menu {
@@ -823,7 +811,7 @@ html.sticky-note-window.sticky-note-window .mod-header {
     border-top: none;
 }
 
-.bg-color-settings > * {
+.bg-color-settings>* {
     width: 100%;
 }
 
@@ -922,13 +910,13 @@ html.sticky-note-window.sticky-note-window .mod-header {
 /* Heading submenu (Obsidian Menu) — match light sticky chrome, not app dark theme */
 html.sticky-note-window.sticky-note-window .menu,
 .app-container.sticky-note.sticky-note .menu {
-    background-color: #ffffff ;
-    background: #ffffff ;
-    color: #1a1a1a ;
-    border: 1px solid rgba(0, 0, 0, 0.1) ;
+    background-color: #ffffff;
+    background: #ffffff;
+    color: #1a1a1a;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow:
         0 4px 16px rgba(0, 0, 0, 0.12),
-        0 0 0 1px rgba(0, 0, 0, 0.04) ;
+        0 0 0 1px rgba(0, 0, 0, 0.04);
     overflow-y: auto;
     border-radius: 8px;
     padding: 6px 4px;
@@ -939,7 +927,7 @@ html.sticky-note-window.sticky-note-window .menu,
 
 html.sticky-note-window.sticky-note-window .menu .menu-item,
 .app-container.sticky-note.sticky-note .menu .menu-item {
-    color: #1a1a1a ;
+    color: #1a1a1a;
 }
 
 html.sticky-note-window.sticky-note-window .menu .menu-item .menu-item-icon,
@@ -948,8 +936,8 @@ html.sticky-note-window.sticky-note-window .menu .menu-item svg,
 .app-container.sticky-note.sticky-note .menu .menu-item .menu-item-icon,
 .app-container.sticky-note.sticky-note .menu .menu-item .menu-item-title,
 .app-container.sticky-note.sticky-note .menu .menu-item svg {
-    color: #333333 ;
-    stroke: #333333 ;
+    color: #333333;
+    stroke: #333333;
 }
 
 html.sticky-note-window.sticky-note-window .menu .menu-item:hover,
@@ -958,20 +946,20 @@ html.sticky-note-window.sticky-note-window .menu .menu-item.selected,
 .app-container.sticky-note.sticky-note .menu .menu-item:hover,
 .app-container.sticky-note.sticky-note .menu .menu-item.is-selected,
 .app-container.sticky-note.sticky-note .menu .menu-item.selected {
-    background-color: #f0f0f0 ;
-    color: #1a1a1a ;
+    background-color: #f0f0f0;
+    color: #1a1a1a;
 }
 
 html.sticky-note-window.sticky-note-window .menu .menu-item:hover .menu-item-title,
 html.sticky-note-window.sticky-note-window .menu .menu-item.is-selected .menu-item-title,
 .app-container.sticky-note.sticky-note .menu .menu-item:hover .menu-item-title,
 .app-container.sticky-note.sticky-note .menu .menu-item.is-selected .menu-item-title {
-    color: #1a1a1a ;
+    color: #1a1a1a;
 }
 
 html.sticky-note-window.sticky-note-window .menu .menu-separator,
 .app-container.sticky-note.sticky-note .menu .menu-separator {
-    background-color: rgba(0, 0, 0, 0.1) ;
+    background-color: rgba(0, 0, 0, 0.1);
     margin: 4px 0;
 }
 
@@ -1175,7 +1163,8 @@ html.sticky-note-window.sticky-note-window #editingToolbarPopoverBar .subitem {
     background-color: var(--note-light-color, #ffffff);
     border: 1px solid color-mix(in srgb, var(--note-text-color, #1a1a1a) 20%, transparent);
     color: var(--note-text-color, #1a1a1a);
-    display: flex; /* usually they are flex */
+    display: flex;
+    /* usually they are flex */
 }
 
 html.sticky-note-window.sticky-note-window #editingToolbarModalBar .x-color-picker-wrapper,
