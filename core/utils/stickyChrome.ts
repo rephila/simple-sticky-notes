@@ -46,7 +46,7 @@ export function isStickyNoteDocument(document: Document): boolean {
 }
 
 export function markStickyWindow(document: Document, noteId: string): void {
-	document.title = noteId;
+	
 	document.documentElement.setAttribute("note-id", noteId);
 	document.documentElement.classList.add("sticky-note-window");
 	document.body?.classList.add("sticky-note-window");

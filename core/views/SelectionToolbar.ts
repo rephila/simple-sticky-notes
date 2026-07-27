@@ -119,6 +119,14 @@ export class SelectionToolbar {
 				.onClick(() => this.applyFormat("heading", 0)),
 		);
 		menu.showAtMouseEvent(event);
+		window.setTimeout(() => {
+			const menuEl = this.document.querySelector('.menu') as HTMLElement;
+			if (menuEl) {
+				const remainingHeight = (this.document.defaultView?.innerHeight || window.innerHeight) - menuEl.getBoundingClientRect().top - 10;
+				menuEl.style.maxHeight = remainingHeight + 'px';
+				menuEl.style.overflowY = 'auto';
+			}
+		}, 5);
 	}
 
 	private handleSelection = () => {

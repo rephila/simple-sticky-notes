@@ -589,6 +589,8 @@ export class StickyNoteLeaf {
 		return markdownView?.file ?? null;
 	}
 
+	private titleObserver?: MutationObserver;
+
 	private refreshNoteTitle() {
 		const titleContainer =
 			this.view.containerEl.querySelector(".view-header-title-container");
@@ -607,10 +609,28 @@ export class StickyNoteLeaf {
 
 		const title = this.resolveHeaderTitle();
 		titleEl.setText(title);
-		this.document.title = `Simple Sticky Note - ${title}`;
+
+		const expectedTitle = `Simple Sticky Note - ${title}`;
+		this.document.title = expectedTitle;
 		if (this.mainWindow && !this.mainWindow.isDestroyed()) {
-			this.mainWindow.setTitle(`Simple Sticky Note - ${title}`);
+			this.mainWindow.setTitle(expectedTitle);
 		}
+
+		if (!this.titleObserver) {
+			const headTitleEl = this.document.querySelector("title");
+			if (headTitleEl) {
+				this.titleObserver = new MutationObserver(() => {
+					if (headTitleEl.textContent !== expectedTitle) {
+						headTitleEl.textContent = expectedTitle;
+						if (this.mainWindow && !this.mainWindow.isDestroyed()) {
+							this.mainWindow.setTitle(expectedTitle);
+						}
+					}
+				});
+				this.titleObserver.observe(headTitleEl, { childList: true, characterData: true, subtree: true });
+			}
+		}
+
 		this.hideInlineTitleOnly();
 	}
 
@@ -700,6 +720,8 @@ export class StickyNoteLeaf {
 	}
 
 	private closeStickyNote() {
+		this.titleObserver?.disconnect();
+		this.titleObserver = undefined;
 		this.stopIntrusionWatch?.();
 		this.stopIntrusionWatch = undefined;
 		StickyNoteLeaf.leafsList.delete(this.title);
