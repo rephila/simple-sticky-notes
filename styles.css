@@ -38,7 +38,7 @@ html.sticky-note-window.sticky-note-window [data-sticky-hidden="true"] {
     /* Keep edit/read content edge-aligned; disable Obsidian readable-line centering */
     --file-line-width: 100%;
     --file-margins: 0px;
-    --sticky-scrollbar-size: 6px;
+    --sticky-scrollbar-size: 14px;
     /* Keep thumb clear of Windows rounded window corners */
     --sticky-scrollbar-inset-top: 6px;
     --sticky-scrollbar-inset-bottom: 14px;
@@ -149,7 +149,7 @@ html.sticky-note-window.sticky-note-window .cm-scroller::-webkit-scrollbar-thumb
     background-color: rgba(0, 0, 0, 0.32) ;
     border-radius: 999px ;
     min-height: 24px ;
-    border: 2px solid transparent ;
+    border: 4px solid transparent ;
     background-clip: padding-box ;
 }
 
@@ -381,7 +381,7 @@ html.sticky-note-window.sticky-note-window .markdown-source-view.mod-cm6 .cm-scr
     background-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 32%, transparent);
     border-radius: 999px;
     min-height: 24px;
-    border: 2px solid transparent;
+    border: 4px solid transparent;
     background-clip: padding-box;
 }
 
