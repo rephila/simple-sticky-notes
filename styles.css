@@ -1183,13 +1183,12 @@ html.sticky-note-window.sticky-note-window .obsidian-editing-toolbar svg {
     color: var(--note-text-color, #1a1a1a) !important;
     stroke: var(--note-text-color, #1a1a1a) !important;
 }
- 
- / *   H i d e   n a t i v e   s e l e c t i o n   t o o l b a r   i f   E d i t i n g   T o o l b a r   /   c M e n u   i s   p r e s e n t   * /  
- h t m l . s t i c k y - n o t e - w i n d o w . s t i c k y - n o t e - w i n d o w : h a s ( . c M e n u T o o l b a r D e f a u l t A e s t h e t i c )   . s t i c k y - n o t e - s e l e c t i o n - t o o l b a r ,  
- h t m l . s t i c k y - n o t e - w i n d o w . s t i c k y - n o t e - w i n d o w : h a s ( # c M e n u T o o l b a r M o d a l B a r )   . s t i c k y - n o t e - s e l e c t i o n - t o o l b a r ,  
- h t m l . s t i c k y - n o t e - w i n d o w . s t i c k y - n o t e - w i n d o w : h a s ( # c M e n u T o o l b a r P o p o v e r B a r )   . s t i c k y - n o t e - s e l e c t i o n - t o o l b a r ,  
- h t m l . s t i c k y - n o t e - w i n d o w . s t i c k y - n o t e - w i n d o w : h a s ( . e d i t i n g - t o o l b a r )   . s t i c k y - n o t e - s e l e c t i o n - t o o l b a r ,  
- h t m l . s t i c k y - n o t e - w i n d o w . s t i c k y - n o t e - w i n d o w : h a s ( . o b s i d i a n - e d i t i n g - t o o l b a r )   . s t i c k y - n o t e - s e l e c t i o n - t o o l b a r   {  
-         d i s p l a y :   n o n e   ! i m p o r t a n t ;  
- }  
- 
+
+/* Hide native selection toolbar if Editing Toolbar / cMenu is present */
+html.sticky-note-window.sticky-note-window:has(.cMenuToolbarDefaultAesthetic) .sticky-note-selection-toolbar,
+html.sticky-note-window.sticky-note-window:has(#cMenuToolbarModalBar) .sticky-note-selection-toolbar,
+html.sticky-note-window.sticky-note-window:has(#cMenuToolbarPopoverBar) .sticky-note-selection-toolbar,
+html.sticky-note-window.sticky-note-window:has(.editing-toolbar) .sticky-note-selection-toolbar,
+html.sticky-note-window.sticky-note-window:has(.obsidian-editing-toolbar) .sticky-note-selection-toolbar {
+    display: none !important;
+}
