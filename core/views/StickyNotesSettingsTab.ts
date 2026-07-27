@@ -69,6 +69,10 @@ export class StickyNotesSettingsTab extends PluginSettingTab {
 		this.addAppearanceSection();
 	}
 
+	getSettingDefinitions() {
+		return [];
+	}
+
 	rerenderSettings() {
 		this.display();
 	}
@@ -283,7 +287,6 @@ export class StickyNotesSettingsTab extends PluginSettingTab {
 				slider
 					.setLimits(30, 100, 5)
 					.setValue(Math.round(this.settings.defaultOpacity * 100))
-					.setDynamicTooltip()
 					.onChange((value) => {
 						void this.settingService.updateSettings({
 							defaultOpacity: value / 100,

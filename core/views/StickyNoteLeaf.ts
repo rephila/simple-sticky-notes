@@ -254,20 +254,21 @@ export class StickyNoteLeaf {
 		}
 	}
 
-	private ensurePluginStylesLoaded() {
+	private async ensurePluginStylesLoaded() {
 		const plugin = this.markdownService.plugin;
 		const styleMarker = "simple-sticky-notes-stylesheet";
 		if (this.document.getElementById(styleMarker)) return;
 
 		const cssPath = `${plugin.app.vault.configDir}/plugins/${plugin.manifest.id}/styles.css`;
-		const href = plugin.app.vault.adapter.getResourcePath(cssPath);
-		this.document.head.createEl("link", {
-			attr: {
-				id: styleMarker,
-				rel: "stylesheet",
-				href,
-			},
-		});
+		try {
+			const cssContent = await plugin.app.vault.adapter.read(cssPath);
+			const style = this.document.head.createEl("style", {
+				attr: { id: styleMarker },
+			});
+			style.textContent = cssContent;
+		} catch {
+			// styles.css not found – plugin will still work with defaults
+		}
 	}
 
 	private scheduleStartupAppearanceRefresh() {

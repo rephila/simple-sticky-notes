@@ -276,7 +276,6 @@ html.sticky-note-window.sticky-note-window .view-header {
 
 .app-container.sticky-note.sticky-note .cm-scroller {
     height: 100%;
-    box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: auto;
     /* Explicit padding — do not rely on --file-margins (themes inject large top gaps). */
@@ -299,11 +298,11 @@ html.sticky-note-window.sticky-note-window .markdown-source-view.mod-cm6 .cm-scr
 .app-container.sticky-note.sticky-note .markdown-source-view .cm-contentContainer,
 .app-container.sticky-note.sticky-note .markdown-source-view .cm-sizer,
 .app-container.sticky-note.sticky-note .markdown-source-view .cm-content {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    min-height: 0 !important;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: 0;
 }
 
 .app-container.sticky-note.sticky-note .markdown-source-view .cm-content>.cm-line:first-child,
