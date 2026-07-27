@@ -1148,3 +1148,15 @@ html.sticky-note-window.sticky-note-window hr,
     opacity: 0.2;
     margin: 1.5em 0;
 }
+
+/* Hide Editing Toolbar / cMenu in Sticky Notes */
+html.sticky-note-window.sticky-note-window .cMenuToolbarDefaultAesthetic,
+html.sticky-note-window.sticky-note-window #cMenuToolbarModalBar,
+html.sticky-note-window.sticky-note-window #cMenuToolbarPopoverBar,
+html.sticky-note-window.sticky-note-window .editing-toolbar {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    z-index: -9999;
+}
