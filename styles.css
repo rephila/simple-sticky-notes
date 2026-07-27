@@ -1,10 +1,10 @@
-html.sticky-note-window .is-sticky-hidden,
-html.sticky-note-window [data-sticky-hidden="true"] {
+html.sticky-note-window.sticky-note-window .is-sticky-hidden,
+html.sticky-note-window.sticky-note-window [data-sticky-hidden="true"] {
     display: none;
 }
 
-.app-container.sticky-note,
-.sticky-note {
+.app-container.sticky-note.sticky-note,
+.sticky-note.sticky-note {
     --background-primary: var(--note-light-color, #ffffff);
     --background-primary-alt: var(--note-light-color, #ffffff);
     --titlebar-background: var(--note-light-color, #ffffff);
@@ -42,198 +42,198 @@ html.sticky-note-window [data-sticky-hidden="true"] {
     /* Keep thumb clear of Windows rounded window corners */
     --sticky-scrollbar-inset-top: 6px;
     --sticky-scrollbar-inset-bottom: 14px;
-    background: var(--note-light-color, #ffffff) !important;
-    color: var(--note-text-color, #1a1a1a) !important;
+    background: var(--note-light-color, #ffffff) ;
+    color: var(--note-text-color, #1a1a1a) ;
     height: 100%;
     min-height: 100%;
     overflow: hidden;
 }
 
-html.sticky-note-window,
-body.sticky-note-window {
-    background-color: var(--note-light-color, #ffffff) !important;
+html.sticky-note-window.sticky-note-window,
+body.sticky-note-window.sticky-note-window {
+    background-color: var(--note-light-color, #ffffff) ;
     height: 100%;
     min-height: 100%;
     overflow: hidden;
 }
 
-html.sticky-note-window .workspace-tab-header-container,
-html.sticky-note-window .workspace-tab-header,
-html.sticky-note-window .mod-workspace-tab-header,
-html.sticky-note-window .view-header-nav-buttons,
-html.sticky-note-window .view-header-breadcrumb,
-html.sticky-note-window .view-header-left,
-html.sticky-note-window .view-header-status-container,
-html.sticky-note-window .sidebar-toggle-button,
-html.sticky-note-window .side-dock-actions,
-html.sticky-note-window .status-bar,
-html.sticky-note-window .titlebar,
-html.sticky-note-window .metadata-container,
-html.sticky-note-window .daily-note-navbar {
-    display: none !important;
+html.sticky-note-window.sticky-note-window .workspace-tab-header-container,
+html.sticky-note-window.sticky-note-window .workspace-tab-header,
+html.sticky-note-window.sticky-note-window .mod-workspace-tab-header,
+html.sticky-note-window.sticky-note-window .view-header-nav-buttons,
+html.sticky-note-window.sticky-note-window .view-header-breadcrumb,
+html.sticky-note-window.sticky-note-window .view-header-left,
+html.sticky-note-window.sticky-note-window .view-header-status-container,
+html.sticky-note-window.sticky-note-window .sidebar-toggle-button,
+html.sticky-note-window.sticky-note-window .side-dock-actions,
+html.sticky-note-window.sticky-note-window .status-bar,
+html.sticky-note-window.sticky-note-window .titlebar,
+html.sticky-note-window.sticky-note-window .metadata-container,
+html.sticky-note-window.sticky-note-window .daily-note-navbar {
+    display: none ;
 }
 
-html.sticky-note-window .notice-container,
-html.sticky-note-window .notice,
-html.sticky-note-window .progress-bar {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
+html.sticky-note-window.sticky-note-window .notice-container,
+html.sticky-note-window.sticky-note-window .notice,
+html.sticky-note-window.sticky-note-window .progress-bar {
+    display: none ;
+    visibility: hidden ;
+    pointer-events: none ;
 }
 
-html.sticky-note-window .workspace-leaf {
-    display: block !important;
-    visibility: visible !important;
-    height: 100% !important;
+html.sticky-note-window.sticky-note-window .workspace-leaf {
+    display: block ;
+    visibility: visible ;
+    height: 100% ;
 }
 
-html.sticky-note-window .workspace-leaf-content {
-    display: flex !important;
-    flex-direction: column !important;
-    height: 100% !important;
-    min-height: 0 !important;
-    overflow: hidden !important;
-    visibility: visible !important;
+html.sticky-note-window.sticky-note-window .workspace-leaf-content {
+    display: flex ;
+    flex-direction: column ;
+    height: 100% ;
+    min-height: 0 ;
+    overflow: hidden ;
+    visibility: visible ;
 }
 
-html.sticky-note-window .view-content {
-    display: block !important;
-    visibility: visible !important;
-    flex: 1 1 auto !important;
-    min-height: 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
+html.sticky-note-window.sticky-note-window .view-content {
+    display: block ;
+    visibility: visible ;
+    flex: 1 1 auto ;
+    min-height: 0 ;
+    padding: 0 ;
+    box-sizing: border-box ;
+    overflow-x: hidden ;
+    overflow-y: auto ;
 }
 
-html.sticky-note-window .markdown-preview-view {
+html.sticky-note-window.sticky-note-window .markdown-preview-view {
     padding: 4px
         var(--sticky-content-pad-right, 16px)
         var(--sticky-content-pad-bottom, 12px)
-        var(--sticky-content-pad-left, 20px) !important;
-    max-width: none !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
+        var(--sticky-content-pad-left, 20px) ;
+    max-width: none ;
+    margin: 0 ;
+    box-sizing: border-box ;
 }
 
-html.sticky-note-window .markdown-preview-section,
-html.sticky-note-window .cm-content {
-    padding-left: 0 !important;
-    padding-inline-start: 0 !important;
-    max-width: none !important;
-    margin-inline: 0 !important;
-    box-sizing: border-box !important;
+html.sticky-note-window.sticky-note-window .markdown-preview-section,
+html.sticky-note-window.sticky-note-window .cm-content {
+    padding-left: 0 ;
+    padding-inline-start: 0 ;
+    max-width: none ;
+    margin-inline: 0 ;
+    box-sizing: border-box ;
 }
 
-html.sticky-note-window .cm-scroller {
+html.sticky-note-window.sticky-note-window .cm-scroller {
     padding: 4px
         var(--sticky-content-pad-right, 16px)
         var(--sticky-content-pad-bottom, 12px)
-        var(--sticky-content-pad-left, 20px) !important;
-    box-sizing: border-box !important;
+        var(--sticky-content-pad-left, 20px) ;
+    box-sizing: border-box ;
 }
 
-html.sticky-note-window .cm-gutters {
-    display: none !important;
+html.sticky-note-window.sticky-note-window .cm-gutters {
+    display: none ;
 }
 
-html.sticky-note-window .view-content::-webkit-scrollbar,
-html.sticky-note-window .cm-scroller::-webkit-scrollbar {
-    width: var(--sticky-scrollbar-size, 6px) !important;
-    height: 0 !important;
+html.sticky-note-window.sticky-note-window .view-content::-webkit-scrollbar,
+html.sticky-note-window.sticky-note-window .cm-scroller::-webkit-scrollbar {
+    width: var(--sticky-scrollbar-size, 6px) ;
+    height: 0 ;
 }
 
-html.sticky-note-window .view-content::-webkit-scrollbar-thumb,
-html.sticky-note-window .cm-scroller::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.32) !important;
-    border-radius: 999px !important;
-    min-height: 24px !important;
-    border: 2px solid transparent !important;
-    background-clip: padding-box !important;
+html.sticky-note-window.sticky-note-window .view-content::-webkit-scrollbar-thumb,
+html.sticky-note-window.sticky-note-window .cm-scroller::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.32) ;
+    border-radius: 999px ;
+    min-height: 24px ;
+    border: 2px solid transparent ;
+    background-clip: padding-box ;
 }
 
-html.sticky-note-window .view-content::-webkit-scrollbar-track,
-html.sticky-note-window .cm-scroller::-webkit-scrollbar-track {
-    background: transparent !important;
-    margin-top: var(--sticky-scrollbar-inset-top, 6px) !important;
-    margin-bottom: var(--sticky-scrollbar-inset-bottom, 14px) !important;
+html.sticky-note-window.sticky-note-window .view-content::-webkit-scrollbar-track,
+html.sticky-note-window.sticky-note-window .cm-scroller::-webkit-scrollbar-track {
+    background: transparent ;
+    margin-top: var(--sticky-scrollbar-inset-top, 6px) ;
+    margin-bottom: var(--sticky-scrollbar-inset-bottom, 14px) ;
 }
 
-html.sticky-note-window .view-content::-webkit-scrollbar-button,
-html.sticky-note-window .view-content::-webkit-scrollbar-button:single-button,
-html.sticky-note-window .view-content::-webkit-scrollbar-button:start,
-html.sticky-note-window .view-content::-webkit-scrollbar-button:end,
-html.sticky-note-window .cm-scroller::-webkit-scrollbar-button,
-html.sticky-note-window .cm-scroller::-webkit-scrollbar-button:single-button,
-html.sticky-note-window .cm-scroller::-webkit-scrollbar-button:start,
-html.sticky-note-window .cm-scroller::-webkit-scrollbar-button:end {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    appearance: none !important;
-    -webkit-appearance: none !important;
+html.sticky-note-window.sticky-note-window .view-content::-webkit-scrollbar-button,
+html.sticky-note-window.sticky-note-window .view-content::-webkit-scrollbar-button:single-button,
+html.sticky-note-window.sticky-note-window .view-content::-webkit-scrollbar-button:start,
+html.sticky-note-window.sticky-note-window .view-content::-webkit-scrollbar-button:end,
+html.sticky-note-window.sticky-note-window .cm-scroller::-webkit-scrollbar-button,
+html.sticky-note-window.sticky-note-window .cm-scroller::-webkit-scrollbar-button:single-button,
+html.sticky-note-window.sticky-note-window .cm-scroller::-webkit-scrollbar-button:start,
+html.sticky-note-window.sticky-note-window .cm-scroller::-webkit-scrollbar-button:end {
+    display: none ;
+    width: 0 ;
+    height: 0 ;
+    appearance: none ;
+    -webkit-appearance: none ;
 }
 
-html.sticky-note-window .view-header {
-    display: flex !important;
-    visibility: visible !important;
+html.sticky-note-window.sticky-note-window .view-header {
+    display: flex ;
+    visibility: visible ;
 }
 
-.app-container.sticky-note .view-header-title,
-.app-container.sticky-note .markdown-preview-view,
-.app-container.sticky-note .markdown-preview-view p,
-.app-container.sticky-note .markdown-preview-view li,
-.app-container.sticky-note .markdown-preview-view td,
-.app-container.sticky-note .markdown-preview-view th,
-.app-container.sticky-note .markdown-preview-view tr,
-.app-container.sticky-note .markdown-preview-view table,
-.app-container.sticky-note .markdown-preview-view thead,
-.app-container.sticky-note .markdown-preview-view tbody,
-.app-container.sticky-note .markdown-preview-view strong,
-.app-container.sticky-note .markdown-preview-view em,
-.app-container.sticky-note .markdown-preview-view blockquote,
-.app-container.sticky-note .markdown-preview-view span,
-.app-container.sticky-note .markdown-preview-view div,
-.app-container.sticky-note .markdown-preview-view h1,
-.app-container.sticky-note .markdown-preview-view h2,
-.app-container.sticky-note .markdown-preview-view h3,
-.app-container.sticky-note .markdown-preview-view h4,
-.app-container.sticky-note .cm-content,
-.app-container.sticky-note .cm-line {
+.app-container.sticky-note.sticky-note .view-header-title,
+.app-container.sticky-note.sticky-note .markdown-preview-view,
+.app-container.sticky-note.sticky-note .markdown-preview-view p,
+.app-container.sticky-note.sticky-note .markdown-preview-view li,
+.app-container.sticky-note.sticky-note .markdown-preview-view td,
+.app-container.sticky-note.sticky-note .markdown-preview-view th,
+.app-container.sticky-note.sticky-note .markdown-preview-view tr,
+.app-container.sticky-note.sticky-note .markdown-preview-view table,
+.app-container.sticky-note.sticky-note .markdown-preview-view thead,
+.app-container.sticky-note.sticky-note .markdown-preview-view tbody,
+.app-container.sticky-note.sticky-note .markdown-preview-view strong,
+.app-container.sticky-note.sticky-note .markdown-preview-view em,
+.app-container.sticky-note.sticky-note .markdown-preview-view blockquote,
+.app-container.sticky-note.sticky-note .markdown-preview-view span,
+.app-container.sticky-note.sticky-note .markdown-preview-view div,
+.app-container.sticky-note.sticky-note .markdown-preview-view h1,
+.app-container.sticky-note.sticky-note .markdown-preview-view h2,
+.app-container.sticky-note.sticky-note .markdown-preview-view h3,
+.app-container.sticky-note.sticky-note .markdown-preview-view h4,
+.app-container.sticky-note.sticky-note .cm-content,
+.app-container.sticky-note.sticky-note .cm-line {
     color: var(--note-text-color, #1a1a1a);
 }
 
-.app-container.sticky-note,
-.app-container.sticky-note .workspace,
-.app-container.sticky-note .workspace-split,
-.app-container.sticky-note .workspace-leaf,
-.app-container.sticky-note .workspace-leaf-content,
-.app-container.sticky-note .view-content,
-.app-container.sticky-note .markdown-source-view,
-.app-container.sticky-note .markdown-preview-view,
-.app-container.sticky-note .markdown-preview-sizer,
-.app-container.sticky-note .markdown-preview-section,
-.app-container.sticky-note .markdown-preview-pusher,
-.app-container.sticky-note .empty-state,
-.app-container.sticky-note .empty-state-container,
-.app-container.sticky-note .cm-editor,
-.app-container.sticky-note .cm-scroller,
-.app-container.sticky-note .cm-gutters {
-    background-color: var(--note-light-color, #ffffff) !important;
+.app-container.sticky-note.sticky-note,
+.app-container.sticky-note.sticky-note .workspace,
+.app-container.sticky-note.sticky-note .workspace-split,
+.app-container.sticky-note.sticky-note .workspace-leaf,
+.app-container.sticky-note.sticky-note .workspace-leaf-content,
+.app-container.sticky-note.sticky-note .view-content,
+.app-container.sticky-note.sticky-note .markdown-source-view,
+.app-container.sticky-note.sticky-note .markdown-preview-view,
+.app-container.sticky-note.sticky-note .markdown-preview-sizer,
+.app-container.sticky-note.sticky-note .markdown-preview-section,
+.app-container.sticky-note.sticky-note .markdown-preview-pusher,
+.app-container.sticky-note.sticky-note .empty-state,
+.app-container.sticky-note.sticky-note .empty-state-container,
+.app-container.sticky-note.sticky-note .cm-editor,
+.app-container.sticky-note.sticky-note .cm-scroller,
+.app-container.sticky-note.sticky-note .cm-gutters {
+    background-color: var(--note-light-color, #ffffff) ;
 }
 
-.app-container.sticky-note,
-.app-container.sticky-note .workspace,
-.app-container.sticky-note .workspace-split,
-.app-container.sticky-note .workspace-tabs,
-.app-container.sticky-note .workspace-tab-container,
-.app-container.sticky-note .workspace-leaf {
+.app-container.sticky-note.sticky-note,
+.app-container.sticky-note.sticky-note .workspace,
+.app-container.sticky-note.sticky-note .workspace-split,
+.app-container.sticky-note.sticky-note .workspace-tabs,
+.app-container.sticky-note.sticky-note .workspace-tab-container,
+.app-container.sticky-note.sticky-note .workspace-leaf {
     height: 100%;
     min-height: 0;
 }
 
-.app-container.sticky-note .workspace-leaf-content {
+.app-container.sticky-note.sticky-note .workspace-leaf-content {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -241,143 +241,143 @@ html.sticky-note-window .view-header {
     overflow: hidden;
 }
 
-.app-container.sticky-note .view-header {
+.app-container.sticky-note.sticky-note .view-header {
     flex: 0 0 auto;
 }
 
-.app-container.sticky-note .view-content {
+.app-container.sticky-note.sticky-note .view-content {
     flex: 1 1 auto;
     min-height: 0;
     padding: 0;
     -webkit-app-region: no-drag;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
+    overflow-x: hidden ;
+    overflow-y: auto ;
 }
 
-.app-container.sticky-note .view-content.mod-sticky-source {
+.app-container.sticky-note.sticky-note .view-content.mod-sticky-source {
     overflow: hidden;
     display: flex;
     flex-direction: column;
 }
 
-.app-container.sticky-note .markdown-source-view,
-.app-container.sticky-note .markdown-preview-view,
-.app-container.sticky-note .cm-editor,
-.app-container.sticky-note .cm-scroller {
-    min-height: 0 !important;
+.app-container.sticky-note.sticky-note .markdown-source-view,
+.app-container.sticky-note.sticky-note .markdown-preview-view,
+.app-container.sticky-note.sticky-note .cm-editor,
+.app-container.sticky-note.sticky-note .cm-scroller {
+    min-height: 0 ;
 }
 
-.app-container.sticky-note .markdown-source-view {
+.app-container.sticky-note.sticky-note .markdown-source-view {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     overflow: hidden;
 }
 
-.app-container.sticky-note .cm-editor {
+.app-container.sticky-note.sticky-note .cm-editor {
     flex: 1 1 auto;
     overflow: hidden;
 }
 
-.app-container.sticky-note .cm-scroller {
+.app-container.sticky-note.sticky-note .cm-scroller {
     height: 100%;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
+    overflow-x: hidden ;
+    overflow-y: auto ;
     /* Explicit padding — do not rely on --file-margins (themes inject large top gaps). */
     padding: 4px
         var(--sticky-content-pad-right, 16px)
         var(--sticky-content-pad-bottom, 12px)
-        var(--sticky-content-pad-left, 20px) !important;
+        var(--sticky-content-pad-left, 20px) ;
     box-sizing: border-box;
 }
 
-.app-container.sticky-note .markdown-source-view.mod-cm6 .cm-scroller,
-.app-container.sticky-note .view-content.mod-sticky-source .cm-scroller,
-html.sticky-note-window .markdown-source-view.mod-cm6 .cm-scroller {
-    padding-top: 4px !important;
-    padding-bottom: var(--sticky-content-pad-bottom, 12px) !important;
-    padding-left: var(--sticky-content-pad-left, 20px) !important;
-    padding-right: var(--sticky-content-pad-right, 16px) !important;
+.app-container.sticky-note.sticky-note .markdown-source-view.mod-cm6 .cm-scroller,
+.app-container.sticky-note.sticky-note .view-content.mod-sticky-source .cm-scroller,
+html.sticky-note-window.sticky-note-window .markdown-source-view.mod-cm6 .cm-scroller {
+    padding-top: 4px ;
+    padding-bottom: var(--sticky-content-pad-bottom, 12px) ;
+    padding-left: var(--sticky-content-pad-left, 20px) ;
+    padding-right: var(--sticky-content-pad-right, 16px) ;
 }
 
-.app-container.sticky-note .markdown-source-view,
-.app-container.sticky-note .markdown-source-view.mod-cm6,
-.app-container.sticky-note .markdown-source-view .cm-editor,
-.app-container.sticky-note .markdown-source-view .cm-contentContainer,
-.app-container.sticky-note .markdown-source-view .cm-sizer,
-.app-container.sticky-note .markdown-source-view .cm-content {
-    padding-top: 0 !important;
-    margin-top: 0 !important;
+.app-container.sticky-note.sticky-note .markdown-source-view,
+.app-container.sticky-note.sticky-note .markdown-source-view.mod-cm6,
+.app-container.sticky-note.sticky-note .markdown-source-view .cm-editor,
+.app-container.sticky-note.sticky-note .markdown-source-view .cm-contentContainer,
+.app-container.sticky-note.sticky-note .markdown-source-view .cm-sizer,
+.app-container.sticky-note.sticky-note .markdown-source-view .cm-content {
+    padding-top: 0 ;
+    margin-top: 0 ;
 }
 
-.app-container.sticky-note .markdown-source-view .cm-content > .cm-line:first-child,
-.app-container.sticky-note .markdown-source-view .cm-line:first-child,
-.app-container.sticky-note .cm-content .HyperMD-header:first-child,
-.app-container.sticky-note .cm-line.HyperMD-header-1:first-child {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
+.app-container.sticky-note.sticky-note .markdown-source-view .cm-content > .cm-line:first-child,
+.app-container.sticky-note.sticky-note .markdown-source-view .cm-line:first-child,
+.app-container.sticky-note.sticky-note .cm-content .HyperMD-header:first-child,
+.app-container.sticky-note.sticky-note .cm-line.HyperMD-header-1:first-child {
+    margin-top: 0 ;
+    padding-top: 0 ;
 }
 
 /* Line-number gutter shifts edit mode left edge; fold space comes from content padding */
-.app-container.sticky-note .cm-gutters {
-    display: none !important;
+.app-container.sticky-note.sticky-note .cm-gutters {
+    display: none ;
 }
 
-.app-container.sticky-note .cm-content {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin: 0 !important;
-    max-width: none !important;
-    width: 100% !important;
+.app-container.sticky-note.sticky-note .cm-content {
+    padding-left: 0 ;
+    padding-right: 0 ;
+    margin: 0 ;
+    max-width: none ;
+    width: 100% ;
 }
 
-.app-container.sticky-note .view-content::-webkit-scrollbar,
-.app-container.sticky-note .cm-scroller::-webkit-scrollbar,
-.app-container.sticky-note .markdown-preview-view::-webkit-scrollbar {
+.app-container.sticky-note.sticky-note .view-content::-webkit-scrollbar,
+.app-container.sticky-note.sticky-note .cm-scroller::-webkit-scrollbar,
+.app-container.sticky-note.sticky-note .markdown-preview-view::-webkit-scrollbar {
     width: var(--sticky-scrollbar-size, 6px);
     height: 0;
 }
 
-.app-container.sticky-note .view-content::-webkit-scrollbar:horizontal,
-.app-container.sticky-note .cm-scroller::-webkit-scrollbar:horizontal,
-.app-container.sticky-note .markdown-preview-view::-webkit-scrollbar:horizontal {
+.app-container.sticky-note.sticky-note .view-content::-webkit-scrollbar:horizontal,
+.app-container.sticky-note.sticky-note .cm-scroller::-webkit-scrollbar:horizontal,
+.app-container.sticky-note.sticky-note .markdown-preview-view::-webkit-scrollbar:horizontal {
     display: none;
-    height: 0 !important;
+    height: 0 ;
 }
 
-.app-container.sticky-note .view-content::-webkit-scrollbar-button,
-.app-container.sticky-note .view-content::-webkit-scrollbar-button:single-button,
-.app-container.sticky-note .view-content::-webkit-scrollbar-button:start,
-.app-container.sticky-note .view-content::-webkit-scrollbar-button:end,
-.app-container.sticky-note .cm-scroller::-webkit-scrollbar-button,
-.app-container.sticky-note .cm-scroller::-webkit-scrollbar-button:single-button,
-.app-container.sticky-note .cm-scroller::-webkit-scrollbar-button:start,
-.app-container.sticky-note .cm-scroller::-webkit-scrollbar-button:end,
-.app-container.sticky-note .markdown-preview-view::-webkit-scrollbar-button {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    appearance: none !important;
-    -webkit-appearance: none !important;
+.app-container.sticky-note.sticky-note .view-content::-webkit-scrollbar-button,
+.app-container.sticky-note.sticky-note .view-content::-webkit-scrollbar-button:single-button,
+.app-container.sticky-note.sticky-note .view-content::-webkit-scrollbar-button:start,
+.app-container.sticky-note.sticky-note .view-content::-webkit-scrollbar-button:end,
+.app-container.sticky-note.sticky-note .cm-scroller::-webkit-scrollbar-button,
+.app-container.sticky-note.sticky-note .cm-scroller::-webkit-scrollbar-button:single-button,
+.app-container.sticky-note.sticky-note .cm-scroller::-webkit-scrollbar-button:start,
+.app-container.sticky-note.sticky-note .cm-scroller::-webkit-scrollbar-button:end,
+.app-container.sticky-note.sticky-note .markdown-preview-view::-webkit-scrollbar-button {
+    display: none ;
+    width: 0 ;
+    height: 0 ;
+    appearance: none ;
+    -webkit-appearance: none ;
 }
 
-.app-container.sticky-note .view-content::-webkit-scrollbar-corner,
-.app-container.sticky-note .cm-scroller::-webkit-scrollbar-corner {
+.app-container.sticky-note.sticky-note .view-content::-webkit-scrollbar-corner,
+.app-container.sticky-note.sticky-note .cm-scroller::-webkit-scrollbar-corner {
     background: transparent;
     display: none;
 }
 
-.app-container.sticky-note .view-content::-webkit-scrollbar-track,
-.app-container.sticky-note .cm-scroller::-webkit-scrollbar-track,
-.app-container.sticky-note .markdown-preview-view::-webkit-scrollbar-track {
+.app-container.sticky-note.sticky-note .view-content::-webkit-scrollbar-track,
+.app-container.sticky-note.sticky-note .cm-scroller::-webkit-scrollbar-track,
+.app-container.sticky-note.sticky-note .markdown-preview-view::-webkit-scrollbar-track {
     background: transparent;
     margin-top: var(--sticky-scrollbar-inset-top, 6px);
     margin-bottom: var(--sticky-scrollbar-inset-bottom, 14px);
 }
 
-.app-container.sticky-note .view-content::-webkit-scrollbar-thumb,
-.app-container.sticky-note .cm-scroller::-webkit-scrollbar-thumb,
-.app-container.sticky-note .markdown-preview-view::-webkit-scrollbar-thumb {
+.app-container.sticky-note.sticky-note .view-content::-webkit-scrollbar-thumb,
+.app-container.sticky-note.sticky-note .cm-scroller::-webkit-scrollbar-thumb,
+.app-container.sticky-note.sticky-note .markdown-preview-view::-webkit-scrollbar-thumb {
     background-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 32%, transparent);
     border-radius: 999px;
     min-height: 24px;
@@ -385,148 +385,148 @@ html.sticky-note-window .markdown-source-view.mod-cm6 .cm-scroller {
     background-clip: padding-box;
 }
 
-.app-container.sticky-note .view-content:hover::-webkit-scrollbar-thumb,
-.app-container.sticky-note .view-content:focus-within::-webkit-scrollbar-thumb,
-.app-container.sticky-note .cm-scroller:hover::-webkit-scrollbar-thumb,
-.app-container.sticky-note .cm-scroller:focus-within::-webkit-scrollbar-thumb,
-.app-container.sticky-note .markdown-preview-view:hover::-webkit-scrollbar-thumb {
+.app-container.sticky-note.sticky-note .view-content:hover::-webkit-scrollbar-thumb,
+.app-container.sticky-note.sticky-note .view-content:focus-within::-webkit-scrollbar-thumb,
+.app-container.sticky-note.sticky-note .cm-scroller:hover::-webkit-scrollbar-thumb,
+.app-container.sticky-note.sticky-note .cm-scroller:focus-within::-webkit-scrollbar-thumb,
+.app-container.sticky-note.sticky-note .markdown-preview-view:hover::-webkit-scrollbar-thumb {
     background-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 48%, transparent);
 }
 
-.app-container.sticky-note .markdown-preview-view {
+.app-container.sticky-note.sticky-note .markdown-preview-view {
     height: auto;
     overflow-x: hidden;
     overflow-y: visible;
     max-width: 100%;
 }
 
-.app-container.sticky-note .markdown-preview-sizer,
-.app-container.sticky-note .markdown-preview-section {
-    min-height: 0 !important;
+.app-container.sticky-note.sticky-note .markdown-preview-sizer,
+.app-container.sticky-note.sticky-note .markdown-preview-section {
+    min-height: 0 ;
     height: auto;
     overflow: visible;
 }
 
-.app-container.sticky-note .markdown-preview-view .markdown-preview-section {
+.app-container.sticky-note.sticky-note .markdown-preview-view .markdown-preview-section {
     padding-inline-start: 0;
-    max-width: none !important;
-    margin-inline: 0 !important;
+    max-width: none ;
+    margin-inline: 0 ;
     width: 100%;
     box-sizing: border-box;
 }
 
-.app-container.sticky-note .markdown-preview-view h1,
-.app-container.sticky-note .markdown-preview-view h2,
-.app-container.sticky-note .markdown-preview-view h3,
-.app-container.sticky-note .markdown-preview-view h4,
-.app-container.sticky-note .markdown-preview-view h5,
-.app-container.sticky-note .markdown-preview-view h6 {
+.app-container.sticky-note.sticky-note .markdown-preview-view h1,
+.app-container.sticky-note.sticky-note .markdown-preview-view h2,
+.app-container.sticky-note.sticky-note .markdown-preview-view h3,
+.app-container.sticky-note.sticky-note .markdown-preview-view h4,
+.app-container.sticky-note.sticky-note .markdown-preview-view h5,
+.app-container.sticky-note.sticky-note .markdown-preview-view h6 {
     position: relative;
-    overflow: visible !important;
-    padding-inline-start: 0 !important;
+    overflow: visible ;
+    padding-inline-start: 0 ;
 }
 
-.app-container.sticky-note .markdown-preview-view .heading-collapse-indicator,
-.app-container.sticky-note .markdown-preview-view .collapse-indicator.collapse-icon,
-.app-container.sticky-note .markdown-preview-view h1 .collapse-indicator,
-.app-container.sticky-note .markdown-preview-view h2 .collapse-indicator,
-.app-container.sticky-note .markdown-preview-view h3 .collapse-indicator,
-.app-container.sticky-note .markdown-preview-view h4 .collapse-indicator,
-.app-container.sticky-note .markdown-preview-view h5 .collapse-indicator,
-.app-container.sticky-note .markdown-preview-view h6 .collapse-indicator {
-    position: absolute !important;
-    left: -16px !important;
+.app-container.sticky-note.sticky-note .markdown-preview-view .heading-collapse-indicator,
+.app-container.sticky-note.sticky-note .markdown-preview-view .collapse-indicator.collapse-icon,
+.app-container.sticky-note.sticky-note .markdown-preview-view h1 .collapse-indicator,
+.app-container.sticky-note.sticky-note .markdown-preview-view h2 .collapse-indicator,
+.app-container.sticky-note.sticky-note .markdown-preview-view h3 .collapse-indicator,
+.app-container.sticky-note.sticky-note .markdown-preview-view h4 .collapse-indicator,
+.app-container.sticky-note.sticky-note .markdown-preview-view h5 .collapse-indicator,
+.app-container.sticky-note.sticky-note .markdown-preview-view h6 .collapse-indicator {
+    position: absolute ;
+    left: -16px ;
     top: 0.2em;
     width: 16px;
-    margin: 0 !important;
-    margin-inline-start: 0 !important;
-    padding: 0 !important;
-    display: inline-flex !important;
+    margin: 0 ;
+    margin-inline-start: 0 ;
+    padding: 0 ;
+    display: inline-flex ;
     align-items: center;
     justify-content: center;
-    overflow: visible !important;
+    overflow: visible ;
     pointer-events: auto;
     z-index: 2;
 }
 
-.app-container.sticky-note .markdown-preview-view .heading-collapse-indicator svg,
-.app-container.sticky-note .markdown-preview-view .collapse-indicator svg {
+.app-container.sticky-note.sticky-note .markdown-preview-view .heading-collapse-indicator svg,
+.app-container.sticky-note.sticky-note .markdown-preview-view .collapse-indicator svg {
     width: 12px;
     height: 12px;
 }
 
-.app-container.sticky-note .markdown-preview-view,
-.app-container.sticky-note .cm-content {
+.app-container.sticky-note.sticky-note .markdown-preview-view,
+.app-container.sticky-note.sticky-note .cm-content {
     overflow-wrap: anywhere;
     word-break: break-word;
 }
 
-.app-container.sticky-note .markdown-preview-view table {
+.app-container.sticky-note.sticky-note .markdown-preview-view table {
     display: block;
     max-width: 100%;
     overflow-x: hidden;
-    background-color: var(--note-light-color, #ffffff) !important;
+    background-color: var(--note-light-color, #ffffff) ;
 }
 
-.app-container.sticky-note .markdown-preview-view pre {
+.app-container.sticky-note.sticky-note .markdown-preview-view pre {
     max-width: 100%;
     overflow-x: hidden;
     white-space: pre-wrap;
     word-break: break-word;
 }
 
-.app-container.sticky-note .markdown-preview-view .internal-embed,
-.app-container.sticky-note .markdown-preview-view .markdown-embed {
+.app-container.sticky-note.sticky-note .markdown-preview-view .internal-embed,
+.app-container.sticky-note.sticky-note .markdown-preview-view .markdown-embed {
     max-width: 100%;
 }
 
 /* Obsidian uses pusher for scroll sync; min-height on it creates a huge top gap */
-.app-container.sticky-note .markdown-preview-pusher,
-html.sticky-note-window .markdown-preview-pusher {
-    display: none !important;
-    min-height: 0 !important;
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
+.app-container.sticky-note.sticky-note .markdown-preview-pusher,
+html.sticky-note-window.sticky-note-window .markdown-preview-pusher {
+    display: none ;
+    min-height: 0 ;
+    height: 0 ;
+    margin: 0 ;
+    padding: 0 ;
 }
 
-.app-container.sticky-note .markdown-preview-sizer,
-html.sticky-note-window .markdown-preview-sizer {
-    min-height: auto !important;
+.app-container.sticky-note.sticky-note .markdown-preview-sizer,
+html.sticky-note-window.sticky-note-window .markdown-preview-sizer {
+    min-height: auto ;
 }
 
-.app-container.sticky-note .workspace-ribbon,
-.app-container.sticky-note .sidebar-toggle-button,
-.app-container.sticky-note .side-dock-actions,
-.app-container.sticky-note .status-bar,
-.app-container.sticky-note .view-header-breadcrumb,
-.app-container.sticky-note .view-header-left,
-.app-container.sticky-note .view-header-nav-buttons,
-.app-container.sticky-note .view-header-status-container,
-.app-container.sticky-note .titlebar,
-.app-container.sticky-note .workspace-tab-header-container,
-.app-container.sticky-note .workspace-tab-header,
-.app-container.sticky-note .mod-workspace-tab-header,
-.app-container.sticky-note .daily-note-navbar,
-.app-container.sticky-note [class*="editingToolbar"],
-.app-container.sticky-note [class*="editing-toolbar"],
-.app-container.sticky-note .floating-toc-div,
-.app-container.sticky-note .metadata-container,
-.app-container.sticky-note .metadata-properties,
-.app-container.sticky-note .metadata-add-button,
-.app-container.sticky-note .frontmatter-section,
-.app-container.sticky-note .embedded-backlinks,
-.app-container.sticky-note .embedded-table-of-contents,
-.app-container.sticky-note .mod-footer-bar {
-    display: none !important;
+.app-container.sticky-note.sticky-note .workspace-ribbon,
+.app-container.sticky-note.sticky-note .sidebar-toggle-button,
+.app-container.sticky-note.sticky-note .side-dock-actions,
+.app-container.sticky-note.sticky-note .status-bar,
+.app-container.sticky-note.sticky-note .view-header-breadcrumb,
+.app-container.sticky-note.sticky-note .view-header-left,
+.app-container.sticky-note.sticky-note .view-header-nav-buttons,
+.app-container.sticky-note.sticky-note .view-header-status-container,
+.app-container.sticky-note.sticky-note .titlebar,
+.app-container.sticky-note.sticky-note .workspace-tab-header-container,
+.app-container.sticky-note.sticky-note .workspace-tab-header,
+.app-container.sticky-note.sticky-note .mod-workspace-tab-header,
+.app-container.sticky-note.sticky-note .daily-note-navbar,
+.app-container.sticky-note.sticky-note [class*="editingToolbar"],
+.app-container.sticky-note.sticky-note [class*="editing-toolbar"],
+.app-container.sticky-note.sticky-note .floating-toc-div,
+.app-container.sticky-note.sticky-note .metadata-container,
+.app-container.sticky-note.sticky-note .metadata-properties,
+.app-container.sticky-note.sticky-note .metadata-add-button,
+.app-container.sticky-note.sticky-note .frontmatter-section,
+.app-container.sticky-note.sticky-note .embedded-backlinks,
+.app-container.sticky-note.sticky-note .embedded-table-of-contents,
+.app-container.sticky-note.sticky-note .mod-footer-bar {
+    display: none ;
 }
 
-.app-container.sticky-note .view-header {
-    background: var(--note-light-color, #ffffff) !important;
-    border: none !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
-    border-bottom-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 12%, transparent) !important;
-    box-shadow: none !important;
+.app-container.sticky-note.sticky-note .view-header {
+    background: var(--note-light-color, #ffffff) ;
+    border: none ;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) ;
+    border-bottom-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 12%, transparent) ;
+    box-shadow: none ;
     min-height: 34px;
     padding: 0 12px 0 6px;
     display: flex;
@@ -534,7 +534,7 @@ html.sticky-note-window .markdown-preview-sizer {
     position: relative;
 }
 
-.app-container.sticky-note .view-header-title-container {
+.app-container.sticky-note.sticky-note .view-header-title-container {
     position: absolute;
     inset: 0;
     app-region: drag;
@@ -547,17 +547,17 @@ html.sticky-note-window .markdown-preview-sizer {
     padding: 0 104px;
 }
 
-.app-container.sticky-note .view-header-title-container .view-header-breadcrumb,
-.app-container.sticky-note .view-header-title-container .view-header-title-parent,
-.app-container.sticky-note .view-header-title .view-header-breadcrumb {
-    display: none !important;
+.app-container.sticky-note.sticky-note .view-header-title-container .view-header-breadcrumb,
+.app-container.sticky-note.sticky-note .view-header-title-container .view-header-title-parent,
+.app-container.sticky-note.sticky-note .view-header-title .view-header-breadcrumb {
+    display: none ;
 }
 
-.app-container.sticky-note .view-header-title {
+.app-container.sticky-note.sticky-note .view-header-title {
     display: block;
     font-size: 12px;
     font-weight: 600;
-    color: var(--note-text-color, #4a4a4a) !important;
+    color: var(--note-text-color, #4a4a4a) ;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.03em;
@@ -567,7 +567,7 @@ html.sticky-note-window .markdown-preview-sizer {
     max-width: 100%;
 }
 
-.app-container.sticky-note .view-actions {
+.app-container.sticky-note.sticky-note .view-actions {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -587,214 +587,214 @@ html.sticky-note-window .markdown-preview-sizer {
     padding: 2px;
 }
 
-.app-container.sticky-note .view-actions .view-action {
+.app-container.sticky-note.sticky-note .view-actions .view-action {
     app-region: no-drag;
     -webkit-app-region: no-drag;
     opacity: 0.85;
 }
 
-.app-container.sticky-note .view-actions .view-action:hover {
+.app-container.sticky-note.sticky-note .view-actions .view-action:hover {
     opacity: 1;
 }
 
-.app-container.sticky-note .view-actions .close-button {
+.app-container.sticky-note.sticky-note .view-actions .close-button {
     order: 10;
     margin-left: auto;
 }
 
-.app-container.sticky-note .view-actions .color-button {
+.app-container.sticky-note.sticky-note .view-actions .color-button {
     order: 1;
 }
 
-.app-container.sticky-note .view-actions .pin-button {
+.app-container.sticky-note.sticky-note .view-actions .pin-button {
     order: 2;
 }
 
-.app-container.sticky-note .markdown-preview-view,
-.app-container.sticky-note .markdown-source-view,
-.app-container.sticky-note .cm-editor,
-.app-container.sticky-note .cm-scroller {
+.app-container.sticky-note.sticky-note .markdown-preview-view,
+.app-container.sticky-note.sticky-note .markdown-source-view,
+.app-container.sticky-note.sticky-note .cm-editor,
+.app-container.sticky-note.sticky-note .cm-scroller {
     -webkit-app-region: no-drag;
 }
 
 /* Hide Obsidian inline title + its .mod-header wrapper (wrapper alone leaves a top gap). */
-.app-container.sticky-note .view-content .inline-title,
-.app-container.sticky-note .markdown-source-view .inline-title,
-.app-container.sticky-note .markdown-source-view .cm-contentContainer > .inline-title,
-.app-container.sticky-note .workspace-leaf-content[data-type="markdown"] .inline-title,
-.app-container.sticky-note .markdown-preview-view .mod-header,
-.app-container.sticky-note .markdown-source-view .mod-header,
-.app-container.sticky-note .view-content .mod-header,
-html.sticky-note-window .inline-title,
-html.sticky-note-window .mod-header {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    max-height: 0 !important;
-    min-height: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border: none !important;
-    overflow: hidden !important;
-    line-height: 0 !important;
-    font-size: 0 !important;
+.app-container.sticky-note.sticky-note .view-content .inline-title,
+.app-container.sticky-note.sticky-note .markdown-source-view .inline-title,
+.app-container.sticky-note.sticky-note .markdown-source-view .cm-contentContainer > .inline-title,
+.app-container.sticky-note.sticky-note .workspace-leaf-content[data-type="markdown"] .inline-title,
+.app-container.sticky-note.sticky-note .markdown-preview-view .mod-header,
+.app-container.sticky-note.sticky-note .markdown-source-view .mod-header,
+.app-container.sticky-note.sticky-note .view-content .mod-header,
+html.sticky-note-window.sticky-note-window .inline-title,
+html.sticky-note-window.sticky-note-window .mod-header {
+    display: none ;
+    visibility: hidden ;
+    height: 0 ;
+    max-height: 0 ;
+    min-height: 0 ;
+    padding: 0 ;
+    margin: 0 ;
+    border: none ;
+    overflow: hidden ;
+    line-height: 0 ;
+    font-size: 0 ;
 }
 
 /* Some themes keep a spacer above the editor for the inline title */
-.app-container.sticky-note .markdown-source-view .cm-scroller {
+.app-container.sticky-note.sticky-note .markdown-source-view .cm-scroller {
     --file-margins: 0px;
 }
 
-.app-container.sticky-note .view-content.mod-sticky-source {
+.app-container.sticky-note.sticky-note .view-content.mod-sticky-source {
     --file-margins: 0px;
     --file-line-width: 100%;
 }
 
-.app-container.sticky-note .markdown-source-view.mod-cm6 .cm-editor .cm-scroller {
+.app-container.sticky-note.sticky-note .markdown-source-view.mod-cm6 .cm-editor .cm-scroller {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-size: 14px;
     line-height: 1.6;
 }
 
-.app-container.sticky-note .markdown-preview-view {
+.app-container.sticky-note.sticky-note .markdown-preview-view {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-size: 14px;
     line-height: 1.6;
     padding: 4px
         var(--sticky-content-pad-right, 16px)
         var(--sticky-content-pad-bottom, 12px)
-        var(--sticky-content-pad-left, 20px) !important;
-    margin: 0 !important;
-    max-width: none !important;
-    width: 100% !important;
+        var(--sticky-content-pad-left, 20px) ;
+    margin: 0 ;
+    max-width: none ;
+    width: 100% ;
     box-sizing: border-box;
-    color: var(--note-text-color, #1a1a1a) !important;
+    color: var(--note-text-color, #1a1a1a) ;
 }
 
-.app-container.sticky-note .markdown-preview-sizer {
-    max-width: none !important;
-    margin-inline: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
+.app-container.sticky-note.sticky-note .markdown-preview-sizer {
+    max-width: none ;
+    margin-inline: 0 ;
+    padding: 0 ;
+    width: 100% ;
 }
 
-.app-container.sticky-note .markdown-preview-view th,
-.app-container.sticky-note .markdown-preview-view td {
-    color: var(--note-text-color, #1a1a1a) !important;
-    background-color: var(--note-light-color, #ffffff) !important;
-    border-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 20%, transparent) !important;
+.app-container.sticky-note.sticky-note .markdown-preview-view th,
+.app-container.sticky-note.sticky-note .markdown-preview-view td {
+    color: var(--note-text-color, #1a1a1a) ;
+    background-color: var(--note-light-color, #ffffff) ;
+    border-color: color-mix(in srgb, var(--note-text-color, #1a1a1a) 20%, transparent) ;
 }
 
-.app-container.sticky-note .markdown-preview-view thead th {
-    background-color: var(--note-code-bg, #ececec) !important;
-    color: var(--note-text-color, #1a1a1a) !important;
+.app-container.sticky-note.sticky-note .markdown-preview-view thead th {
+    background-color: var(--note-code-bg, #ececec) ;
+    color: var(--note-text-color, #1a1a1a) ;
 }
 
-.app-container.sticky-note .markdown-preview-view pre,
-.app-container.sticky-note .markdown-preview-view code {
-    color: var(--note-text-color, #1a1a1a) !important;
-    background-color: var(--note-code-bg, #ececec) !important;
+.app-container.sticky-note.sticky-note .markdown-preview-view pre,
+.app-container.sticky-note.sticky-note .markdown-preview-view code {
+    color: var(--note-text-color, #1a1a1a) ;
+    background-color: var(--note-code-bg, #ececec) ;
 }
 
-.app-container.sticky-note .markdown-preview-view pre code {
-    color: var(--note-text-color, #1a1a1a) !important;
-    background-color: transparent !important;
+.app-container.sticky-note.sticky-note .markdown-preview-view pre code {
+    color: var(--note-text-color, #1a1a1a) ;
+    background-color: transparent ;
 }
 
-.app-container.sticky-note .markdown-preview-view h1,
-.app-container.sticky-note .markdown-preview-view h2,
-.app-container.sticky-note .markdown-preview-view h3,
-.app-container.sticky-note .markdown-preview-view h4 {
+.app-container.sticky-note.sticky-note .markdown-preview-view h1,
+.app-container.sticky-note.sticky-note .markdown-preview-view h2,
+.app-container.sticky-note.sticky-note .markdown-preview-view h3,
+.app-container.sticky-note.sticky-note .markdown-preview-view h4 {
     font-weight: 600;
     margin-top: 0.6em;
     margin-bottom: 0.3em;
-    color: var(--note-text-color, #1a1a1a) !important;
+    color: var(--note-text-color, #1a1a1a) ;
 }
 
-.app-container.sticky-note .markdown-preview-view .markdown-preview-section > :first-child,
-.app-container.sticky-note .markdown-preview-view .markdown-preview-section > :first-child :first-child,
-.app-container.sticky-note .markdown-preview-view .markdown-preview-section > .el-h1:first-child,
-.app-container.sticky-note .markdown-preview-view .markdown-preview-section > .el-h2:first-child,
-.app-container.sticky-note .markdown-preview-view h1:first-child,
-.app-container.sticky-note .markdown-preview-view h2:first-child,
-.app-container.sticky-note .markdown-preview-view h3:first-child,
-.app-container.sticky-note .markdown-preview-view h4:first-child,
-.app-container.sticky-note .markdown-preview-view .el-h1:first-child,
-.app-container.sticky-note .markdown-preview-view h1:first-of-type,
-.app-container.sticky-note .cm-content > .cm-line:first-child {
-    margin-top: 0 !important;
-    margin-block-start: 0 !important;
-    padding-top: 0 !important;
-    padding-block-start: 0 !important;
+.app-container.sticky-note.sticky-note .markdown-preview-view .markdown-preview-section > :first-child,
+.app-container.sticky-note.sticky-note .markdown-preview-view .markdown-preview-section > :first-child :first-child,
+.app-container.sticky-note.sticky-note .markdown-preview-view .markdown-preview-section > .el-h1:first-child,
+.app-container.sticky-note.sticky-note .markdown-preview-view .markdown-preview-section > .el-h2:first-child,
+.app-container.sticky-note.sticky-note .markdown-preview-view h1:first-child,
+.app-container.sticky-note.sticky-note .markdown-preview-view h2:first-child,
+.app-container.sticky-note.sticky-note .markdown-preview-view h3:first-child,
+.app-container.sticky-note.sticky-note .markdown-preview-view h4:first-child,
+.app-container.sticky-note.sticky-note .markdown-preview-view .el-h1:first-child,
+.app-container.sticky-note.sticky-note .markdown-preview-view h1:first-of-type,
+.app-container.sticky-note.sticky-note .cm-content > .cm-line:first-child {
+    margin-top: 0 ;
+    margin-block-start: 0 ;
+    padding-top: 0 ;
+    padding-block-start: 0 ;
 }
 
-.app-container.sticky-note .markdown-preview-view p,
-.app-container.sticky-note .markdown-preview-view li,
-.app-container.sticky-note .markdown-preview-view .el-p,
-.app-container.sticky-note .markdown-preview-view .el-h1,
-.app-container.sticky-note .markdown-preview-view .el-h2,
-.app-container.sticky-note .markdown-preview-view .el-h3,
-.app-container.sticky-note .markdown-preview-view .el-h4 {
-    color: var(--note-text-color, #1a1a1a) !important;
+.app-container.sticky-note.sticky-note .markdown-preview-view p,
+.app-container.sticky-note.sticky-note .markdown-preview-view li,
+.app-container.sticky-note.sticky-note .markdown-preview-view .el-p,
+.app-container.sticky-note.sticky-note .markdown-preview-view .el-h1,
+.app-container.sticky-note.sticky-note .markdown-preview-view .el-h2,
+.app-container.sticky-note.sticky-note .markdown-preview-view .el-h3,
+.app-container.sticky-note.sticky-note .markdown-preview-view .el-h4 {
+    color: var(--note-text-color, #1a1a1a) ;
 }
 
-.app-container.sticky-note .markdown-preview-view a,
-.app-container.sticky-note .markdown-preview-view a *,
-.app-container.sticky-note .empty-state-action,
-.app-container.sticky-note .empty-state-action-list-item,
-.app-container.sticky-note .empty-state-action-list-item.mod-clickable,
-.app-container.sticky-note .mod-cta,
-.app-container.sticky-note .mod-clickable {
-    color: var(--link-color, #1a5fb4) !important;
+.app-container.sticky-note.sticky-note .markdown-preview-view a,
+.app-container.sticky-note.sticky-note .markdown-preview-view a *,
+.app-container.sticky-note.sticky-note .empty-state-action,
+.app-container.sticky-note.sticky-note .empty-state-action-list-item,
+.app-container.sticky-note.sticky-note .empty-state-action-list-item.mod-clickable,
+.app-container.sticky-note.sticky-note .mod-cta,
+.app-container.sticky-note.sticky-note .mod-clickable {
+    color: var(--link-color, #1a5fb4) ;
     text-decoration: underline;
 }
 
-.app-container.sticky-note .markdown-preview-view a:hover,
-.app-container.sticky-note .markdown-preview-view a:hover *,
-.app-container.sticky-note .empty-state-action:hover,
-.app-container.sticky-note .empty-state-action-list-item:hover {
-    color: var(--link-color-hover, #134e96) !important;
+.app-container.sticky-note.sticky-note .markdown-preview-view a:hover,
+.app-container.sticky-note.sticky-note .markdown-preview-view a:hover *,
+.app-container.sticky-note.sticky-note .empty-state-action:hover,
+.app-container.sticky-note.sticky-note .empty-state-action-list-item:hover {
+    color: var(--link-color-hover, #134e96) ;
 }
 
-.app-container.sticky-note .empty-state,
-.app-container.sticky-note .empty-state-title,
-.app-container.sticky-note .empty-state-description {
-    color: var(--note-text-color, #1a1a1a) !important;
-    background-color: var(--note-light-color, #ffffff) !important;
+.app-container.sticky-note.sticky-note .empty-state,
+.app-container.sticky-note.sticky-note .empty-state-title,
+.app-container.sticky-note.sticky-note .empty-state-description {
+    color: var(--note-text-color, #1a1a1a) ;
+    background-color: var(--note-light-color, #ffffff) ;
 }
 
-.app-container.sticky-note .markdown-preview-view img,
-.app-container.sticky-note .markdown-source-view img {
+.app-container.sticky-note.sticky-note .markdown-preview-view img,
+.app-container.sticky-note.sticky-note .markdown-source-view img {
     cursor: pointer;
     max-width: 100%;
     height: auto;
 }
 
-.app-container.sticky-note .cm-content .cm-header,
-.app-container.sticky-note .cm-content .cm-strong,
-.app-container.sticky-note .cm-content .cm-formatting,
-.app-container.sticky-note .cm-content .cm-comment,
-.app-container.sticky-note .cm-content .cm-hmd-codeblock,
-.app-container.sticky-note .cm-content .cm-hmd-frontmatter {
-    color: var(--note-text-color, #1a1a1a) !important;
+.app-container.sticky-note.sticky-note .cm-content .cm-header,
+.app-container.sticky-note.sticky-note .cm-content .cm-strong,
+.app-container.sticky-note.sticky-note .cm-content .cm-formatting,
+.app-container.sticky-note.sticky-note .cm-content .cm-comment,
+.app-container.sticky-note.sticky-note .cm-content .cm-hmd-codeblock,
+.app-container.sticky-note.sticky-note .cm-content .cm-hmd-frontmatter {
+    color: var(--note-text-color, #1a1a1a) ;
     caret-color: var(--note-text-color, #1a1a1a);
 }
 
-.app-container.sticky-note .cm-content .cm-link,
-.app-container.sticky-note .cm-content .cm-url,
-.app-container.sticky-note .cm-content .cm-underline,
-.app-container.sticky-note .cm-content .hmd-urlstring,
-.app-container.sticky-note .cm-content .cm-string.cm-url,
-.app-container.sticky-note .cm-content a {
-    color: var(--link-color, #1a5fb4) !important;
+.app-container.sticky-note.sticky-note .cm-content .cm-link,
+.app-container.sticky-note.sticky-note .cm-content .cm-url,
+.app-container.sticky-note.sticky-note .cm-content .cm-underline,
+.app-container.sticky-note.sticky-note .cm-content .hmd-urlstring,
+.app-container.sticky-note.sticky-note .cm-content .cm-string.cm-url,
+.app-container.sticky-note.sticky-note .cm-content a {
+    color: var(--link-color, #1a5fb4) ;
     text-decoration: underline;
     caret-color: var(--note-text-color, #1a1a1a);
 }
 
-.app-container.sticky-note .cm-content .cm-link:hover,
-.app-container.sticky-note .cm-content .cm-url:hover,
-.app-container.sticky-note .cm-content a:hover {
-    color: var(--link-color-hover, #134e96) !important;
+.app-container.sticky-note.sticky-note .cm-content .cm-link:hover,
+.app-container.sticky-note.sticky-note .cm-content .cm-url:hover,
+.app-container.sticky-note.sticky-note .cm-content a:hover {
+    color: var(--link-color-hover, #134e96) ;
 }
 
 .color-menu {
@@ -914,52 +914,52 @@ html.sticky-note-window .mod-header {
 }
 
 /* Heading submenu (Obsidian Menu) — match light sticky chrome, not app dark theme */
-html.sticky-note-window .menu,
-.app-container.sticky-note .menu {
-    background-color: #ffffff !important;
-    background: #ffffff !important;
-    color: #1a1a1a !important;
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+html.sticky-note-window.sticky-note-window .menu,
+.app-container.sticky-note.sticky-note .menu {
+    background-color: #ffffff ;
+    background: #ffffff ;
+    color: #1a1a1a ;
+    border: 1px solid rgba(0, 0, 0, 0.1) ;
     box-shadow:
         0 4px 16px rgba(0, 0, 0, 0.12),
-        0 0 0 1px rgba(0, 0, 0, 0.04) !important;
+        0 0 0 1px rgba(0, 0, 0, 0.04) ;
 }
 
-html.sticky-note-window .menu .menu-item,
-.app-container.sticky-note .menu .menu-item {
-    color: #1a1a1a !important;
+html.sticky-note-window.sticky-note-window .menu .menu-item,
+.app-container.sticky-note.sticky-note .menu .menu-item {
+    color: #1a1a1a ;
 }
 
-html.sticky-note-window .menu .menu-item .menu-item-icon,
-html.sticky-note-window .menu .menu-item .menu-item-title,
-html.sticky-note-window .menu .menu-item svg,
-.app-container.sticky-note .menu .menu-item .menu-item-icon,
-.app-container.sticky-note .menu .menu-item .menu-item-title,
-.app-container.sticky-note .menu .menu-item svg {
-    color: #333333 !important;
-    stroke: #333333 !important;
+html.sticky-note-window.sticky-note-window .menu .menu-item .menu-item-icon,
+html.sticky-note-window.sticky-note-window .menu .menu-item .menu-item-title,
+html.sticky-note-window.sticky-note-window .menu .menu-item svg,
+.app-container.sticky-note.sticky-note .menu .menu-item .menu-item-icon,
+.app-container.sticky-note.sticky-note .menu .menu-item .menu-item-title,
+.app-container.sticky-note.sticky-note .menu .menu-item svg {
+    color: #333333 ;
+    stroke: #333333 ;
 }
 
-html.sticky-note-window .menu .menu-item:hover,
-html.sticky-note-window .menu .menu-item.is-selected,
-html.sticky-note-window .menu .menu-item.selected,
-.app-container.sticky-note .menu .menu-item:hover,
-.app-container.sticky-note .menu .menu-item.is-selected,
-.app-container.sticky-note .menu .menu-item.selected {
-    background-color: #f0f0f0 !important;
-    color: #1a1a1a !important;
+html.sticky-note-window.sticky-note-window .menu .menu-item:hover,
+html.sticky-note-window.sticky-note-window .menu .menu-item.is-selected,
+html.sticky-note-window.sticky-note-window .menu .menu-item.selected,
+.app-container.sticky-note.sticky-note .menu .menu-item:hover,
+.app-container.sticky-note.sticky-note .menu .menu-item.is-selected,
+.app-container.sticky-note.sticky-note .menu .menu-item.selected {
+    background-color: #f0f0f0 ;
+    color: #1a1a1a ;
 }
 
-html.sticky-note-window .menu .menu-item:hover .menu-item-title,
-html.sticky-note-window .menu .menu-item.is-selected .menu-item-title,
-.app-container.sticky-note .menu .menu-item:hover .menu-item-title,
-.app-container.sticky-note .menu .menu-item.is-selected .menu-item-title {
-    color: #1a1a1a !important;
+html.sticky-note-window.sticky-note-window .menu .menu-item:hover .menu-item-title,
+html.sticky-note-window.sticky-note-window .menu .menu-item.is-selected .menu-item-title,
+.app-container.sticky-note.sticky-note .menu .menu-item:hover .menu-item-title,
+.app-container.sticky-note.sticky-note .menu .menu-item.is-selected .menu-item-title {
+    color: #1a1a1a ;
 }
 
-html.sticky-note-window .menu .menu-separator,
-.app-container.sticky-note .menu .menu-separator {
-    background-color: rgba(0, 0, 0, 0.1) !important;
+html.sticky-note-window.sticky-note-window .menu .menu-separator,
+.app-container.sticky-note.sticky-note .menu .menu-separator {
+    background-color: rgba(0, 0, 0, 0.1) ;
 }
 
 .sticky-note-color-picker {
