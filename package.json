@@ -1,6 +1,6 @@
 {
 	"name": "simple-sticky-notes",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "Open floating sticky-note popups with pin, colors, and workspace restore.",
 	"main": "main.js",
 	"scripts": {
